@@ -1,0 +1,24 @@
+{
+  "id": "retrotrip",
+  "priority": 2,
+  "date": "2020-02",
+  "type": "mobile",
+  "role": "founder",
+  "users": null,
+  "stack": ["react-native", "typescript", "strapi", "nodejs", "php-slim"],
+  "links": { "ios": null, "android": null, "web": null },
+  "images": ["retrotrip-1.jpg", "retrotrip-2.jpg"],
+  "tags": ["mobile", "e-commerce", "travel"],
+  "content": {
+    "en": {
+      "title": "RetroTrip",
+      "shortDescription": "Travel memories turned into home-delivered posters",
+      "longDescription": "RetroTrip delivers a personalized travel souvenir poster to your door — featuring your trip photos, GPS itinerary, and map. Users pick their travel period, select photos, and order a premium printed poster. Built from scratch as founder: React Native app, TypeScript, Strapi/Node.js backend, PHP Slim API for print order management, and a promotional website."
+    },
+    "fr": {
+      "title": "RetroTrip",
+      "shortDescription": "Livraison à domicile d'un poster souvenir de vos voyages",
+      "longDescription": "RetroTrip livre à domicile un poster souvenir personnalisé de vos voyages — avec vos photos, l'itinéraire GPS et la carte. Les utilisateurs sélectionnent leur période de voyage, choisissent leurs photos et commandent un poster imprimé premium. Développé de A à Z en tant que fondateur : application React Native, TypeScript, backend Strapi/Node.js, API PHP Slim pour la gestion des commandes d'impression et site vitrine PHP."
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "tactic-coach",
+  "priority": 1,
+  "date": "2018-04",
+  "type": "mobile",
+  "role": "founder",
+  "users": null,
+  "stack": [
+    "react-native",
+    "typescript",
+    "strapi",
+    "react"
+  ],
+  "links": {
+    "ios": "https://apps.apple.com/app/tactic-coach/id6476916347",
+    "android": "https://play.google.com/store/apps/details?id=com.tactic.coach.app",
+    "web": null
+  },
+  "images": [
+    "tactic-coach-1.jpg",
+    "tactic-coach-2.jpg",
+    "tactic-coach-3.jpg",
+    "tactic-coach-4.jpg",
+    "tactic-coach-5.jpg",
+    "tactic-coach-6.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "sport",
+    "b2b"
+  ],
+  "content": {
+    "en": {
+      "title": "Tactic.Coach",
+      "shortDescription": "Training planning for athletes and sports clubs",
+      "longDescription": "Tactic.Coach is a training and planning management app for athletes and sports clubs. Coaches build sessions and programs, athletes log their workouts and track progress over time. Built with React Native (mobile), TypeScript, Strapi backend, JS scrapers for data enrichment, and a React web dashboard. Solo project built as CTO at TKorp."
+    },
+    "fr": {
+      "title": "Tactic.Coach",
+      "shortDescription": "Suivi et planification d'entraînement pour athlètes et clubs",
+      "longDescription": "Tactic.Coach est une application de suivi et planification d'entraînement pour athlètes et clubs de sports. Les coachs créent des séances et des programmes, les athlètes enregistrent leurs entraînements et suivent leur progression dans le temps. Développé avec React Native (mobile), TypeScript, backend Strapi, scrapers JS pour l'enrichissement de données, et un tableau de bord React web. Projet solo développé en tant que CTO chez TKorp."
+    }
+  }
+}

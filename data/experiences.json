@@ -1,0 +1,100 @@
+{
+  "experiences": [
+    {
+      "id": "infobam",
+      "company": "Infobam groupe GBH",
+      "client": "Carrefour / Promocash — DOM-TOM",
+      "period": { "start": "2023", "end": null },
+      "current": true,
+      "role": {
+        "en": "Engineering Manager",
+        "fr": "Engineering Manager"
+      },
+      "description": {
+        "en": "Leading loyalty programs and eCommerce platforms (Carrefour, Promocash) for the French overseas territories. Managing a team of 2 developers and 1 DevOps engineer across mobile, full-stack and infrastructure (CI/CD, cloud, deployments).",
+        "fr": "Pilotage du programme de fidélité et des plateformes eCommerce (Carrefour, Promocash) pour les DOM-TOM. Encadrement d'une équipe de 2 développeurs et 1 ingénieur DevOps sur le mobile, le full-stack et les infrastructures (CI/CD, cloud, déploiements)."
+      },
+      "stack": ["react-native", "typescript", "react", "azure", "kotlin"]
+    },
+    {
+      "id": "freelance",
+      "company": "Auto-entreprise",
+      "client": null,
+      "period": { "start": "2011", "end": null },
+      "current": true,
+      "role": {
+        "en": "Freelance Web & Mobile Developer",
+        "fr": "Freelance développeur Web & Mobile"
+      },
+      "description": {
+        "en": "Web and mobile development for external clients: Docavenue, Mon Spécialiste Auto, CityVolt, RallyRec, eScoot. Websites (Altusform, Induste). Migration of high-traffic platforms (Tom's Guide, Tom's Hardware — 8M+ posts, 1.5M users). In parallel, 13 personal apps shipped independently to the App Store and Play Store: RUNinTWO, Tactic.Coach, Horizon, PushX, RetroTrip, ChronoClub, Alerte Naturalisation, Paris Toilet Finder, Paris Water Map, Elegant Paris Watch Face (Garmin).",
+        "fr": "Développement web et mobile pour des clients : Docavenue, Mon Spécialiste Auto, CityVolt, RallyRec, eScoot. Sites web (Altusform, Induste). Migration de plateformes à forte audience (Tom's Guide, Tom's Hardware — 8M+ messages, 1,5M utilisateurs). En parallèle, 13 projets personnels livrés en autonomie sur l'App Store et le Play Store : RUNinTWO, Tactic.Coach, Horizon, PushX, RetroTrip, ChronoClub, Alerte Naturalisation, Paris Toilet Finder, Paris Water Map, Elegant Paris Watch Face (Garmin)."
+      },
+      "stack": ["react-native", "react", "nodejs", "php", "typescript"]
+    },
+    {
+      "id": "cegedim",
+      "company": "Cegedim Santé",
+      "client": null,
+      "period": { "start": "2019", "end": "2023" },
+      "current": false,
+      "role": {
+        "en": "Dev → Lead Dev → Engineering Manager (Mobile)",
+        "fr": "Dev → Lead Dev → Engineering Manager (Mobile)"
+      },
+      "description": {
+        "en": "Built, then led the mobile team behind the Maiia patient and doctor apps (téléconsultation, online scheduling). Grew from developer to Engineering Manager overseeing 10 React Native developers and test engineers within a fast-scaling health startup.",
+        "fr": "Conception puis pilotage de l'équipe mobile derrière les apps Maiia Patient et Médecin (téléconsultation, prise de RDV en ligne). Évolution de développeur à Engineering Manager d'une équipe de 10 développeurs React Native et test engineers au sein d'une startup santé en forte croissance."
+      },
+      "stack": ["react-native", "typescript", "java", "websockets", "aws"]
+    },
+    {
+      "id": "tkorp",
+      "company": "TKorp",
+      "client": null,
+      "period": { "start": "2017", "end": "2018" },
+      "current": false,
+      "role": {
+        "en": "Co-founder & CTO",
+        "fr": "Co-fondateur & CTO"
+      },
+      "description": {
+        "en": "Co-founded TKorp, a web and VR development studio. Built showcase websites, drove SEO strategy, and contributed to VR game projects under Unity.",
+        "fr": "Co-fondation de TKorp, studio de développement web et réalité virtuelle. Développement de sites vitrines, stratégie SEO et participation à des projets de jeux en réalité virtuelle sous Unity."
+      },
+      "stack": ["react", "typescript", "unity", "seo", "php"]
+    },
+    {
+      "id": "ippon",
+      "company": "Ippon Technologies",
+      "client": null,
+      "period": { "start": "2017", "end": "2017" },
+      "current": false,
+      "role": {
+        "en": "DevOps Consultant",
+        "fr": "Consultant DevOps"
+      },
+      "description": {
+        "en": "DevOps consulting at Ippon Technologies. Supported enterprise clients on deployment automation, containerisation and continuous integration pipelines.",
+        "fr": "Conseil DevOps au sein d'Ippon Technologies. Accompagnement de clients enterprise sur l'automatisation des déploiements, la containerisation et les pipelines d'intégration continue."
+      },
+      "stack": ["docker", "kubernetes", "aws", "jenkins", "ansible"]
+    },
+    {
+      "id": "bforbank",
+      "company": "BforBank",
+      "client": null,
+      "period": { "start": "2015", "end": "2017" },
+      "current": false,
+      "role": {
+        "en": "DevOps Apprentice",
+        "fr": "Alternant DevOps"
+      },
+      "description": {
+        "en": "Key member of the BforBank integration team. Built and deployed innovative internal tools now at the heart of the project lifecycle. Contributed to onboarding new recruits, improved tools and processes, and consistently exceeded objectives.",
+        "fr": "Élément clé de l'équipe d'intégration BforBank. Développement et déploiement d'outils internes devenus centraux dans le cycle de vie projet. Participation à l'onboarding des nouvelles recrues, amélioration des outils et processus, objectifs dépassés."
+      },
+      "stack": ["linux", "ansible", "jenkins", "java", "maven"]
+    }
+  ]
+}

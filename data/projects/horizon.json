@@ -1,0 +1,24 @@
+{
+  "id": "horizon",
+  "priority": 8,
+  "date": "2023-01",
+  "type": "mobile",
+  "role": "founder",
+  "users": null,
+  "stack": ["react-native", "php", "nodejs"],
+  "links": { "ios": "https://apps.apple.com/us/app/horizon-fa%C3%A7onnez-votre-avenir/id6741142891", "android": null, "web": null },
+  "images": ["horizon-1.jpg"],
+  "tags": ["mobile", "health", "gamification"],
+  "content": {
+    "en": {
+      "title": "Horizon",
+      "shortDescription": "Gamified addiction management",
+      "longDescription": "Horizon is a gamified addiction management app that helps users track and gradually reduce addictive behaviors — alcohol, tobacco, screens, gambling, and more. A radar chart visualizes the user's overall balance across addiction categories, and daily streaks and achievements make the process motivating rather than clinical. Built with React Native, PHP backend, Node.js scrapers for enrichment, and Express.js."
+    },
+    "fr": {
+      "title": "Horizon",
+      "shortDescription": "Gestion des addictions gamifiée",
+      "longDescription": "Horizon est une application de gestion des addictions gamifiée qui aide les utilisateurs à suivre et réduire progressivement leurs comportements addictifs — alcool, tabac, écrans, jeux d'argent, et plus encore. Un radar chart visualise l'équilibre global de l'utilisateur entre les catégories d'addictions, et les streaks quotidiens et achievements rendent le processus motivant plutôt que clinique. Développé avec React Native, backend PHP, scrapers Node.js et Express.js."
+    }
+  }
+}

@@ -1,0 +1,67 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import { type Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const degrees = [
+  {
+    degree: { en: 'Master MIAGE — Bac +5', fr: 'Master MIAGE — Bac +5' },
+    school: { en: 'Université Paris Nanterre', fr: 'Université Paris Nanterre' },
+    period: '2015 – 2017',
+    detail: {
+      en: 'Computer Methods Applied to Business Management · Graduated 15/20',
+      fr: 'Méthodes Informatiques Appliquées à la Gestion des Entreprises · Diplômé 15/20',
+    },
+    highlight: {
+      en: 'Founded WITIP — the Junior Enterprise of MIAGE Nanterre. Led the project from scratch, handled university accreditation and client acquisition. First project: trouver-une-formation-ce.com.',
+      fr: 'Fondateur de WITIP — la Junior Entreprise de la MIAGE de Nanterre. Projet mené de zéro : accréditation universitaire, structuration et acquisition clients. Premier projet livré : trouver-une-formation-ce.com.',
+    },
+    icon: '🎓',
+  },
+  {
+    degree: { en: 'BTS IRIS — Bac +2', fr: 'BTS IRIS — Bac +2' },
+    school: { en: 'IUT / Lycée technique', fr: 'IUT / Lycée technique' },
+    period: '2013 – 2015',
+    detail: {
+      en: 'Computer Science & Networks',
+      fr: 'Informatique & Réseaux des Systèmes',
+    },
+    highlight: null,
+    icon: '💻',
+  },
+];
+---
+
+<section class="max-w-6xl mx-auto px-6 lg:px-8 py-24">
+  <SectionTitle subtitle={lang === 'en' ? 'Degrees and academic highlights.' : 'Diplômes et faits marquants.'}>
+    {lang === 'en' ? 'Education' : 'Formation'}
+  </SectionTitle>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {degrees.map((d, i) => (
+      <div class={`reveal reveal-delay-${i + 1} bg-surface border border-border rounded-sm p-6`}>
+        <div class="flex items-start gap-4">
+          <span class="text-2xl mt-0.5" aria-hidden="true">{d.icon}</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between gap-2 flex-wrap mb-1">
+              <h3 class="font-display text-lg font-semibold text-ink-primary">{d.degree[lang]}</h3>
+              <span class="font-body text-xs text-ink-muted shrink-0">{d.period}</span>
+            </div>
+            <p class="font-body text-sm font-medium text-accent mb-1">{d.school[lang]}</p>
+            <p class="font-body text-sm text-ink-secondary mb-3">{d.detail[lang]}</p>
+            {d.highlight && (
+              <div class="border-l-2 border-accent/40 pl-3">
+                <p class="font-body text-xs text-ink-secondary leading-relaxed">{d.highlight[lang]}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

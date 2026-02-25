@@ -1,0 +1,38 @@
+{
+  "id": "rdv-prefecture",
+  "priority": 3,
+  "date": "2022-01",
+  "type": "mobile",
+  "role": "founder",
+  "users": 70000,
+  "stack": [
+    "react-native",
+    "php",
+    "nodejs"
+  ],
+  "links": {
+    "ios": "https://apps.apple.com/us/app/trouver-rdv-prefecture/id1567792725",
+    "android": null,
+    "web": null
+  },
+  "images": [
+    "rdv-prefecture-1.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "civic-tech",
+    "scraping"
+  ],
+  "content": {
+    "en": {
+      "title": "Trouver RDV Préfecture",
+      "shortDescription": "Prefecture appointment finder — 70K members",
+      "longDescription": "Trouver RDV Préfecture helps its 70K users easily get an appointment at a French prefecture — one of the most notoriously frustrating administrative tasks. Node.js scrapers monitor availability slots across prefecture websites around the clock and send instant push notifications when a slot opens. Built with React Native, PHP backend, Node.js scrapers, and Express.js."
+    },
+    "fr": {
+      "title": "Trouver RDV Préfecture",
+      "shortDescription": "Dénicheur de RDV en préfecture — 70K membres",
+      "longDescription": "Trouver RDV préfecture aide ses 70 000 utilisateurs à obtenir facilement un rendez-vous en préfecture française — l'une des démarches administratives les plus frustrantes. Des scrapers Node.js surveillent en permanence les créneaux disponibles sur les sites de préfectures et envoient des notifications push instantanées dès qu'un créneau s'ouvre. Développé avec React Native, backend PHP, scrapers Node.js et Express.js."
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "maiia",
+  "priority": 4,
+  "date": "2019-09",
+  "type": "mobile",
+  "role": "lead-dev",
+  "users": 50000,
+  "stack": [
+    "react-native",
+    "typescript",
+    "java",
+    "websockets",
+    "react"
+  ],
+  "links": {
+    "ios": "https://apps.apple.com/fr/app/maiia-teleconsultation-rdv/id1489590732",
+    "android": "https://play.google.com/store/apps/details?id=com.cegedim.maiia.patient",
+    "web": "https://www.maiia.com"
+  },
+  "images": [
+    "maiia-1.jpg",
+    "maiia-2.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "health",
+    "enterprise"
+  ],
+  "content": {
+    "en": {
+      "title": "MAIIA",
+      "shortDescription": "Patient & doctor teleconsultation platform",
+      "longDescription": "MAIIA is two apps in one: one for patients, one for doctors. The goal is to simplify appointment booking, document sharing, and teleconsultation between patients and physicians. As Dev → Lead Dev → Engineering Manager at Cegedim Santé over 4 years, I led a team of 10 React Native developers and test engineers. Stack: React Native, TypeScript, Java backend, WebSockets, React front. The app reached 50K+ active users during the COVID-19 period."
+    },
+    "fr": {
+      "title": "MAIIA",
+      "shortDescription": "Plateforme de téléconsultation patient & médecin",
+      "longDescription": "Maiia c'est deux applications : une pour les patients et une pour les médecins. L'objectif est de simplifier la prise de RDV, le partage de documents, et la téléconsultation entre patients et médecins. De Dev à Lead Dev puis Engineering Manager chez Cegedim Santé pendant 4 ans, j'ai piloté une équipe de 10 développeurs et test engineers React Native. Stack : React Native, TypeScript, backend Java, WebSockets, front React. L'application a atteint plus de 50K utilisateurs actifs lors du COVID-19."
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "escoot",
+  "priority": 5,
+  "date": "2019-01",
+  "type": "mobile",
+  "role": "founder",
+  "users": 100000,
+  "stack": [
+    "react-native",
+    "expo",
+    "nodejs",
+    "php"
+  ],
+  "links": {
+    "ios": null,
+    "android": "https://play.google.com/store/apps/details?id=com.santoyamo.nomorecars",
+    "web": null
+  },
+  "images": [
+    "escoot-1.jpg",
+    "escoot-2.jpg",
+    "escoot-3.jpg",
+    "escoot-4.jpg",
+    "escoot-5.jpg",
+    "escoot-6.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "mobility",
+    "aggregator"
+  ],
+  "content": {
+    "en": {
+      "title": "eScoot",
+      "shortDescription": "Electric scooter aggregator — 100K users, sold in 2021",
+      "longDescription": "eScoot aggregates all electric scooter brands in your city into a single map. Created in 2019, the app reached 100K members and was acquired in 2021. It solved the fragmentation of urban micro-mobility by integrating multiple operator APIs, letting users find and compare available scooters from one place. Built with React Native (Expo), Node.js scrapers, and a PHP storefront."
+    },
+    "fr": {
+      "title": "eScoot",
+      "shortDescription": "Agrégateur de trottinettes électriques — 100K membres, revendu en 2021",
+      "longDescription": "eScoot agrège toutes les marques de trottinettes électriques dans sa ville en une carte. Créé en 2019, l'application a atteint 100 000 membres et a été revendue en 2021. Elle résout la fragmentation de la micro-mobilité urbaine en intégrant les APIs de plusieurs opérateurs, permettant aux utilisateurs de trouver et comparer les trottinettes disponibles depuis un seul endroit. Développé avec React Native (Expo), scrapers Node.js et site vitrine PHP."
+    }
+  }
+}

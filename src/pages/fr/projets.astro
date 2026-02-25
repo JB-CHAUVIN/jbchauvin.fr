@@ -1,0 +1,42 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import SectionTitle from '../../components/ui/SectionTitle.astro';
+import ProjectsFilter from '../../components/projects/ProjectsFilter.tsx';
+import { useTranslations } from '../../i18n/index';
+
+const lang = 'fr';
+const t = useTranslations(lang);
+
+const projectFiles = import.meta.glob('../../../data/projects/*.json', { eager: true });
+const projects = Object.values(projectFiles)
+  .map((mod: any) => mod.default)
+  .sort((a: any, b: any) => a.priority - b.priority);
+
+const translations = {
+  filterAll: t('projects.filter.all'),
+  filterReset: t('projects.filter.reset'),
+  filterType: t('projects.filter.type'),
+  filterStack: t('projects.filter.stack'),
+  filterRole: t('projects.filter.role'),
+  usersLabel: t('projects.users'),
+  noResults: 'Aucun projet ne correspond à vos filtres.',
+};
+---
+
+<Layout
+  title="Projets — Jean-Baptiste Chauvin"
+  description="Applications mobiles, APIs et produits construits par Jean-Baptiste Chauvin — React Native, Expo, TypeScript, Node.js."
+>
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-24">
+    <SectionTitle subtitle={t('projects.subtitle')}>
+      {t('projects.title')}
+    </SectionTitle>
+
+    <ProjectsFilter
+      client:load
+      projects={projects}
+      lang={lang}
+      translations={translations}
+    />
+  </div>
+</Layout>

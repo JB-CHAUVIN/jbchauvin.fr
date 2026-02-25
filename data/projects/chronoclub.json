@@ -1,0 +1,40 @@
+{
+  "id": "chronoclub",
+  "priority": 99,
+  "date": "2022-01",
+  "type": "mobile",
+  "role": "founder",
+  "users": null,
+  "stack": [
+    "react-native",
+    "expo",
+    "typescript"
+  ],
+  "links": {
+    "ios": "https://apps.apple.com/us/app/chronoclub-prise-temps-sport/id1610871331",
+    "android": "https://play.google.com/store/apps/details?id=com.jbchauvin.chronoclub",
+    "web": null
+  },
+  "images": [
+    "chronoclub-1.jpg",
+    "chronoclub-2.jpg",
+    "chronoclub-3.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "sport",
+    "tools"
+  ],
+  "content": {
+    "en": {
+      "title": "ChronoClub",
+      "shortDescription": "Race timing app for sports coaches and PE teachers",
+      "longDescription": "ChronoClub streamlines race timing for sports coaches and physical education teachers. Record finish times as athletes arrive, then assign each time to the right athlete after the race — no paper, no chaos. Export and share results with the whole group in one tap. Built with React Native and Expo."
+    },
+    "fr": {
+      "title": "ChronoClub",
+      "shortDescription": "Prise de temps sportif pour coaches et enseignants EPS",
+      "longDescription": "ChronoClub simplifie la prise de temps pour les coaches sportifs et les enseignants d'EPS. Enregistrez les temps d'arrivée au fur et à mesure, puis attribuez chaque chrono au bon athlète après la course — sans papier, sans chaos. Exportez et partagez les résultats avec tout le groupe en un geste. Développé avec React Native et Expo."
+    }
+  }
+}

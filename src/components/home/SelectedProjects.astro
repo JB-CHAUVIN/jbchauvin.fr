@@ -1,0 +1,134 @@
+---
+import { useTranslations, type Lang } from '../../i18n/index';
+import Button from '../ui/Button.astro';
+import Tag from '../ui/Tag.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+
+interface Props {
+  lang: Lang;
+  projects: any[];
+}
+
+const { lang, projects } = Astro.props;
+const t = useTranslations(lang);
+
+const allProjectsHref = lang === 'en' ? '/projects/' : '/fr/projets/';
+const featured = projects.slice(0, 3);
+---
+
+<section class="max-w-6xl mx-auto px-6 lg:px-8 py-24">
+  <div class="flex items-end justify-between mb-12">
+    <SectionTitle subtitle={t('section.projects.subtitle')} class="mb-0">
+      {t('section.projects.title')}
+    </SectionTitle>
+    <Button href={allProjectsHref} variant="ghost" class="hidden md:inline-flex shrink-0 mb-3">
+      {t('section.projects.cta')}
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </Button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {featured.map((project, i) => {
+      const content = project.content[lang];
+      const delayClass = `reveal-delay-${i + 1}`;
+      const images = (project.images ?? []).map((img: string) => `/images/projects/${img}`);
+      const heroImage = images[0] ?? null;
+      return (
+        <article class={`reveal ${delayClass} bg-surface border border-border rounded-sm overflow-hidden card-hover flex flex-col`}>
+          <!-- Hero image -->
+          <div
+            class="relative bg-[#F0EBE3] overflow-hidden cursor-pointer group"
+            style="height: 220px;"
+            onclick={`window.dispatchEvent(new CustomEvent('open-lightbox',{detail:{images:${JSON.stringify(images)},index:0,projectTitle:${JSON.stringify(content.title)}}}))`}
+          >
+            {heroImage ? (
+              <>
+                <img
+                  src={heroImage}
+                  alt={content.title}
+                  class="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+                {images.length > 1 && (
+                  <div class="absolute bottom-2 right-2 bg-black/60 text-white font-body text-xs px-2 py-0.5 rounded-sm z-10">
+                    +{images.length - 1}
+                  </div>
+                )}
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <div class="bg-black/60 text-white rounded-full p-2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="font-display text-4xl font-bold text-border">{content.title.charAt(0)}</span>
+              </div>
+            )}
+          </div>
+
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-center justify-between mb-3">
+              <Tag variant="accent">{project.type}</Tag>
+              <div class="flex items-center gap-2">
+                {project.users === null && (
+                  <span class="font-body text-xs font-medium uppercase tracking-widest px-1.5 py-0.5 rounded-sm border border-ink-muted/30 text-ink-muted/70">MVP</span>
+                )}
+                <span class="font-body text-xs text-ink-muted">{project.date.slice(0, 4)}</span>
+              </div>
+            </div>
+
+            <h3 class="font-display text-xl font-semibold text-ink-primary mb-2">
+              {content.title}
+            </h3>
+            <p class="font-body text-sm text-ink-secondary leading-relaxed mb-4 flex-1">
+              {content.shortDescription}
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              {project.stack.slice(0, 4).map((tech: string) => (
+                <Tag variant="muted">{tech}</Tag>
+              ))}
+              {project.stack.length > 4 && (
+                <Tag variant="muted">+{project.stack.length - 4}</Tag>
+              )}
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-border flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <span class="font-body text-xs text-ink-muted capitalize">{project.role}</span>
+                {project.users && (
+                  <span class="font-body text-xs text-ink-muted">
+                    {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {t('projects.users')}
+                  </span>
+                )}
+              </div>
+              <div class="flex items-center gap-1.5">
+                {project.links?.ios && (
+                  <a href={project.links.ios} target="_blank" rel="noopener noreferrer"
+                     class="font-body text-xs text-accent hover:text-accent-hover transition-colors"
+                     onclick="event.stopPropagation()">iOS</a>
+                )}
+                {project.links?.android && (
+                  <a href={project.links.android} target="_blank" rel="noopener noreferrer"
+                     class="font-body text-xs text-accent hover:text-accent-hover transition-colors"
+                     onclick="event.stopPropagation()">Android</a>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+
+  <div class="mt-8 text-center md:hidden">
+    <Button href={allProjectsHref} variant="secondary">
+      {t('section.projects.cta')}
+    </Button>
+  </div>
+</section>

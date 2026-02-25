@@ -1,0 +1,27 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import SectionTitle from '../../components/ui/SectionTitle.astro';
+import ReferenceCard from '../../components/references/ReferenceCard.astro';
+import { useTranslations } from '../../i18n/index';
+import referencesData from '../../../data/references.json';
+
+const lang = 'fr';
+const t = useTranslations(lang);
+---
+
+<Layout
+  title="Références — Jean-Baptiste Chauvin"
+  description="Références professionnelles et témoignages des entreprises avec lesquelles Jean-Baptiste Chauvin a travaillé."
+>
+  <div class="max-w-4xl mx-auto px-6 lg:px-8 py-24">
+    <SectionTitle subtitle={t('references.subtitle')}>
+      {t('references.title')}
+    </SectionTitle>
+
+    <div class="flex flex-col gap-8">
+      {referencesData.references.map((ref) => (
+        <ReferenceCard reference={ref} lang={lang} />
+      ))}
+    </div>
+  </div>
+</Layout>

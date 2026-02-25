@@ -1,0 +1,45 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import Hero from '../../components/home/Hero.astro';
+import SelectedProjects from '../../components/home/SelectedProjects.astro';
+import CareerSection from '../../components/home/CareerSection.astro';
+import EducationSection from '../../components/home/EducationSection.astro';
+import SkillsSection from '../../components/home/SkillsSection.astro';
+import ReferencesPreview from '../../components/home/ReferencesPreview.astro';
+import ContactSection from '../../components/home/ContactSection.astro';
+import referencesData from '../../../data/references.json';
+import site from '../../../data/site.json';
+
+const projectFiles = import.meta.glob('../../../data/projects/*.json', { eager: true });
+const projects = Object.values(projectFiles)
+  .map((mod: any) => mod.default)
+  .sort((a: any, b: any) => a.priority - b.priority);
+
+const lang = 'fr';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jean-Baptiste Chauvin',
+  url: `${site.baseUrl}/fr/`,
+  email: site.email,
+  sameAs: [site.linkedin, site.github].filter(Boolean),
+  jobTitle: 'Développeur React Native Senior',
+  description: '10+ ans à livrer des produits mobiles et web. De fondateur solo à Engineering Manager.',
+  knowsAbout: ['React Native', 'TypeScript', 'iOS', 'Android', 'Node.js', 'Engineering Management'],
+};
+---
+
+<Layout
+  title="Jean-Baptiste Chauvin — Développeur React Native Senior"
+  description="Développeur React Native senior et Engineering Manager avec 10+ ans à construire des produits mobiles. De fondateur solo à chef d'équipe."
+  jsonLd={jsonLd}
+>
+  <Hero lang={lang} />
+  <SelectedProjects lang={lang} projects={projects} />
+  <CareerSection lang={lang} />
+  <EducationSection lang={lang} />
+  <SkillsSection lang={lang} />
+  <ReferencesPreview lang={lang} references={referencesData.references} />
+  <ContactSection lang={lang} />
+</Layout>

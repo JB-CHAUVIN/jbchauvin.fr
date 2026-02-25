@@ -1,0 +1,87 @@
+---
+import { useTranslations, type Lang } from '../../i18n/index';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Tag from '../ui/Tag.astro';
+import experiencesData from '../../../data/experiences.json';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const { experiences } = experiencesData;
+---
+
+<section class="max-w-6xl mx-auto px-6 lg:px-8 py-24">
+  <SectionTitle subtitle={t('section.career.subtitle')}>
+    {t('section.career.title')}
+  </SectionTitle>
+
+  <div class="relative">
+    <!-- Vertical line -->
+    <div class="absolute left-[7px] md:left-[calc(11rem+7px)] top-2 bottom-2 w-px bg-border" aria-hidden="true"></div>
+
+    <ol class="space-y-0">
+      {experiences.map((exp, i) => {
+        const role = exp.role[lang];
+        const description = exp.description[lang];
+        const period = exp.period.end
+          ? `${exp.period.start} – ${exp.period.end}`
+          : `${exp.period.start} – ${t('common.present')}`;
+
+        return (
+          <li class={`reveal reveal-delay-${Math.min(i + 1, 4)} relative flex gap-6 md:gap-8 pb-10 last:pb-0`}>
+            <!-- Timeline dot + date (desktop) -->
+            <div class="hidden md:flex flex-col items-end w-44 shrink-0 pt-1">
+              <span class="font-body text-xs text-ink-muted text-right leading-snug">{period}</span>
+            </div>
+
+            <!-- Dot -->
+            <div class="relative flex flex-col items-center shrink-0 pt-1.5">
+              {exp.current ? (
+                <span class="w-3.5 h-3.5 rounded-full bg-green-500 ring-4 ring-green-500/20 shrink-0 z-10"></span>
+              ) : (
+                <span class="w-3.5 h-3.5 rounded-full bg-border ring-2 ring-bg shrink-0 z-10"></span>
+              )}
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 pb-2">
+              <!-- Period (mobile only) -->
+              <p class="md:hidden font-body text-xs text-ink-muted mb-1">{period}</p>
+
+              <!-- Company + role -->
+              <div class="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 mb-1">
+                <h3 class="font-display text-lg font-semibold text-ink-primary leading-snug">
+                  {exp.company}
+                </h3>
+                {exp.current && (
+                  <span class="font-body text-xs font-medium text-green-600 uppercase tracking-widest">● {t('common.now')}</span>
+                )}
+              </div>
+
+              <p class="font-body text-sm font-medium text-accent mb-2">{role}</p>
+
+              {exp.client && (
+                <p class="font-body text-xs text-ink-muted mb-2">{exp.client}</p>
+              )}
+
+              <p class="font-body text-sm text-ink-secondary leading-relaxed mb-3">
+                {description}
+              </p>
+
+              <!-- Stack -->
+              <div class="flex flex-wrap gap-1.5">
+                {exp.stack.map((tech: string) => (
+                  <Tag variant="muted">{tech}</Tag>
+                ))}
+              </div>
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</section>

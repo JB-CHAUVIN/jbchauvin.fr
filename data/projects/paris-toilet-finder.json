@@ -1,0 +1,41 @@
+{
+  "id": "paris-toilet-finder",
+  "priority": 11,
+  "date": "2024-01",
+  "type": "mobile",
+  "role": "founder",
+  "users": 100,
+  "stack": [
+    "react-native",
+    "expo",
+    "typescript"
+  ],
+  "links": {
+    "ios": "https://apps.apple.com/us/app/paris-toilet-finder-wc-locator/id6751340329",
+    "android": null,
+    "web": null
+  },
+  "images": [
+    "paris-toilet-finder-1.jpg",
+    "paris-toilet-finder-2.jpg",
+    "paris-toilet-finder-3.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "travel",
+    "maps",
+    "utilities"
+  ],
+  "content": {
+    "en": {
+      "title": "Paris Toilet Finder",
+      "shortDescription": "Find public restrooms across Paris instantly",
+      "longDescription": "Paris Toilet Finder WC Locator helps tourists, families, and locals find the nearest public restroom in Paris using GPS and an interactive map. Coverage includes toilets near the Eiffel Tower, Louvre, metro stations, parks, and shopping districts. Simple, fast, and free — because finding a WC in Paris should never be stressful."
+    },
+    "fr": {
+      "title": "Paris Toilet Finder",
+      "shortDescription": "Trouvez les toilettes publiques à Paris en un instant",
+      "longDescription": "Paris Toilet Finder WC Locator aide les touristes, les familles et les habitants à trouver les toilettes publiques les plus proches à Paris grâce au GPS et à une carte interactive. Couverture autour de la Tour Eiffel, du Louvre, des stations de métro, des parcs et des quartiers commerçants. Simple, rapide et gratuit — parce que trouver des WC à Paris ne devrait jamais être stressant."
+    }
+  }
+}

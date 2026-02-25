@@ -1,0 +1,45 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import SelectedProjects from '../components/home/SelectedProjects.astro';
+import CareerSection from '../components/home/CareerSection.astro';
+import EducationSection from '../components/home/EducationSection.astro';
+import SkillsSection from '../components/home/SkillsSection.astro';
+import ReferencesPreview from '../components/home/ReferencesPreview.astro';
+import ContactSection from '../components/home/ContactSection.astro';
+import referencesData from '../../data/references.json';
+import site from '../../data/site.json';
+
+const projectFiles = import.meta.glob('../../data/projects/*.json', { eager: true });
+const projects = Object.values(projectFiles)
+  .map((mod: any) => mod.default)
+  .sort((a: any, b: any) => a.priority - b.priority);
+
+const lang = 'en';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jean-Baptiste Chauvin',
+  url: site.baseUrl,
+  email: site.email,
+  sameAs: [site.linkedin, site.github].filter(Boolean),
+  jobTitle: 'Senior React Native Developer',
+  description: '10+ years shipping mobile and web products. From solo founder to Engineering Manager.',
+  knowsAbout: ['React Native', 'TypeScript', 'iOS', 'Android', 'Node.js', 'Engineering Management'],
+};
+---
+
+<Layout
+  title="Jean-Baptiste Chauvin — Senior React Native Developer"
+  description="Senior React Native developer and Engineering Manager with 10+ years building mobile products. From solo founder to team lead."
+  jsonLd={jsonLd}
+>
+  <Hero lang={lang} />
+  <SelectedProjects lang={lang} projects={projects} />
+  <CareerSection lang={lang} />
+  <EducationSection lang={lang} />
+  <SkillsSection lang={lang} />
+  <ReferencesPreview lang={lang} references={referencesData.references} />
+  <ContactSection lang={lang} />
+</Layout>

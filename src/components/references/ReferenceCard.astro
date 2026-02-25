@@ -1,0 +1,77 @@
+---
+import Tag from '../ui/Tag.astro';
+import { type Lang } from '../../i18n/index';
+
+interface Props {
+  reference: any;
+  lang: Lang;
+}
+
+const { reference, lang } = Astro.props;
+const testimonial = reference.testimonial[lang];
+const role = reference.role[lang];
+
+// Generate initials from author name
+const initials = testimonial.author
+  .split(' ')
+  .map((n: string) => n[0])
+  .slice(0, 2)
+  .join('');
+---
+
+<article class="reveal bg-surface border border-border rounded-sm p-8 flex flex-col gap-6">
+  <!-- Header: company + period + role -->
+  <div class="flex items-start justify-between gap-4 flex-wrap">
+    <div>
+      <h2 class="font-display text-xl font-semibold text-ink-primary mb-1">
+        {reference.company}
+      </h2>
+      <p class="font-body text-sm text-ink-muted">{role} · {reference.period}</p>
+    </div>
+    <div class="flex flex-wrap gap-1.5">
+      {reference.stack.map((tech: string) => (
+        <Tag variant="muted">{tech}</Tag>
+      ))}
+    </div>
+  </div>
+
+  <!-- Testimonial -->
+  <div class="relative">
+    <div class="text-5xl font-display text-accent/25 leading-none mb-3 select-none" aria-hidden="true">"</div>
+    <blockquote class="font-body text-base text-ink-secondary leading-relaxed italic whitespace-pre-line">
+      {testimonial.text}
+    </blockquote>
+  </div>
+
+  <!-- Author with avatar -->
+  <div class="flex items-center gap-4 pt-4 border-t border-border">
+    <!-- Avatar: real image or initials fallback -->
+    <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-accent-light flex items-center justify-center">
+      {reference.avatar ? (
+        <img
+          src={reference.avatar}
+          alt={testimonial.author}
+          width="48"
+          height="48"
+          class="w-full h-full object-cover"
+          loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <span
+          class="hidden w-full h-full items-center justify-center font-display text-sm font-bold text-accent"
+          aria-hidden="true"
+        >
+          {initials}
+        </span>
+      ) : (
+        <span class="font-display text-sm font-bold text-accent" aria-hidden="true">
+          {initials}
+        </span>
+      )}
+    </div>
+    <div>
+      <p class="font-body text-sm font-semibold text-ink-primary">{testimonial.author}</p>
+      <p class="font-body text-xs text-ink-muted">{testimonial.position}</p>
+    </div>
+  </div>
+</article>

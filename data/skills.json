@@ -1,0 +1,46 @@
+{
+  "categories": [
+    {
+      "id": "mobile",
+      "icon": "📱",
+      "label": { "en": "Mobile", "fr": "Mobile" },
+      "skills": ["React Native", "Expo", "TypeScript", "iOS (APNS)", "Android (FCM)"]
+    },
+    {
+      "id": "web",
+      "icon": "🌐",
+      "label": { "en": "Web", "fr": "Web" },
+      "skills": ["React.js", "Next.js", "HTML / CSS", "PHP", "XenForo"]
+    },
+    {
+      "id": "backend",
+      "icon": "⚙️",
+      "label": { "en": "Backend", "fr": "Backend" },
+      "skills": ["Node.js", "Java", "PHP", "REST APIs", "WebSockets", "Express.js", "Strapi"]
+    },
+    {
+      "id": "cloud-devops",
+      "icon": "☁️",
+      "label": { "en": "Cloud & DevOps", "fr": "Cloud & DevOps" },
+      "skills": ["AWS", "Docker", "CI/CD", "nginx", "Ansible", "Jenkins"]
+    },
+    {
+      "id": "ai",
+      "icon": "🤖",
+      "label": { "en": "AI & Automation", "fr": "IA & Automatisation" },
+      "skills": ["OpenAI API", "Claude API", "AI-assisted workflows"]
+    },
+    {
+      "id": "data",
+      "icon": "🗄️",
+      "label": { "en": "Data", "fr": "Data" },
+      "skills": ["PostgreSQL", "MongoDB", "MySQL"]
+    },
+    {
+      "id": "leadership",
+      "icon": "🧭",
+      "label": { "en": "Leadership & Soft Skills", "fr": "Leadership & Soft Skills" },
+      "skills": ["Engineering Management", "Technical Roadmap", "Mentoring", "Agile / Scrum", "Team Spirit", "Product Vision"]
+    }
+  ]
+}

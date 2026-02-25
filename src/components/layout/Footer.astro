@@ -1,0 +1,56 @@
+---
+import { useTranslations, type Lang } from '../../i18n/index';
+import site from '../../../data/site.json';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<footer class="bg-bg border-t border-border mt-24">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Logo + tagline -->
+      <div class="text-center md:text-left">
+        <a href={lang === 'en' ? '/' : '/fr/'} class="font-display font-bold text-lg text-ink-primary hover:text-accent transition-colors">
+          JB<span class="text-accent">.</span>
+        </a>
+        <p class="font-body text-sm text-ink-muted mt-1">{t('footer.rights')}</p>
+      </div>
+
+      <!-- Social links -->
+      <div class="flex items-center gap-6">
+        <a
+          href={site.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-body text-sm text-ink-secondary hover:text-accent transition-colors"
+        >
+          LinkedIn
+        </a>
+        <a
+          href={site.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-body text-sm text-ink-secondary hover:text-accent transition-colors"
+        >
+          GitHub
+        </a>
+        <a
+          href={`mailto:${site.email}`}
+          class="font-body text-sm text-ink-secondary hover:text-accent transition-colors"
+        >
+          Email
+        </a>
+      </div>
+
+      <!-- Built with -->
+      <p class="font-body text-xs text-ink-muted">
+        {t('footer.built')} ✦
+      </p>
+    </div>
+  </div>
+</footer>

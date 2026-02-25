@@ -1,0 +1,24 @@
+{
+  "id": "pushx",
+  "priority": 7,
+  "date": "2019-01",
+  "type": "mobile",
+  "role": "founder",
+  "users": null,
+  "stack": ["react-native", "expo", "strapi", "nodejs"],
+  "links": { "ios": "https://apps.apple.com/us/app/pushx-notification-push/id6741328455", "android": "https://play.google.com/store/apps/details?id=com.pushx.live", "web": null },
+  "images": ["pushx-1.jpg"],
+  "tags": ["mobile", "api", "developer-tools"],
+  "content": {
+    "en": {
+      "title": "PushX",
+      "shortDescription": "Receive mobile push notifications simply via API",
+      "longDescription": "PushX is an API to receive mobile push notifications simply — from any webhook, API call, or external service — directly in the PushX mobile app. Think of it as a personal notification inbox for developers. Built with React Native (Expo) for the mobile client and a Strapi/JS backend for token management and delivery routing."
+    },
+    "fr": {
+      "title": "PushX",
+      "shortDescription": "Recevez des notifications mobiles simplement via API",
+      "longDescription": "PushX est une API pour recevoir des notifications push mobiles simplement — depuis n'importe quel webhook, appel API ou service externe — directement dans l'application mobile PushX. Une sorte de boîte de réception de notifications personnelle pour développeurs. Développé avec React Native (Expo) pour le client mobile et un backend Strapi/JS pour la gestion des tokens et le routage de livraison."
+    }
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "references": [
+    {
+      "id": "alexandra-ohayon-sultan",
+      "company": "MAIIA (Cegedim Santé)",
+      "period": "Août 2023",
+      "avatar": "/images/avatars/alexandra-ohayon-sultan.jpg",
+      "role": {
+        "en": "Mobile Product Owner",
+        "fr": "Mobile Product Owner"
+      },
+      "stack": ["react-native", "typescript", "agile"],
+      "testimonial": {
+        "fr": {
+          "text": "Leadership, esprit d'équipe et bienveillance sont les trois qualités qui me viennent quand je pense à Jean-Baptiste. J'ai eu le plaisir de travailler avec lui pendant 8 mois au sein d'une équipe mobile d'une dizaine de personnes, qu'il a fait grandir avec le temps. Nous avons travaillé ensemble sur la refonte d'une app en React Native et sur l'évolution de process organisationnels en vue d'améliorer la productivité de l'équipe. Sa capacité à fédérer une équipe était formidable. Sa détermination et son enthousiasme quotidien également. Jean-Baptiste était apprécié de tous et sera un réel atout pour sa future équipe !",
+          "author": "Alexandra Ohayon Sultan",
+          "position": "Mobile Product Owner, MAIIA"
+        },
+        "en": {
+          "text": "Leadership, team spirit and kindness are the three qualities that come to mind when I think of Jean-Baptiste. I had the pleasure of working with him for 8 months within a mobile team of around ten people, which he helped grow over time. We worked together on the redesign of a React Native app and on evolving organisational processes to improve team productivity. His ability to unite a team was remarkable. His determination and daily enthusiasm too. Jean-Baptiste was appreciated by everyone and will be a real asset to his next team!",
+          "author": "Alexandra Ohayon Sultan",
+          "position": "Mobile Product Owner, MAIIA"
+        }
+      }
+    },
+    {
+      "id": "florian-causse",
+      "company": "MAIIA (Cegedim Santé)",
+      "period": "Juin 2023",
+      "avatar": "/images/avatars/florian-causse.jpg",
+      "role": {
+        "en": "CTO",
+        "fr": "CTO"
+      },
+      "stack": ["react-native", "typescript", "java", "websockets"],
+      "testimonial": {
+        "fr": {
+          "text": "C'est avec grand plaisir que je rédige cette recommandation pour Jean-Baptiste Chauvin, un excellent Lead Tech Mobile avec des compétences remarquables en ReactNative et une implication humaine exceptionnelle.\n\nJean-Baptiste est un leader technique talentueux qui a su faire preuve d'une expertise approfondie en développement mobile tout au long de notre collaboration. Sa maîtrise de ReactNative est tout simplement impressionnante, et il a la capacité de créer des applications mobiles de haute qualité de manière efficace et innovante. Grâce à sa connaissance approfondie des meilleures pratiques de développement, il est capable de résoudre des problèmes complexes et de trouver des solutions efficaces, tout en respectant les délais.\n\nCependant, ce qui différencie vraiment Jean-Baptiste, c'est son implication humaine. Il est un leader inspirant et dévoué qui met un point d'honneur à favoriser une culture d'équipe solide et à encourager la collaboration. Sa communication claire et ouverte facilite grandement les échanges au sein de l'équipe, permettant à chacun de s'exprimer et de contribuer de manière significative.\n\nJean-Baptiste est également un mentor exceptionnel. Il prend le temps de guider et d'aider les membres de son équipe à développer leurs compétences techniques, tout en leur donnant les moyens de réussir et de s'épanouir professionnellement.\n\nJe recommande vivement Jean-Baptiste Chauvin pour tout poste de leadership technique dans le domaine du développement mobile. Il est un atout inestimable pour toute entreprise, capable de concilier des compétences techniques de haut niveau avec une approche humaine qui favorise la réussite collective.",
+          "author": "Florian Causse",
+          "position": "CTO, MAIIA"
+        },
+        "en": {
+          "text": "It is with great pleasure that I write this recommendation for Jean-Baptiste Chauvin, an excellent Mobile Lead Tech with remarkable React Native skills and exceptional human involvement.\n\nJean-Baptiste is a talented technical leader who demonstrated deep expertise in mobile development throughout our collaboration. His mastery of React Native is simply impressive, and he has the ability to create high-quality mobile applications efficiently and innovatively. Thanks to his in-depth knowledge of best development practices, he is able to solve complex problems and find effective solutions while respecting deadlines.\n\nHowever, what truly sets Jean-Baptiste apart is his human involvement. He is an inspiring and dedicated leader who makes it a point of honour to foster a strong team culture and encourage collaboration. His clear and open communication greatly facilitates exchanges within the team.\n\nJean-Baptiste is also an exceptional mentor. He takes the time to guide and help team members develop their technical skills, while giving them the means to succeed and thrive professionally.\n\nI strongly recommend Jean-Baptiste Chauvin for any technical leadership position in the field of mobile development. He is an invaluable asset to any company, capable of combining high-level technical skills with a human approach that promotes collective success.",
+          "author": "Florian Causse",
+          "position": "CTO, MAIIA"
+        }
+      }
+    },
+    {
+      "id": "anthony-gea",
+      "company": "BforBank",
+      "period": "Juillet 2016",
+      "avatar": "/images/avatars/anthony-gea.jpg",
+      "role": {
+        "en": "DevOps Manager",
+        "fr": "DevOps Manager"
+      },
+      "stack": ["devops", "ci-cd", "jenkins", "linux"],
+      "testimonial": {
+        "fr": {
+          "text": "Jean-Baptiste est et a été un élément clé dans l'équipe d'intégration BforBank, il a su à la fois développer des outils innovants, les déployer en production, communiquer autour de ces nouvelles fonctionnalités. Ces dernières se trouvent désormais au cœur du cycle de vie projet. Son implication a aussi été remarquable lorsque des obstacles structurels se sont présentés à lui, sa personnalité a insufflé un souffle nouveau à toute l'équipe : maturité étonnante pour son âge et autonomie très appréciée dans un contexte très volatile et aux priorités changeantes. Il a su conjuguer avec les différentes personnalités et décideurs afin de mettre en avant ses projets et les faire aboutir. Il a aussi participé activement à l'intégration des nouvelles recrues et a été force de proposition pour faire évoluer nos outils et processus. Son dynamisme a aussi été très apprécié, ses différentes expérimentations l'ont amené à dépasser ses objectifs. Bravo pour ces 18 mois passés parmi nous !",
+          "author": "Anthony Gea",
+          "position": "DevOps Manager, BforBank"
+        },
+        "en": {
+          "text": "Jean-Baptiste was and remains a key member of the BforBank integration team — able to develop innovative tools, deploy them to production, and communicate around these new features, which are now at the heart of the project lifecycle. His involvement was also remarkable when structural obstacles arose; his personality breathed new life into the entire team: surprising maturity for his age and highly valued autonomy in a very volatile context with shifting priorities. He was able to work with different personalities and decision-makers to champion his projects and see them through. He also actively participated in onboarding new recruits and was a driving force for improving our tools and processes. His dynamism was greatly appreciated — his various experiments led him to exceed his objectives. Congratulations on these 18 months with us!",
+          "author": "Anthony Gea",
+          "position": "DevOps Manager, BforBank"
+        }
+      }
+    },
+    {
+      "id": "olivier-brouze",
+      "company": "RallyRec",
+      "period": "Mai 2019",
+      "avatar": "/images/avatars/olivier-brouze.jpg",
+      "role": {
+        "en": "Founder",
+        "fr": "Fondateur"
+      },
+      "stack": ["react-native", "expo", "typescript"],
+      "testimonial": {
+        "fr": {
+          "text": "Je suis ingénieur en aéronautique et en parallèle de mon métier, je développe le système Rally Rec en lien avec ma passion : le rallye automobile. C'est une application qui facilite les reconnaissances à l'aide du GPS du téléphone. Elle est utilisée dans toute l'Europe et même en championnat du monde des Rallyes. L'application iOS est sortie il y a un an, et Jean-Baptiste m'a permis de faire la version Android.\n\nJe tiens à le recommander pour plusieurs raisons : c'est un développeur à l'écoute des besoins et qui propose des solutions adaptées. Il a facilement intégré un objet connecté relié à l'application. L'application est robuste et très belle visuellement. Il utilise React Native qui permet de développer iOS et Android en même temps. Je regrette de ne pas l'avoir sollicité il y a un an, ce qui m'aurait permis de développer sur les deux plateformes simultanément.",
+          "author": "Olivier Brouze",
+          "position": "Fondateur, RallyRec"
+        },
+        "en": {
+          "text": "I am an aeronautical engineer and alongside my main job, I develop the Rally Rec system driven by my passion for rally racing. It's an app that facilitates course reconnaissance using the phone's GPS. It's used across all of Europe and even at the World Rally Championship. The iOS app had been out for a year, and Jean-Baptiste enabled me to build the Android version.\n\nI recommend him for several reasons: he listens carefully to requirements and proposes tailored solutions. He easily integrated a connected device linked to the app. The application is robust and visually excellent. He uses React Native to develop iOS and Android simultaneously. I regret not approaching him a year earlier — it would have saved me significant time and benefited my business greatly.",
+          "author": "Olivier Brouze",
+          "position": "Founder, RallyRec"
+        }
+      }
+    },
+    {
+      "id": "david-fernandes",
+      "company": "Purch France (Tom's Guide / Tom's Hardware)",
+      "period": "Novembre 2018",
+      "avatar": "/images/avatars/david-fernandes.jpg",
+      "role": {
+        "en": "Webmaster",
+        "fr": "Webmaster"
+      },
+      "stack": ["php", "xenforo", "migration"],
+      "testimonial": {
+        "fr": {
+          "text": "Nous avons mandaté Jean-Baptiste pour une migration volumineuse des forums Tom's Guide et Tom's Hardware sous XenForo 2. Plus de 8 millions de messages pour 1,5 millions d'utilisateurs ! Non seulement la mission a été menée avec succès mais en plus elle a été finalisée avant les délais impartis. Jean-Baptiste est un professionnel efficace, ultra-réactif et très pédagogue. Avec un suivi post-livraison on ne peut plus appréciable.",
+          "author": "David Fernandes",
+          "position": "Webmaster, Purch France"
+        },
+        "en": {
+          "text": "We hired Jean-Baptiste for a large-scale migration of the Tom's Guide and Tom's Hardware forums to XenForo 2. Over 8 million messages for 1.5 million users! Not only was the mission carried out successfully, but it was completed ahead of schedule. Jean-Baptiste is an efficient, ultra-responsive and very educational professional. With post-delivery follow-up that couldn't be more appreciated.",
+          "author": "David Fernandes",
+          "position": "Webmaster, Purch France"
+        }
+      }
+    },
+    {
+      "id": "philippine-arnal",
+      "company": "Trouver Formation CE",
+      "period": "Février 2016",
+      "avatar": "/images/avatars/philippine-arnal.jpg",
+      "role": {
+        "en": "Founder",
+        "fr": "Fondatrice"
+      },
+      "stack": ["web", "php"],
+      "testimonial": {
+        "fr": {
+          "text": "Jean-Baptiste est un chef de projet efficace, compétent, organisé, fiable et réactif. J'estime avoir eu de la chance d'avoir pu travailler avec lui pour créer et lancer mon site internet. Il sait gérer différentes situations avec calme et diplomatie (qualité plutôt rare) ; sait appréhender rapidement l'état des choses et l'action à entreprendre : agir, attendre ou déléguer. Bref, Jean-Baptiste est un collaborateur précieux.",
+          "author": "Philippine Arnal",
+          "position": "Fondatrice, Trouver Formation CE"
+        },
+        "en": {
+          "text": "Jean-Baptiste is an efficient, competent, organised, reliable and responsive project manager. I consider myself lucky to have been able to work with him to create and launch my website. He handles different situations with calm and diplomacy — a rather rare quality. He quickly grasps the state of affairs and the right action to take: act, wait or delegate. In short, Jean-Baptiste is a precious collaborator.",
+          "author": "Philippine Arnal",
+          "position": "Founder, Trouver Formation CE"
+        }
+      }
+    },
+    {
+      "id": "pascal-poizat",
+      "company": "Université Paris Nanterre – MIAGE",
+      "period": "Février 2016",
+      "avatar": "/images/avatars/pascal-poizat.jpg",
+      "role": {
+        "en": "Professor – MIAGE Director",
+        "fr": "Professeur – Responsable Master MIAGE"
+      },
+      "stack": [],
+      "testimonial": {
+        "fr": {
+          "text": "La MIAGE de Nanterre souhaitait depuis plusieurs années mettre en place une Junior Entreprise en son sein. Ce projet était resté lettre morte, faute de trouver une équipe d'étudiants pour le porter. En tant que responsable du Master MIAGE, j'ai donc été très agréablement surpris que lors de mon discours annuel d'introduction au Master, une petite équipe menée par Jean-Baptiste relève ce défi. Ils ont très rapidement monté un dossier de qualité pour démontrer la faisabilité de leur projet et pris des contacts tant au niveau de l'Université que nationalement. Jean-Baptiste a été le premier Président de cette Junior Entreprise, WITIP. C'est entre autres grâce à sa grande motivation et sa volonté d'atteindre ses objectifs que le projet a vu le jour. D'un point de vue plus pédagogique, Jean-Baptiste a parfaitement rempli le rôle de correspondant étudiant en première année de Master et j'ai pu m'appuyer sur lui pour de nombreuses interactions et innovations pédagogiques.",
+          "author": "Pascal Poizat",
+          "position": "Professeur, Université Paris Nanterre"
+        },
+        "en": {
+          "text": "The MIAGE department at Nanterre had been wanting to set up a Junior Enterprise for several years. The project had remained dormant for lack of a student team willing to drive it. As the Master MIAGE director, I was therefore very pleasantly surprised when, during my annual introductory address, a small team led by Jean-Baptiste took up the challenge. They very quickly put together a high-quality dossier demonstrating the project's feasibility and established contacts both at the university and nationally. Jean-Baptiste became the first President of this Junior Enterprise, WITIP. It is largely thanks to his great motivation and determination to achieve his goals that the project came to life. From an academic standpoint, Jean-Baptiste also perfectly fulfilled the role of student representative in the first year of the Master's and I was able to rely on him for many educational interactions and innovations.",
+          "author": "Pascal Poizat",
+          "position": "Professor, Université Paris Nanterre"
+        }
+      }
+    },
+    {
+      "id": "paul-florea",
+      "company": "Université Paris Nanterre – MIAGE",
+      "period": "Septembre 2015",
+      "avatar": "/images/avatars/paul-florea.jpg",
+      "role": {
+        "en": "Professor – Senior Management Consultant",
+        "fr": "Professeur – Senior Management Consultant"
+      },
+      "stack": [],
+      "testimonial": {
+        "fr": {
+          "text": "J'ai eu l'occasion de connaître Jean-Baptiste dans le cadre de mes enseignements en Master MIAGE à l'Université Paris Ouest Nanterre La Défense en 2015. Jean-Baptiste était responsable de classe et à ce titre j'ai apprécié ses bonnes aptitudes en communication et organisation. Les cours m'ont permis de découvrir l'investissement et la passion de Jean-Baptiste dans de nombreux domaines tels que la vie universitaire (coordonnateur de promotion), et associative (président d'une association), le monde de l'entreprise (à travers ses stages en alternance) et aussi l'entrepreneuriat (création d'une entreprise). Toutes ces qualités sont des atouts considérables et je recommande chaleureusement Jean-Baptiste pour son énergie, son volontarisme et son leadership.",
+          "author": "Paul Florea",
+          "position": "Professeur, Université Paris Nanterre"
+        },
+        "en": {
+          "text": "I had the opportunity to meet Jean-Baptiste during my Master MIAGE classes at Université Paris Ouest Nanterre La Défense in 2015. Jean-Baptiste was class representative and I appreciated his strong communication and organisational skills. My classes allowed me to discover Jean-Baptiste's dedication and passion across many areas: university life (class coordinator), associative life (association president), the business world (through work-study placements), and entrepreneurship (company creation). All these qualities are considerable assets and I warmly recommend Jean-Baptiste for his energy, drive and leadership.",
+          "author": "Paul Florea",
+          "position": "Professor, Université Paris Nanterre"
+        }
+      }
+    },
+    {
+      "id": "robin-scherberich",
+      "company": "Avanquest",
+      "period": "Septembre 2015",
+      "avatar": "/images/avatars/robin-scherberich.jpg",
+      "role": {
+        "en": "Engineering Manager",
+        "fr": "Responsable Développement"
+      },
+      "stack": [],
+      "testimonial": {
+        "fr": {
+          "text": "Jean-Baptiste fut un stagiaire exemplaire et un vrai atout pour Avanquest lors de son stage, sans exagérer. Attentif, autonome, curieux, et efficace, c'est de plus quelqu'un de sociable, qu'on aurait aimé garder comme collègue ! Je lui souhaite une très bonne continuation !",
+          "author": "Robin Scherberich",
+          "position": "Ingénieur Etude et Développement, Avanquest"
+        },
+        "en": {
+          "text": "Jean-Baptiste was an exemplary intern and a genuine asset to Avanquest during his placement — no exaggeration. Attentive, autonomous, curious, and efficient, he is also someone sociable that we would have loved to keep as a colleague! I wish him all the best for the future!",
+          "author": "Robin Scherberich",
+          "position": "R&D Engineer, Avanquest"
+        }
+      }
+    },
+    {
+      "id": "edward-cohen",
+      "company": "CityVolt",
+      "period": "Mai 2019",
+      "avatar": "/images/avatars/edward-cohen.jpg",
+      "role": {
+        "en": "Founder",
+        "fr": "Fondateur"
+      },
+      "stack": ["react-native", "nodejs"],
+      "testimonial": {
+        "fr": {
+          "text": "Compréhension rapide de notre besoin, réalisation en un temps éclair et prix tout à fait cohérent. Excellent prestataire que je recommande les yeux fermés. Je suis disponible pour tout complément de référence.",
+          "author": "Edward Cohen",
+          "position": "Fondateur, CityVolt"
+        },
+        "en": {
+          "text": "Quick understanding of our needs, lightning-fast delivery and very fair pricing. An excellent partner I recommend without hesitation. I am available to provide any additional reference.",
+          "author": "Edward Cohen",
+          "position": "Founder, CityVolt"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "alerte-naturalisation",
+  "priority": 6,
+  "date": "2024-01",
+  "type": "mobile",
+  "role": "founder",
+  "users": 200,
+  "stack": [
+    "react-native",
+    "expo",
+    "typescript",
+    "nodejs"
+  ],
+  "links": {
+    "ios": "https://apps.apple.com/us/app/alerte-naturalisation-france/id6751730001",
+    "android": "https://play.google.com/store/apps/details?id=com.france.naturalisation",
+    "web": null
+  },
+  "images": [
+    "alerte-naturalisation-1.jpg",
+    "alerte-naturalisation-2.jpg",
+    "alerte-naturalisation-3.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "civic",
+    "notifications",
+    "automation"
+  ],
+  "content": {
+    "en": {
+      "title": "Alerte Naturalisation",
+      "shortDescription": "Get notified the moment your French naturalization is published",
+      "longDescription": "Alerte Naturalisation France automatically scans the Official Journal of the French Republic (Journal Officiel) every day and sends a push notification the instant your naturalization is published. Enter your prefecture file number once, then forget about manually checking — the app handles it. Serves thousands of people awaiting French citizenship confirmation."
+    },
+    "fr": {
+      "title": "Alerte Naturalisation",
+      "shortDescription": "Soyez alerté dès que votre naturalisation paraît au Journal Officiel",
+      "longDescription": "Alerte Naturalisation France analyse automatiquement le Journal Officiel de la République française chaque jour et envoie une notification push dès que votre naturalisation est publiée. Renseignez votre numéro de dossier préfectoral une seule fois, puis laissez l'application travailler à votre place. Utile pour les milliers de personnes qui attendent la confirmation de leur naturalisation."
+    }
+  }
+}

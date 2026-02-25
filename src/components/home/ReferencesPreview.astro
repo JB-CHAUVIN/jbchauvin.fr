@@ -1,0 +1,92 @@
+---
+import { useTranslations, type Lang } from '../../i18n/index';
+import Button from '../ui/Button.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+
+interface Props {
+  lang: Lang;
+  references: any[];
+}
+
+const { lang, references } = Astro.props;
+const t = useTranslations(lang);
+
+const allReferencesHref = lang === 'en' ? '/references/' : '/fr/references/';
+const featured = references.slice(0, 2);
+---
+
+<section class="bg-surface border-y border-border">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-24">
+    <div class="flex items-end justify-between mb-12">
+      <SectionTitle subtitle={t('section.references.subtitle')} class="mb-0">
+        {t('section.references.title')}
+      </SectionTitle>
+      <Button href={allReferencesHref} variant="ghost" class="hidden md:inline-flex shrink-0 mb-3">
+        {t('section.references.cta')} ({references.length})
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </Button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {featured.map((ref, i) => {
+        const testimonial = ref.testimonial[lang];
+        const role = ref.role[lang];
+        const delayClass = `reveal-delay-${i + 1}`;
+        const initials = testimonial.author.split(' ').map((n: string) => n[0]).slice(0, 2).join('');
+        // Truncate long testimonials for preview
+        const previewText = testimonial.text.length > 280
+          ? testimonial.text.slice(0, 280).trimEnd() + '…'
+          : testimonial.text;
+        return (
+          <article class={`reveal ${delayClass}`}>
+            <div class="text-5xl font-display text-accent/25 leading-none mb-4 select-none" aria-hidden="true">"</div>
+            <blockquote class="font-body text-base text-ink-secondary leading-relaxed italic mb-6">
+              {previewText}
+            </blockquote>
+            <div class="flex items-center gap-4">
+              <!-- Avatar -->
+              <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-accent-light flex items-center justify-center">
+                {ref.avatar ? (
+                  <>
+                    <img
+                      src={ref.avatar}
+                      alt={testimonial.author}
+                      width="48"
+                      height="48"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    />
+                    <span class="hidden w-full h-full items-center justify-center font-display text-sm font-bold text-accent" aria-hidden="true">
+                      {initials}
+                    </span>
+                  </>
+                ) : (
+                  <span class="font-display text-sm font-bold text-accent" aria-hidden="true">
+                    {initials}
+                  </span>
+                )}
+              </div>
+              <div class="flex-1">
+                <p class="font-body text-sm font-semibold text-ink-primary">{testimonial.author}</p>
+                <p class="font-body text-xs text-ink-muted">{testimonial.position}</p>
+              </div>
+              <div class="text-right shrink-0">
+                <p class="font-body text-xs font-medium text-ink-secondary">{ref.company}</p>
+                <p class="font-body text-xs text-ink-muted">{ref.period}</p>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <div class="mt-10 text-center md:hidden">
+      <Button href={allReferencesHref} variant="secondary">
+        {t('section.references.cta')} ({references.length})
+      </Button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+{
+  "id": "runinitwo",
+  "priority": 99,
+  "date": "2023-06",
+  "type": "mobile",
+  "role": "founder",
+  "users": null,
+  "stack": [
+    "react-native",
+    "expo",
+    "typescript",
+    "strapi",
+    "nodejs",
+    "websockets"
+  ],
+  "links": {
+    "ios": "https://apps.apple.com/app/runintwo-dossards-revente/id6449623264",
+    "android": "https://play.google.com/store/apps/details?id=com.runintwo.app",
+    "web": null
+  },
+  "images": [
+    "runinitwo-1.jpg",
+    "runinitwo-2.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "sport",
+    "marketplace"
+  ],
+  "content": {
+    "en": {
+      "title": "RUNinTWO",
+      "shortDescription": "Race bib marketplace between athletes",
+      "longDescription": "RUNinTWO is an app dedicated to buying and selling race bibs (dossards) between athletes. Available on iOS & Android since June 2023. Sellers post their bibs for events they can no longer attend, buyers get them instantly — often last-minute. Built from scratch as founder and sole developer. Real-time messaging via WebSockets, geolocation search, push notifications via Expo, and a Strapi/Node.js backend."
+    },
+    "fr": {
+      "title": "RUNinTWO",
+      "shortDescription": "Marketplace de revente de dossards entre athlètes",
+      "longDescription": "RUNinTWO est une application dédiée à la revente de dossards (sport) entre particuliers. Disponible sur iOS & Android depuis juin 2023. Les vendeurs publient leurs dossards pour des courses auxquelles ils ne peuvent plus participer, les acheteurs les récupèrent instantanément — souvent en last-minute. Développée de A à Z en tant que fondateur et seul développeur. Messagerie temps réel via WebSockets, recherche géolocalisée, notifications push Expo et backend Strapi/Node.js."
+    }
+  }
+}

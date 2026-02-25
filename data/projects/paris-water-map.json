@@ -1,0 +1,41 @@
+{
+  "id": "paris-water-map",
+  "priority": 12,
+  "date": "2024-01",
+  "type": "mobile",
+  "role": "founder",
+  "users": 100,
+  "stack": [
+    "react-native",
+    "expo",
+    "typescript"
+  ],
+  "links": {
+    "ios": "https://apps.apple.com/us/app/paris-water-map-water-spots/id6751197075",
+    "android": null,
+    "web": null
+  },
+  "images": [
+    "paris-water-map-1.jpg",
+    "paris-water-map-2.jpg",
+    "paris-water-map-3.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "travel",
+    "maps",
+    "eco"
+  ],
+  "content": {
+    "en": {
+      "title": "Paris Water Map",
+      "shortDescription": "Find free water fountains and refill stations in Paris",
+      "longDescription": "Paris Water Map helps tourists, runners, and locals locate every public water fountain and refill station across Paris — including iconic Wallace fountains and modern eco-refill points. Find the nearest water spot in real time, plan hydration stops on your route, and reduce plastic waste. Free and built with React Native and Expo."
+    },
+    "fr": {
+      "title": "Paris Water Map",
+      "shortDescription": "Trouvez fontaines et points d'eau gratuits à Paris",
+      "longDescription": "Paris Water Map aide les touristes, les coureurs et les habitants à localiser toutes les fontaines publiques et les points de remplissage à Paris — y compris les fontaines Wallace emblématiques et les bornes éco-recharge modernes. Trouvez le point d'eau le plus proche en temps réel, planifiez vos arrêts hydratation et réduisez les déchets plastiques. Gratuit, développé avec React Native et Expo."
+    }
+  }
+}

@@ -1,0 +1,104 @@
+---
+interface Props {
+  lang: 'en' | 'fr';
+}
+
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    label: 'AI Summary',
+    sub: 'Generated from profile data',
+    text: `Jean-Baptiste is a hands-on Engineering Manager and full-stack mobile specialist — one of those rare profiles that scales teams without losing sight of the codebase.\n\n• 10+ years across mobile (React Native) and web (React, PHP)\n• Led 10 engineers at Cegedim Santé — apps used by 170k+ people\n• 13 shipped products: iOS, Android, web, Garmin — mostly solo\n• Stack: React Native · React · TypeScript · Node.js · PHP · AWS · AI APIs\n• 10 LinkedIn recommendations: direct reports, CTOs, clients — all unanimous`,
+  },
+  fr: {
+    label: 'Résumé IA',
+    sub: 'Généré depuis les données du profil',
+    text: `Jean-Baptiste est un Engineering Manager hands-on et spécialiste mobile & web full-stack — l'un de ces profils rares qui fait grandir des équipes sans perdre le contact avec le code.\n\n• 10+ ans entre mobile (React Native) et web (React, PHP)\n• 10 ingénieurs managés chez Cegedim Santé — apps utilisées par 170k+ personnes\n• 13 projets livrés : iOS, Android, web, Garmin — souvent en solo\n• Stack : React Native · React · TypeScript · Node.js · PHP · AWS · APIs IA\n• 10 recommandations LinkedIn : collègues, CTOs, clients — unanimes`,
+  },
+}[lang];
+---
+
+<div class="ai-chat-block reveal reveal-delay-4 mt-10 max-w-2xl rounded-sm border border-border overflow-hidden" data-ai-text={content.text}>
+  <!-- Header bar -->
+  <div class="flex items-center gap-2.5 px-4 py-2.5 bg-ink-primary/[0.04] border-b border-border">
+    <span class="flex items-center justify-center w-5 h-5 rounded-full bg-accent/10">
+      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" class="text-accent">
+        <path d="M8 1l1.5 4.5H14l-3.75 2.75 1.5 4.5L8 10l-3.75 2.75 1.5-4.5L2 5.5h4.5L8 1z" fill="currentColor"/>
+      </svg>
+    </span>
+    <span class="font-body text-xs font-semibold text-ink-primary uppercase tracking-widest">{content.label}</span>
+    <span class="font-body text-xs text-ink-muted">· {content.sub}</span>
+    <span class="ai-dot ml-auto w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+  </div>
+
+  <!-- Chat bubble -->
+  <div class="px-5 py-4 bg-surface">
+    <p
+      id="ai-chat-text"
+      class="font-body text-sm text-ink-secondary leading-relaxed whitespace-pre-line ai-typed-text"
+      aria-label={content.text}
+    ></p>
+    <span id="ai-cursor" class="inline-block w-0.5 h-4 bg-accent align-middle ml-0.5 animate-pulse" aria-hidden="true"></span>
+  </div>
+</div>
+
+<style>
+  .ai-typed-text {
+    min-height: 1.5em;
+  }
+</style>
+
+<script>
+  (function () {
+    const block = document.querySelector('.ai-chat-block') as HTMLElement | null;
+    const output = document.getElementById('ai-chat-text') as HTMLElement | null;
+    const cursor = document.getElementById('ai-cursor') as HTMLElement | null;
+    const dot = document.querySelector('.ai-dot') as HTMLElement | null;
+
+    if (!block || !output || !cursor) return;
+
+    const fullText = block.dataset.aiText || '';
+    let started = false;
+
+    function typeText() {
+      if (started) return;
+      started = true;
+
+      let i = 0;
+      const CHUNK = 3;
+      const DELAY = 18; // ms per chunk
+
+      // Brief pause before starting (simulates "thinking")
+      setTimeout(() => {
+        if (dot) dot.classList.remove('animate-pulse');
+        const interval = setInterval(() => {
+          i = Math.min(i + CHUNK, fullText.length);
+          output!.textContent = fullText.slice(0, i);
+          if (i >= fullText.length) {
+            clearInterval(interval);
+            // Stop blinking cursor after done
+            setTimeout(() => {
+              if (cursor) cursor.style.opacity = '0';
+            }, 1500);
+          }
+        }, DELAY);
+      }, 600);
+    }
+
+    // Trigger when visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            typeText();
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(block);
+  })();
+</script>

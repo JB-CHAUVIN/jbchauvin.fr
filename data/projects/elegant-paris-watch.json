@@ -1,0 +1,24 @@
+{
+  "id": "elegant-paris-watch",
+  "priority": 13,
+  "date": "2025-01",
+  "type": "wearable",
+  "role": "founder",
+  "users": null,
+  "stack": ["connect-iq", "monkey-c"],
+  "links": { "ios": null, "android": null, "web": null },
+  "images": ["elegant-paris-watch-1.jpg"],
+  "tags": ["wearable", "design", "garmin", "watchface"],
+  "content": {
+    "en": {
+      "title": "Elegant Paris Watch Face",
+      "shortDescription": "Timeless Parisian sophistication on your Garmin",
+      "longDescription": "Elevate your wrist with this refined digital timepiece inspired by classic French elegance. Featuring a deep black dial, signature orange accents, softly rounded Roman numerals at every hour, crisp white hands, and a stylish date window — a perfect blend of understated luxury and modern clarity. Optimized for AMOLED and high-resolution MIP displays, always-on friendly and extremely battery-efficient thanks to clean vector rendering. A discreet \"Paris\" signature completes the look."
+    },
+    "fr": {
+      "title": "Elegant Paris Watch Face",
+      "shortDescription": "Sophistication parisienne intemporelle sur votre Garmin",
+      "longDescription": "Sublimez votre poignet avec ce cadran digital raffiné inspiré de l'élégance française classique. Fond noir profond, accents orange signature, chiffres romains arrondis à chaque heure, aiguilles blanches précises et guichet de date stylisé — un mélange parfait de luxe discret et de lisibilité moderne. Optimisé pour les écrans AMOLED et MIP haute résolution, compatible always-on et très économe en batterie grâce au rendu vectoriel pur. Une signature \"Paris\" discrète complète l'ensemble."
+    }
+  }
+}
