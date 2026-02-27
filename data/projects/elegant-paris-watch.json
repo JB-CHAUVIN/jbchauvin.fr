@@ -6,7 +6,7 @@
   "role": "founder",
   "users": null,
   "stack": ["connect-iq", "monkey-c"],
-  "links": { "ios": null, "android": null, "web": null },
+  "links": { "ios": null, "android": null, "web": "https://apps.garmin.com/fr-FR/apps/bcd5a906-6c65-41f7-bbc7-10192427a0cb" },
   "images": ["elegant-paris-watch-1.jpg"],
   "tags": ["wearable", "design", "garmin", "watchface"],
   "content": {

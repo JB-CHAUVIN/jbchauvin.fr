@@ -10,8 +10,8 @@ export const fr = {
   // Hero
   'hero.title': 'Jean-Baptiste Chauvin',
   'hero.subtitle': 'Engineering Manager · hands-on',
-  'hero.tagline': 'Lead technique. Manager humain.',
-  'hero.description': 'Spécialiste <strong>React Native</strong> et <strong>React</strong> avec <strong>10+ ans</strong> d\'expérience en production — du freelance solo à l\'<strong>Engineering Manager</strong> d\'une équipe de 10 chez Cegedim Santé. Exécution technique pointue (React Native, React, TypeScript, Node.js, PHP, AWS) alliée à une vision produit et un <strong>management humain</strong> affirmé. Des apps utilisées par <strong>170k+ personnes</strong> dans la santé, le civic et le transport. <strong>13 projets</strong> livrés en autonomie. La singularité du profil&nbsp;: <strong>code reviews, architecture, one-on-ones</strong> — tout le même jour.',
+  'hero.tagline': '33 ans',
+  'hero.description': 'Spécialiste <strong>React Native</strong> et <strong>React</strong> avec <strong>10+ ans</strong> d\'expérience en production — du freelance solo à l\'<strong>Engineering Manager</strong> d\'une équipe de 10 chez Cegedim Santé. Exécution technique pointue (React Native, React, TypeScript, Node.js, PHP, AWS) alliée à une vision produit et un <strong>management humain</strong> affirmé. Des apps utilisées par <strong>170k+ personnes</strong> dans des domaines variés telle que la santé, le civique et le transport. <strong>13 projets</strong> livrés en autonomie.',
   'hero.cta.projects': 'Voir mes projets',
   'hero.cta.contact': 'Me contacter',
   'hero.available': 'Ouvert aux opportunités',
@@ -67,7 +67,7 @@ export const fr = {
 
   // Footer
   'footer.built': 'Fait avec Astro',
-  'footer.rights': '© 2024 Jean-Baptiste Chauvin',
+  'footer.rights': '© 2026 Jean-Baptiste Chauvin',
 
   // Common
   'common.read-more': 'En savoir plus',

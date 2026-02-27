@@ -10,8 +10,8 @@ export const en = {
   // Hero
   'hero.title': 'Jean-Baptiste Chauvin',
   'hero.subtitle': 'Engineering Manager · hands-on',
-  'hero.tagline': 'Technical lead. Human manager.',
-  'hero.description': '<strong>React Native</strong> and <strong>React</strong> specialist with <strong>10+ years</strong> of production experience — from solo freelance to <strong>Engineering Manager</strong> leading a team of 10 at Cegedim Santé. Strong technical execution (React Native, React, TypeScript, Node.js, PHP, AWS) paired with a clear product vision and <strong>hands-on people management</strong>. Apps used by <strong>170k+ people</strong> across health, civic, and transport. <strong>13 products</strong> shipped independently. The profile\'s edge: <strong>code reviews, architecture decisions, one-on-ones</strong> — all in the same day.',
+  'hero.tagline': '33 yo.',
+  'hero.description': '<strong>React Native</strong> & <strong>React</strong> specialist with <strong>10+ years</strong> of production experience — from solo freelancer to <strong>Engineering Manager</strong> leading a 10-person team at Cegedim Santé. Deep technical expertise (React Native, React, TypeScript, Node.js, PHP, AWS) paired with solid product sense and strong <strong>human leadership</strong>. Delivered apps used by <strong>170k+ users</strong> in healthcare, civic, and mobility sectors. <strong>13 projects</strong> shipped independently.' ,
   'hero.cta.projects': 'View my work',
   'hero.cta.contact': 'Get in touch',
   'hero.available': 'Open to opportunities',
@@ -67,7 +67,7 @@ export const en = {
 
   // Footer
   'footer.built': 'Built with Astro',
-  'footer.rights': '© 2024 Jean-Baptiste Chauvin',
+  'footer.rights': '© 2026 Jean-Baptiste Chauvin',
 
   // Common
   'common.read-more': 'Read more',
