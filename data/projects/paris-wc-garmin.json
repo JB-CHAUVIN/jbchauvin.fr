@@ -1,0 +1,24 @@
+{
+  "id": "paris-wc-garmin",
+  "priority": 14,
+  "date": "2025-03",
+  "type": "wearable",
+  "role": "founder",
+  "users": null,
+  "stack": ["connect-iq", "monkey-c"],
+  "links": { "ios": null, "android": null, "web": "https://apps.garmin.com/apps/6ff8c7a9-09b0-427f-9c8c-4c226065ca22" },
+  "images": ["paris-wc-garmin-1.png"],
+  "tags": ["wearable", "garmin", "travel", "paris", "gps"],
+  "content": {
+    "en": {
+      "title": "Paris WC: GPS Toilet Finder",
+      "shortDescription": "Find the nearest public restroom in Paris from your Garmin watch",
+      "longDescription": "A Garmin smartwatch app that locates the 5 nearest public toilets in Paris using GPS. Features an intelligent directional arrow, real-time distance updates, and 451 pre-loaded locations from official Paris data. Filter by accessibility (PMR) or 24h availability. Works fully offline — no phone or internet required, even underground or in airplane mode. Optimized for round AMOLED screens."
+    },
+    "fr": {
+      "title": "Paris WC : Toilettes à Proximité",
+      "shortDescription": "Trouvez les toilettes publiques les plus proches à Paris depuis votre montre Garmin",
+      "longDescription": "Une application Garmin qui localise les 5 toilettes publiques les plus proches à Paris par GPS. Flèche directionnelle intelligente, distance en temps réel et 451 emplacements pré-chargés depuis les données officielles de la Ville de Paris. Filtrez par accessibilité PMR ou disponibilité 24h. Fonctionne entièrement hors-ligne — ni téléphone ni internet requis, même en souterrain ou en mode avion. Optimisé pour les écrans AMOLED ronds."
+    }
+  }
+}
