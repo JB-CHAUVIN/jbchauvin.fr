@@ -37,14 +37,14 @@ function isActive(href: string) {
 }
 ---
 
-<header class="sticky top-0 z-50 bg-bg/90 backdrop-blur-sm border-b border-border">
+<header class="sticky top-0 z-50 glass-strong" id="site-header">
   <nav class="max-w-6xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
     <!-- Logo -->
     <a
       href={lang === 'en' ? '/' : '/fr/'}
-      class="font-display font-bold text-lg text-ink-primary hover:text-accent transition-colors"
+      class="font-display font-bold text-lg text-ink-primary hover:text-accent transition-colors duration-300 group"
     >
-      JB<span class="text-accent">.</span>
+      JB<span class="text-gradient group-hover:opacity-80 transition-opacity">.</span>
     </a>
 
     <!-- Desktop nav -->
@@ -53,32 +53,35 @@ function isActive(href: string) {
         <a
           href={href}
           class:list={[
-            'font-body text-sm font-medium transition-colors duration-200',
+            'font-body text-sm font-medium transition-all duration-300 relative',
             isActive(href)
-              ? 'text-accent'
-              : 'text-ink-secondary hover:text-ink-primary',
+              ? 'text-ink-primary'
+              : 'text-ink-muted hover:text-ink-primary',
           ]}
         >
           {label}
+          {isActive(href) && (
+            <span class="absolute -bottom-1 left-0 right-0 h-px bg-gradient-aurora"></span>
+          )}
         </a>
       ))}
     </div>
 
     <!-- Right side: lang switcher + contact -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
       <!-- Language switcher -->
       <a
         href={alternatePath}
-        class="font-body text-xs uppercase tracking-widest font-medium text-ink-muted hover:text-ink-primary transition-colors border border-border px-2.5 py-1 rounded-sm"
+        class="font-body text-xs uppercase tracking-widest font-medium text-ink-muted hover:text-ink-primary transition-all duration-300 border border-border hover:border-border-hover px-2.5 py-1.5 rounded-lg"
         title={t('nav.lang.switch')}
       >
-        {lang === 'en' ? '🇫🇷' : '🇬🇧'} {t('nav.lang')}
+        {lang === 'en' ? 'FR' : 'EN'}
       </a>
 
       <!-- Contact CTA (desktop) -->
       <a
         href={`mailto:chauvin.jbaptiste@gmail.com`}
-        class="hidden md:inline-flex items-center gap-1.5 bg-accent text-white font-body text-sm font-medium px-4 py-2 rounded-sm hover:bg-accent-hover transition-colors"
+        class="hidden md:inline-flex items-center gap-1.5 font-body text-sm font-medium px-4 py-2 rounded-lg bg-gradient-aurora text-white hover:opacity-90 transition-opacity duration-300"
       >
         {t('nav.contact')}
       </a>
@@ -87,7 +90,7 @@ function isActive(href: string) {
     <!-- Mobile menu button -->
     <button
       id="mobile-menu-btn"
-      class="md:hidden p-2 text-ink-secondary hover:text-ink-primary transition-colors"
+      class="md:hidden p-2 text-ink-muted hover:text-ink-primary transition-colors"
       aria-label="Toggle menu"
     >
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,14 +100,14 @@ function isActive(href: string) {
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden hidden border-t border-border bg-bg">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
+  <div id="mobile-menu" class="md:hidden hidden border-t border-border bg-bg/95 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col gap-4">
       {navLinks.map(({ href, label }) => (
         <a
           href={href}
           class:list={[
-            'font-body text-base font-medium py-1 transition-colors',
-            isActive(href) ? 'text-accent' : 'text-ink-secondary hover:text-ink-primary',
+            'font-body text-base font-medium py-1.5 transition-colors duration-300',
+            isActive(href) ? 'text-gradient' : 'text-ink-secondary hover:text-ink-primary',
           ]}
         >
           {label}
@@ -112,7 +115,7 @@ function isActive(href: string) {
       ))}
       <a
         href="mailto:chauvin.jbaptiste@gmail.com"
-        class="inline-flex items-center justify-center bg-accent text-white font-body text-sm font-medium px-4 py-2.5 rounded-sm hover:bg-accent-hover transition-colors mt-2"
+        class="inline-flex items-center justify-center bg-gradient-aurora text-white font-body text-sm font-medium px-4 py-3 rounded-lg hover:opacity-90 transition-opacity mt-2"
       >
         {t('nav.contact')}
       </a>
@@ -127,5 +130,17 @@ function isActive(href: string) {
     btn.addEventListener('click', () => {
       menu.classList.toggle('hidden');
     });
+  }
+
+  // Header blur on scroll
+  const header = document.getElementById('site-header');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+      } else {
+        header.style.borderBottom = 'none';
+      }
+    }, { passive: true });
   }
 </script>

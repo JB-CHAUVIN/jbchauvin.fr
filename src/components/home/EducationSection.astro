@@ -37,14 +37,14 @@ const degrees = [
 ];
 ---
 
-<section class="max-w-6xl mx-auto px-6 lg:px-8 py-24">
+<section class="max-w-6xl mx-auto px-6 lg:px-8 py-32">
   <SectionTitle subtitle={lang === 'en' ? 'Degrees and academic highlights.' : 'Diplômes et faits marquants.'}>
     {lang === 'en' ? 'Education' : 'Formation'}
   </SectionTitle>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {degrees.map((d, i) => (
-      <div class={`reveal reveal-delay-${i + 1} bg-surface border border-border rounded-sm p-6`}>
+      <div class={`reveal reveal-delay-${i + 1} glass rounded-2xl p-6 card-hover card-glow`}>
         <div class="flex items-start gap-4">
           <span class="text-2xl mt-0.5" aria-hidden="true">{d.icon}</span>
           <div class="flex-1">

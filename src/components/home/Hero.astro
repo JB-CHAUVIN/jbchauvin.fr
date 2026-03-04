@@ -14,41 +14,53 @@ const t = useTranslations(lang);
 const projectsHref = lang === 'en' ? '/projects/' : '/fr/projets/';
 ---
 
-<section class="relative min-h-[90vh] flex">
-  <!-- Background texture -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-    <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl translate-x-1/2"></div>
-    <div class="absolute bottom-1/4 left-0 w-64 h-64 bg-accent/3 rounded-full blur-3xl -translate-x-1/3"></div>
+<section class="relative min-h-screen flex items-center overflow-hidden">
+  <!-- Aurora background -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="aurora-orb w-[600px] h-[600px] bg-accent/20 top-[-10%] right-[-10%] animate-aurora"></div>
+    <div class="aurora-orb w-[500px] h-[500px] bg-accent-cyan/15 bottom-[-5%] left-[-15%] animate-aurora" style="animation-delay: -3s;"></div>
+    <div class="aurora-orb w-[300px] h-[300px] bg-accent-emerald/10 top-[40%] left-[30%] animate-aurora" style="animation-delay: -5s;"></div>
   </div>
 
-  <div class="max-w-6xl mx-auto relative w-full flex items-stretch">
+  <!-- Grid pattern overlay -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true"
+    style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;">
+  </div>
 
-    <!-- Left column: text content -->
-    <div class="flex-1 min-w-0 flex items-center px-6 lg:px-8 py-24">
-      <div class="max-w-xl w-full">
-        <!-- Title -->
-        <h1 class="reveal reveal-delay-1 font-display font-bold text-ink-primary leading-tight mb-4" style="font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: -0.02em;">
+  <div class="max-w-6xl mx-auto relative w-full px-6 lg:px-8 py-32 md:py-40">
+    <div class="grid lg:grid-cols-[1fr,auto] gap-16 items-center">
+
+      <!-- Left: text content -->
+      <div class="max-w-2xl">
+        <!-- Status badge -->
+        <div class="reveal reveal-delay-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass mb-8">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-body text-xs text-ink-secondary">{lang === 'en' ? 'Available for opportunities' : 'Disponible'}</span>
+        </div>
+
+        <!-- Name — massive -->
+        <h1 class="reveal reveal-delay-1 font-display font-bold text-ink-primary leading-none mb-6" style="font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -0.04em;">
           {t('hero.title')}
         </h1>
 
-        <!-- Subtitle -->
-        <p class="reveal reveal-delay-2 font-display text-2xl md:text-3xl text-accent font-semibold mb-5">
+        <!-- Subtitle — gradient -->
+        <p class="reveal reveal-delay-2 font-display text-display-md text-gradient-animated mb-6">
           {t('hero.subtitle')}
         </p>
 
         <!-- Tagline -->
-        <p class="reveal reveal-delay-2 font-body text-xl text-ink-secondary mb-4 leading-relaxed">
+        <p class="reveal reveal-delay-2 font-body text-xl text-ink-secondary mb-4 leading-relaxed max-w-lg">
           {t('hero.tagline')}
         </p>
 
         <!-- Description -->
-        <p class="reveal reveal-delay-3 font-body text-lg text-ink-secondary mb-8 leading-relaxed [&_strong]:text-ink-primary [&_strong]:font-semibold" set:html={t('hero.description')} />
+        <p class="reveal reveal-delay-3 font-body text-lg text-ink-secondary mb-8 leading-relaxed max-w-lg [&_strong]:text-ink-primary [&_strong]:font-semibold" set:html={t('hero.description')} />
 
         <!-- AI Chat Summary -->
         <AIChatSummary lang={lang} />
 
         <!-- CTAs -->
-        <div class="reveal reveal-delay-4 mt-8 flex flex-wrap gap-4">
+        <div class="reveal reveal-delay-4 mt-10 flex flex-wrap gap-4">
           <Button href={projectsHref} variant="primary" size="lg">
             {t('hero.cta.projects')}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -61,32 +73,40 @@ const projectsHref = lang === 'en' ? '/projects/' : '/fr/projets/';
         </div>
 
         <!-- Stats -->
-        <div class="reveal reveal-delay-4 mt-12 flex flex-wrap gap-10 border-t border-border pt-8">
-          <div>
-            <p class="font-display text-4xl font-bold text-ink-primary">10+</p>
-            <p class="font-body text-sm text-ink-muted mt-1">{lang === 'en' ? 'Years experience' : "Ans d'expérience"}</p>
+        <div class="reveal reveal-delay-4 mt-16 grid grid-cols-3 gap-8">
+          <div class="relative">
+            <p class="font-display text-4xl md:text-5xl font-bold text-gradient">10+</p>
+            <p class="font-body text-sm text-ink-muted mt-2">{lang === 'en' ? 'Years experience' : "Ans d'expérience"}</p>
           </div>
-          <div>
-            <p class="font-display text-4xl font-bold text-ink-primary">13</p>
-            <p class="font-body text-sm text-ink-muted mt-1">{lang === 'en' ? 'Products shipped' : 'Produits livrés'}</p>
+          <div class="relative">
+            <p class="font-display text-4xl md:text-5xl font-bold text-gradient">13</p>
+            <p class="font-body text-sm text-ink-muted mt-2">{lang === 'en' ? 'Products shipped' : 'Produits livrés'}</p>
           </div>
-          <div>
-            <p class="font-display text-4xl font-bold text-ink-primary">170k+</p>
-            <p class="font-body text-sm text-ink-muted mt-1">{lang === 'en' ? 'Users reached' : 'Utilisateurs atteints'}</p>
+          <div class="relative">
+            <p class="font-display text-4xl md:text-5xl font-bold text-gradient">170k+</p>
+            <p class="font-body text-sm text-ink-muted mt-2">{lang === 'en' ? 'Users reached' : 'Utilisateurs atteints'}</p>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Right column: photo -->
-    <div class="hidden lg:flex items-center shrink-0 px-8">
-      <img
-        src="/images/profile.jpg"
-        alt="Jean-Baptiste Chauvin - Engineering Manager · hands-on"
-        class="max-h-[500px] w-auto object-contain rounded-sm"
-        onerror="this.style.display='none'"
-      />
+      <!-- Right: photo with glow -->
+      <div class="hidden lg:block relative">
+        <div class="absolute inset-0 bg-gradient-aurora rounded-2xl blur-3xl opacity-20 scale-110 animate-glow-pulse"></div>
+        <div class="relative gradient-border gradient-border-animated rounded-2xl overflow-hidden">
+          <img
+            src="/images/profile.jpg"
+            alt="Jean-Baptiste Chauvin"
+            class="max-h-[500px] w-auto object-contain rounded-2xl"
+            onerror="this.parentElement.parentElement.style.display='none'"
+          />
+        </div>
+      </div>
     </div>
+  </div>
 
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
+    <span class="font-body text-xs text-ink-muted tracking-widest uppercase">{lang === 'en' ? 'Scroll' : 'Défiler'}</span>
+    <div class="w-px h-8 bg-gradient-to-b from-ink-muted to-transparent"></div>
   </div>
 </section>

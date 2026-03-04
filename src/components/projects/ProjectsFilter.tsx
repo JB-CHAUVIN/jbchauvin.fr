@@ -51,12 +51,12 @@ function FilterChip({ children, active, onClick }: {
     <button
       onClick={onClick}
       className={[
-        'inline-flex items-center px-3 py-1 rounded-sm',
+        'inline-flex items-center px-3 py-1.5 rounded-xl',
         'font-body text-xs uppercase tracking-widest font-medium',
-        'transition-all duration-200 cursor-pointer',
+        'transition-all duration-300 cursor-pointer',
         active
-          ? 'bg-[#C84B31] text-white'
-          : 'bg-white border border-[#E5DDD0] text-[#6B6B6B] hover:border-[#1A1A1A] hover:text-[#1A1A1A]',
+          ? 'bg-gradient-to-r from-[#7c3aed] to-[#06b6d4] text-white shadow-[0_0_15px_rgba(124,58,237,0.2)]'
+          : 'bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.35)] hover:border-[rgba(255,255,255,0.15)] hover:text-[rgba(255,255,255,0.6)]',
       ].join(' ')}
     >
       {children}
@@ -77,7 +77,7 @@ function StoreLink({ href, children }: { href: string; children: React.ReactNode
       target="_blank"
       rel="noopener noreferrer"
       onClick={(e) => e.stopPropagation()}
-      className="inline-flex items-center gap-1 font-body text-xs font-medium text-[#6B6B6B] border border-[#E5DDD0] px-2.5 py-1 rounded-sm hover:border-[#C84B31] hover:text-[#C84B31] transition-colors"
+      className="inline-flex items-center gap-1 font-body text-xs font-medium text-[rgba(255,255,255,0.35)] border border-[rgba(255,255,255,0.08)] px-2.5 py-1 rounded-lg hover:border-[#7c3aed] hover:text-[#7c3aed] transition-all duration-300"
     >
       {children}
     </a>
@@ -94,10 +94,13 @@ function ProjectCardReact({ project, lang, usersLabel }: {
   const heroImage = images[0] ?? null;
 
   return (
-    <article className="bg-white border border-[#E5DDD0] rounded-sm overflow-hidden flex flex-col h-full transition-all duration-200 hover:shadow-[0_8px_24px_rgba(26,26,26,0.12)] hover:translate-y-[-2px]">
-      {/* Hero image — portrait-safe: fixed height, object-contain */}
+    <article className="bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[rgba(255,255,255,0.06)] rounded-2xl overflow-hidden flex flex-col h-full transition-all duration-400 hover:border-[rgba(255,255,255,0.12)] hover:translate-y-[-4px] hover:shadow-[0_8px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(124,58,237,0.1)] group relative">
+      {/* Glow line at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#7c3aed] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+
+      {/* Hero image */}
       <div
-        className="relative bg-[#F0EBE3] cursor-pointer group overflow-hidden"
+        className="relative cursor-pointer overflow-hidden bg-[#0c0c12]"
         style={{ height: '220px' }}
         onClick={() => heroImage && openLightbox(images, 0, content.title)}
       >
@@ -106,16 +109,16 @@ function ProjectCardReact({ project, lang, usersLabel }: {
             <img
               src={heroImage}
               alt={content.title}
-              className="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300"
+              className="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
             />
             {images.length > 1 && (
-              <div className="absolute bottom-2 right-2 bg-black/60 text-white font-body text-xs px-2 py-0.5 rounded-sm z-10">
+              <div className="absolute bottom-2 right-2 bg-[rgba(255,255,255,0.03)] backdrop-blur-xl border border-[rgba(255,255,255,0.06)] text-white font-body text-xs px-2 py-0.5 rounded-lg z-10">
                 +{images.length - 1}
               </div>
             )}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
-              <div className="bg-black/60 text-white rounded-full p-2">
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+              <div className="bg-[rgba(255,255,255,0.05)] backdrop-blur-xl text-white rounded-full p-3 border border-[rgba(255,255,255,0.08)]">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                   <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -124,7 +127,7 @@ function ProjectCardReact({ project, lang, usersLabel }: {
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-display text-4xl font-bold text-[#E5DDD0]" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+            <span className="text-5xl font-bold" style={{ fontFamily: 'Space Grotesk, system-ui, sans-serif', background: 'linear-gradient(135deg, #7c3aed, #06b6d4, #10b981)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               {content.title.charAt(0)}
             </span>
           </div>
@@ -134,44 +137,44 @@ function ProjectCardReact({ project, lang, usersLabel }: {
       {/* Content */}
       <div className="p-6 flex flex-col flex-1">
         <div className="flex items-center justify-between mb-3">
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-sm font-body text-xs uppercase tracking-widest font-medium bg-[#F5DDD9] text-[#C84B31]">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-lg font-body text-xs uppercase tracking-widest font-medium bg-[rgba(124,58,237,0.15)] text-[#7c3aed] border border-[rgba(124,58,237,0.2)]">
             {project.type}
           </span>
           <div className="flex items-center gap-2">
             {project.users === null && (
-              <span className="font-body text-xs font-medium uppercase tracking-widest px-1.5 py-0.5 rounded-sm border border-[#9B9B9B]/30 text-[#9B9B9B]/70">MVP</span>
+              <span className="font-body text-xs font-medium uppercase tracking-widest px-1.5 py-0.5 rounded-md border border-[rgba(255,255,255,0.1)] text-[rgba(255,255,255,0.3)]">MVP</span>
             )}
-            <span className="font-body text-xs text-[#9B9B9B]">{project.date.slice(0, 4)}</span>
+            <span className="font-body text-xs text-[rgba(255,255,255,0.35)]">{project.date.slice(0, 4)}</span>
           </div>
         </div>
 
-        <h2 className="text-xl font-semibold text-[#1A1A1A] mb-2" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+        <h2 className="text-xl font-semibold text-[#f0f0f0] mb-2" style={{ fontFamily: 'Space Grotesk, system-ui, sans-serif' }}>
           {content.title}
         </h2>
 
-        <p className="font-body text-sm text-[#6B6B6B] leading-relaxed mb-3">
+        <p className="font-body text-sm text-[rgba(255,255,255,0.6)] leading-relaxed mb-3">
           {content.shortDescription}
         </p>
 
-        <p className="font-body text-sm text-[#9B9B9B] leading-relaxed mb-5 flex-1">
+        <p className="font-body text-sm text-[rgba(255,255,255,0.35)] leading-relaxed mb-5 flex-1">
           {content.longDescription}
         </p>
 
         <div className="flex flex-wrap gap-1.5 mb-4">
           {project.stack.map((tech) => (
-            <span key={tech} className="inline-flex items-center px-2.5 py-0.5 rounded-sm font-body text-xs uppercase tracking-widest font-medium bg-white text-[#9B9B9B] border border-[#E5DDD0]">
+            <span key={tech} className="inline-flex items-center px-2.5 py-0.5 rounded-lg font-body text-xs uppercase tracking-widest font-medium bg-[rgba(255,255,255,0.03)] text-[rgba(255,255,255,0.35)] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(124,58,237,0.3)] hover:text-[#7c3aed] transition-all duration-300">
               {tech}
             </span>
           ))}
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-[#E5DDD0] flex-wrap gap-2">
+        <div className="flex items-center justify-between pt-4 border-t border-[rgba(255,255,255,0.06)] flex-wrap gap-2">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-sm font-body text-xs uppercase tracking-widest font-medium bg-[#E5DDD0] text-[#6B6B6B]">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-lg font-body text-xs uppercase tracking-widest font-medium bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.5)]">
               {project.role}
             </span>
             {project.users && (
-              <span className="font-body text-xs text-[#9B9B9B]">
+              <span className="font-body text-xs text-[rgba(255,255,255,0.35)]">
                 {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {usersLabel}
               </span>
             )}
@@ -225,21 +228,21 @@ export default function ProjectsFilter({ projects, lang, translations }: Props) 
     <div>
       <div className="mb-10 space-y-3">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-body text-xs uppercase tracking-widest text-[#9B9B9B] w-12 shrink-0">{translations.filterType}</span>
+          <span className="font-body text-xs uppercase tracking-widest text-[rgba(255,255,255,0.35)] w-12 shrink-0">{translations.filterType}</span>
           <FilterChip active={!activeType} onClick={() => setActiveType(null)}>{translations.filterAll}</FilterChip>
           {types.map((type) => (
             <FilterChip key={type} active={activeType === type} onClick={() => setActiveType(activeType === type ? null : type)}>{type}</FilterChip>
           ))}
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-body text-xs uppercase tracking-widest text-[#9B9B9B] w-12 shrink-0">{translations.filterRole}</span>
+          <span className="font-body text-xs uppercase tracking-widest text-[rgba(255,255,255,0.35)] w-12 shrink-0">{translations.filterRole}</span>
           <FilterChip active={!activeRole} onClick={() => setActiveRole(null)}>{translations.filterAll}</FilterChip>
           {roles.map((role) => (
             <FilterChip key={role} active={activeRole === role} onClick={() => setActiveRole(activeRole === role ? null : role)}>{role}</FilterChip>
           ))}
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-body text-xs uppercase tracking-widest text-[#9B9B9B] w-12 shrink-0">{translations.filterStack}</span>
+          <span className="font-body text-xs uppercase tracking-widest text-[rgba(255,255,255,0.35)] w-12 shrink-0">{translations.filterStack}</span>
           <FilterChip active={!activeStack} onClick={() => setActiveStack(null)}>{translations.filterAll}</FilterChip>
           {stacks.map((stack) => (
             <FilterChip key={stack} active={activeStack === stack} onClick={() => setActiveStack(activeStack === stack ? null : stack)}>{stack}</FilterChip>
@@ -248,18 +251,18 @@ export default function ProjectsFilter({ projects, lang, translations }: Props) 
         {hasFilters && (
           <button
             onClick={() => { setActiveType(null); setActiveRole(null); setActiveStack(null); }}
-            className="font-body text-xs text-[#C84B31] hover:text-[#A33D27] underline underline-offset-4 transition-colors ml-14"
+            className="font-body text-xs text-[#7c3aed] hover:text-[#06b6d4] underline underline-offset-4 transition-colors duration-300 ml-14"
           >
             {translations.filterReset}
           </button>
         )}
       </div>
 
-      <p className="font-body text-sm text-[#9B9B9B] mb-6">{filtered.length} / {projects.length}</p>
+      <p className="font-body text-sm text-[rgba(255,255,255,0.35)] mb-6">{filtered.length} / {projects.length}</p>
 
       {filtered.length === 0 ? (
         <div className="text-center py-20">
-          <p className="font-body text-lg text-[#9B9B9B]">{translations.noResults}</p>
+          <p className="font-body text-lg text-[rgba(255,255,255,0.35)]">{translations.noResults}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -11,7 +11,6 @@ const { reference, lang } = Astro.props;
 const testimonial = reference.testimonial[lang];
 const role = reference.role[lang];
 
-// Generate initials from author name
 const initials = testimonial.author
   .split(' ')
   .map((n: string) => n[0])
@@ -19,7 +18,7 @@ const initials = testimonial.author
   .join('');
 ---
 
-<article class="reveal bg-surface border border-border rounded-sm p-8 flex flex-col gap-6">
+<article class="reveal glass rounded-2xl p-8 flex flex-col gap-6 card-hover card-glow">
   <!-- Header: company + period + role -->
   <div class="flex items-start justify-between gap-4 flex-wrap">
     <div>
@@ -37,7 +36,7 @@ const initials = testimonial.author
 
   <!-- Testimonial -->
   <div class="relative">
-    <div class="text-5xl font-display text-accent/25 leading-none mb-3 select-none" aria-hidden="true">"</div>
+    <div class="text-5xl font-display text-gradient leading-none mb-3 select-none" aria-hidden="true">"</div>
     <blockquote class="font-body text-base text-ink-secondary leading-relaxed italic whitespace-pre-line">
       {testimonial.text}
     </blockquote>
@@ -45,8 +44,7 @@ const initials = testimonial.author
 
   <!-- Author with avatar -->
   <div class="flex items-center gap-4 pt-4 border-t border-border">
-    <!-- Avatar: real image or initials fallback -->
-    <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-accent-light flex items-center justify-center">
+    <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-accent/20 flex items-center justify-center ring-2 ring-accent/20">
       {reference.avatar ? (
         <img
           src={reference.avatar}

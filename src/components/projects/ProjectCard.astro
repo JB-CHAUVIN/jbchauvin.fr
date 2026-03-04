@@ -14,13 +14,11 @@ const images = (project.images ?? []).map((img: string) => `/images/projects/${i
 const heroImage = images[0] ?? null;
 ---
 
-<article class="bg-surface border border-border rounded-sm overflow-hidden card-hover flex flex-col h-full">
-  <!-- Hero image — portrait handled: fixed height, centered, click opens lightbox -->
+<article class="glass rounded-2xl overflow-hidden card-hover card-glow flex flex-col h-full group">
+  <!-- Hero image -->
   <div
-    class="relative overflow-hidden bg-[#F0EBE3] cursor-pointer group"
+    class="relative overflow-hidden bg-surface-solid cursor-pointer"
     style="height: 220px;"
-    data-lightbox-images={JSON.stringify(images)}
-    data-lightbox-title={content.title}
     onclick={`window.dispatchEvent(new CustomEvent('open-lightbox',{detail:{images:${JSON.stringify(images)},index:0,projectTitle:${JSON.stringify(content.title)}}}))`}
   >
     {heroImage ? (
@@ -28,17 +26,16 @@ const heroImage = images[0] ?? null;
         <img
           src={heroImage}
           alt={content.title}
-          class="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300"
+          class="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
         {images.length > 1 && (
-          <div class="absolute bottom-2 right-2 bg-black/60 text-white font-body text-xs px-2 py-0.5 rounded-sm z-10">
+          <div class="absolute bottom-2 right-2 glass text-white font-body text-xs px-2 py-0.5 rounded-lg z-10">
             +{images.length - 1}
           </div>
         )}
-        <!-- Click hint -->
-        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
-          <div class="bg-black/60 text-white rounded-full p-2">
+        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+          <div class="glass text-white rounded-full p-3">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -47,7 +44,7 @@ const heroImage = images[0] ?? null;
       </>
     ) : (
       <div class="absolute inset-0 flex items-center justify-center">
-        <span class="font-display text-4xl font-bold text-border">{content.title.charAt(0)}</span>
+        <span class="font-display text-5xl font-bold text-gradient">{content.title.charAt(0)}</span>
       </div>
     )}
   </div>
@@ -58,13 +55,13 @@ const heroImage = images[0] ?? null;
       <Tag variant="accent">{project.type}</Tag>
       <div class="flex items-center gap-2">
         {project.users === null && (
-          <span class="font-body text-xs font-medium uppercase tracking-widest px-1.5 py-0.5 rounded-sm border border-ink-muted/30 text-ink-muted/70">MVP</span>
+          <span class="font-body text-xs font-medium uppercase tracking-widest px-1.5 py-0.5 rounded-md border border-ink-muted/30 text-ink-muted/70">MVP</span>
         )}
         <span class="font-body text-xs text-ink-muted">{project.date.slice(0, 4)}</span>
       </div>
     </div>
 
-    <h2 class="font-display text-xl font-semibold text-ink-primary mb-2">
+    <h2 class="font-display text-xl font-semibold text-ink-primary mb-2 group-hover:text-gradient transition-all duration-300">
       {content.title}
     </h2>
 
@@ -87,22 +84,20 @@ const heroImage = images[0] ?? null;
         <Tag variant="default">{project.role}</Tag>
         {project.users && (
           <span class="font-body text-xs text-ink-muted">
-            {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {project.users !== 'MVP' ? usersLabel : ''}
+            {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {usersLabel}
           </span>
         )}
       </div>
 
-      <!-- Store / web links -->
       <div class="flex items-center gap-2">
         {project.links?.ios && (
           <a
             href={project.links.ios}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1 font-body text-xs font-medium text-ink-secondary border border-border px-2.5 py-1 rounded-sm hover:border-accent hover:text-accent transition-colors"
+            class="inline-flex items-center gap-1 font-body text-xs font-medium text-ink-muted border border-border px-2.5 py-1 rounded-lg hover:border-accent hover:text-accent transition-all duration-300"
             onclick="event.stopPropagation()"
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
             iOS
           </a>
         )}
@@ -111,10 +106,9 @@ const heroImage = images[0] ?? null;
             href={project.links.android}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1 font-body text-xs font-medium text-ink-secondary border border-border px-2.5 py-1 rounded-sm hover:border-accent hover:text-accent transition-colors"
+            class="inline-flex items-center gap-1 font-body text-xs font-medium text-ink-muted border border-border px-2.5 py-1 rounded-lg hover:border-accent hover:text-accent transition-all duration-300"
             onclick="event.stopPropagation()"
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341L6.477 15.341C5.11 15.341 4 14.231 4 12.864 4 12.226 4.238 11.648 4.636 11.214L7.412 5.094C7.649 4.433 8.275 4 8.975 4h6.05c.7 0 1.326.433 1.563 1.094L19.364 11.214C19.762 11.648 20 12.226 20 12.864 20 14.231 18.89 15.341 17.523 15.341zM8 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm8 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
             Android
           </a>
         )}
@@ -123,10 +117,9 @@ const heroImage = images[0] ?? null;
             href={project.links.web}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1 font-body text-xs font-medium text-ink-secondary border border-border px-2.5 py-1 rounded-sm hover:border-accent hover:text-accent transition-colors"
+            class="inline-flex items-center gap-1 font-body text-xs font-medium text-ink-muted border border-border px-2.5 py-1 rounded-lg hover:border-accent hover:text-accent transition-all duration-300"
             onclick="event.stopPropagation()"
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             Web
           </a>
         )}

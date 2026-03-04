@@ -7,13 +7,13 @@ interface Props {
 const { variant = 'default', class: className = '' } = Astro.props;
 
 const variants = {
-  default: 'bg-border text-ink-secondary',
-  accent: 'bg-accent-light text-accent',
-  muted: 'bg-surface text-ink-muted border border-border',
+  default: 'bg-surface border border-border text-ink-secondary',
+  accent: 'bg-accent/15 text-accent border border-accent/20',
+  muted: 'bg-surface text-ink-muted border border-border hover:border-accent/30 hover:text-accent transition-all duration-300',
 };
 
 const classes = [
-  'inline-flex items-center px-2.5 py-0.5 rounded-sm',
+  'inline-flex items-center px-2.5 py-0.5 rounded-lg',
   'font-body text-xs uppercase tracking-widest font-medium',
   variants[variant],
   className,

@@ -19,10 +19,10 @@ const content = {
 }[lang];
 ---
 
-<div class="ai-chat-block reveal reveal-delay-4 mt-10 max-w-2xl rounded-sm border border-border overflow-hidden" data-ai-text={content.text}>
+<div class="ai-chat-block reveal reveal-delay-4 mt-10 max-w-2xl rounded-xl glass card-glow overflow-hidden" data-ai-text={content.text}>
   <!-- Header bar -->
-  <div class="flex items-center gap-2.5 px-4 py-2.5 bg-ink-primary/[0.04] border-b border-border">
-    <span class="flex items-center justify-center w-5 h-5 rounded-full bg-accent/10">
+  <div class="flex items-center gap-2.5 px-4 py-3 border-b border-border">
+    <span class="flex items-center justify-center w-5 h-5 rounded-full bg-accent/20">
       <svg width="11" height="11" viewBox="0 0 16 16" fill="none" class="text-accent">
         <path d="M8 1l1.5 4.5H14l-3.75 2.75 1.5 4.5L8 10l-3.75 2.75 1.5-4.5L2 5.5h4.5L8 1z" fill="currentColor"/>
       </svg>
@@ -33,7 +33,7 @@ const content = {
   </div>
 
   <!-- Chat bubble -->
-  <div class="px-5 py-4 bg-surface">
+  <div class="px-5 py-4">
     <p
       id="ai-chat-text"
       class="font-body text-sm text-ink-secondary leading-relaxed whitespace-pre-line ai-typed-text"
@@ -67,9 +67,8 @@ const content = {
 
       let i = 0;
       const CHUNK = 3;
-      const DELAY = 18; // ms per chunk
+      const DELAY = 18;
 
-      // Brief pause before starting (simulates "thinking")
       setTimeout(() => {
         if (dot) dot.classList.remove('animate-pulse');
         const interval = setInterval(() => {
@@ -77,7 +76,6 @@ const content = {
           output!.textContent = fullText.slice(0, i);
           if (i >= fullText.length) {
             clearInterval(interval);
-            // Stop blinking cursor after done
             setTimeout(() => {
               if (cursor) cursor.style.opacity = '0';
             }, 1500);
@@ -86,7 +84,6 @@ const content = {
       }, 600);
     }
 
-    // Trigger when visible
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

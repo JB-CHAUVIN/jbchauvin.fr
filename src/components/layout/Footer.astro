@@ -10,24 +10,25 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<footer class="bg-bg border-t border-border mt-24">
-  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<footer class="relative z-10 mt-24">
+  <div class="section-divider"></div>
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-16">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
       <!-- Logo + tagline -->
       <div class="text-center md:text-left">
-        <a href={lang === 'en' ? '/' : '/fr/'} class="font-display font-bold text-lg text-ink-primary hover:text-accent transition-colors">
-          JB<span class="text-accent">.</span>
+        <a href={lang === 'en' ? '/' : '/fr/'} class="font-display font-bold text-xl text-ink-primary hover:text-accent transition-colors duration-300 group">
+          JB<span class="text-gradient group-hover:opacity-80 transition-opacity">.</span>
         </a>
-        <p class="font-body text-sm text-ink-muted mt-1">{t('footer.rights')}</p>
+        <p class="font-body text-sm text-ink-muted mt-2">{t('footer.rights')}</p>
       </div>
 
       <!-- Social links -->
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-8">
         <a
           href={site.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          class="font-body text-sm text-ink-secondary hover:text-accent transition-colors"
+          class="font-body text-sm text-ink-muted hover:text-ink-primary transition-all duration-300 hover:translate-y-[-2px]"
         >
           LinkedIn
         </a>
@@ -35,13 +36,13 @@ const t = useTranslations(lang);
           href={site.github}
           target="_blank"
           rel="noopener noreferrer"
-          class="font-body text-sm text-ink-secondary hover:text-accent transition-colors"
+          class="font-body text-sm text-ink-muted hover:text-ink-primary transition-all duration-300 hover:translate-y-[-2px]"
         >
           GitHub
         </a>
         <a
           href={`mailto:${site.email}`}
-          class="font-body text-sm text-ink-secondary hover:text-accent transition-colors"
+          class="font-body text-sm text-ink-muted hover:text-ink-primary transition-all duration-300 hover:translate-y-[-2px]"
         >
           Email
         </a>
@@ -49,7 +50,7 @@ const t = useTranslations(lang);
 
       <!-- Built with -->
       <p class="font-body text-xs text-ink-muted">
-        {t('footer.built')} ✦
+        {t('footer.built')}
       </p>
     </div>
   </div>

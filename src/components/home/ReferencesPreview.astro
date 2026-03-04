@@ -15,9 +15,10 @@ const allReferencesHref = lang === 'en' ? '/references/' : '/fr/references/';
 const featured = references.slice(0, 2);
 ---
 
-<section class="bg-surface border-y border-border">
-  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-24">
-    <div class="flex items-end justify-between mb-12">
+<section class="relative">
+  <div class="section-divider"></div>
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-32">
+    <div class="flex items-end justify-between mb-16">
       <SectionTitle subtitle={t('section.references.subtitle')} class="mb-0">
         {t('section.references.title')}
       </SectionTitle>
@@ -35,19 +36,18 @@ const featured = references.slice(0, 2);
         const role = ref.role[lang];
         const delayClass = `reveal-delay-${i + 1}`;
         const initials = testimonial.author.split(' ').map((n: string) => n[0]).slice(0, 2).join('');
-        // Truncate long testimonials for preview
         const previewText = testimonial.text.length > 280
           ? testimonial.text.slice(0, 280).trimEnd() + '…'
           : testimonial.text;
         return (
-          <article class={`reveal ${delayClass}`}>
-            <div class="text-5xl font-display text-accent/25 leading-none mb-4 select-none" aria-hidden="true">"</div>
+          <article class={`reveal ${delayClass} glass rounded-2xl p-8 card-hover card-glow`}>
+            <div class="text-5xl font-display text-gradient leading-none mb-4 select-none" aria-hidden="true">"</div>
             <blockquote class="font-body text-base text-ink-secondary leading-relaxed italic mb-6">
               {previewText}
             </blockquote>
             <div class="flex items-center gap-4">
               <!-- Avatar -->
-              <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-accent-light flex items-center justify-center">
+              <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-accent/20 flex items-center justify-center ring-2 ring-accent/20">
                 {ref.avatar ? (
                   <>
                     <img
