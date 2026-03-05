@@ -34,20 +34,20 @@ const content = {
 
   <!-- Chat bubble -->
   <div class="px-5 py-4">
-    <p
-      id="ai-chat-text"
-      class="font-body text-sm text-ink-secondary leading-relaxed whitespace-pre-line ai-typed-text"
-      aria-label={content.text}
-    ></p>
+    <div class="relative">
+      <!-- Invisible text to reserve final height -->
+      <p class="font-body text-sm text-ink-secondary leading-relaxed whitespace-pre-line invisible" aria-hidden="true">{content.text}</p>
+      <!-- Typed text overlaid on top -->
+      <p
+        id="ai-chat-text"
+        class="font-body text-sm text-ink-secondary leading-relaxed whitespace-pre-line absolute inset-0"
+        aria-label={content.text}
+      ></p>
+    </div>
     <span id="ai-cursor" class="inline-block w-0.5 h-4 bg-accent align-middle ml-0.5 animate-pulse" aria-hidden="true"></span>
   </div>
 </div>
 
-<style>
-  .ai-typed-text {
-    min-height: 1.5em;
-  }
-</style>
 
 <script>
   (function () {
