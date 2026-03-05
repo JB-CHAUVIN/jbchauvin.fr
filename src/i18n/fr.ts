@@ -14,7 +14,7 @@ export const fr = {
   'hero.description': 'Spécialiste <strong>React Native</strong> et <strong>React</strong> avec <strong>10+ ans</strong> d\'expérience en production — du freelance solo à l\'<strong>Engineering Manager</strong> d\'une équipe de 10 chez Cegedim Santé. Exécution technique pointue (React Native, React, TypeScript, Node.js, PHP, AWS) alliée à une vision produit et un <strong>management humain</strong> affirmé. Des apps utilisées par <strong>170k+ personnes</strong> dans des domaines variés telle que la santé, le civique et le transport. <strong>13 projets</strong> livrés en autonomie.',
   'hero.cta.projects': 'Voir mes projets',
   'hero.cta.contact': 'Me contacter',
-  'hero.available': 'Ouvert aux opportunités',
+  'hero.available': 'Actuellement en poste chez Infobam (groupe GBH)',
 
   // Selected Projects
   'section.projects.title': 'Projets sélectionnés',
