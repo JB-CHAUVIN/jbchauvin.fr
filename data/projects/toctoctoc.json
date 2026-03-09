@@ -1,0 +1,24 @@
+{
+  "id": "toctoctoc",
+  "priority": 0,
+  "date": "2025-01",
+  "type": "web",
+  "role": "founder",
+  "users": "500+",
+  "stack": ["nextjs", "react", "typescript", "tailwindcss", "nodejs"],
+  "links": { "ios": null, "android": null, "web": "https://toctoctoc.boutique" },
+  "images": ["toctoctoc-1.jpg", "toctoctoc-2.jpg", "toctoctoc-3.jpg"],
+  "tags": ["web", "saas", "marketing"],
+  "content": {
+    "en": {
+      "title": "TocTocToc.boutique",
+      "shortDescription": "SaaS platform helping local businesses boost Google reviews, loyalty & bookings via QR codes",
+      "longDescription": "TocTocToc.boutique is a SaaS platform designed for local businesses (restaurants, bakeries, salons, pharmacies…) to boost their online visibility and customer retention. Customers scan a QR code or tap an NFC tag to leave a Google review and spin a reward wheel — gamifying the review process. The platform also offers digital loyalty cards, online reservations, and a branded business page. Setup takes ~5 minutes with zero technical skills required. 500+ merchants already use it, with results of 3-5x more Google reviews in the first 30 days. Hosted in France, GDPR-compliant."
+    },
+    "fr": {
+      "title": "TocTocToc.boutique",
+      "shortDescription": "Plateforme SaaS pour booster les avis Google, la fidélité et les réservations des commerces locaux via QR code",
+      "longDescription": "TocTocToc.boutique est une plateforme SaaS conçue pour les commerces de proximité (restaurants, boulangeries, salons de coiffure, pharmacies…) afin de booster leur visibilité en ligne et la fidélisation client. Les clients scannent un QR code ou passent leur téléphone sur un tag NFC pour laisser un avis Google et tourner une roue de récompenses — gamifiant le processus d'avis. La plateforme propose également des cartes de fidélité digitales, des réservations en ligne et une page vitrine personnalisée. La mise en place prend environ 5 minutes sans aucune compétence technique. Plus de 500 commerçants l'utilisent déjà, avec des résultats de 3 à 5 fois plus d'avis Google dans les 30 premiers jours. Hébergé en France, conforme RGPD."
+    }
+  }
+}
