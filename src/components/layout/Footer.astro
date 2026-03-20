@@ -10,48 +10,68 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<footer class="relative z-10 mt-24">
-  <div class="section-divider"></div>
-  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-16">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-      <!-- Logo + tagline -->
-      <div class="text-center md:text-left">
-        <a href={lang === 'en' ? '/' : '/fr/'} class="font-display font-bold text-xl text-ink-primary hover:text-accent transition-colors duration-300 group">
-          JB<span class="text-gradient group-hover:opacity-80 transition-opacity">.</span>
-        </a>
-        <p class="font-body text-sm text-ink-muted mt-2">{t('footer.rights')}</p>
-      </div>
-
-      <!-- Social links -->
-      <div class="flex items-center gap-8">
-        <a
-          href={site.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-body text-sm text-ink-muted hover:text-ink-primary transition-all duration-300 hover:translate-y-[-2px]"
-        >
-          LinkedIn
-        </a>
-        <a
-          href={site.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-body text-sm text-ink-muted hover:text-ink-primary transition-all duration-300 hover:translate-y-[-2px]"
-        >
-          GitHub
-        </a>
-        <a
-          href={`mailto:${site.email}`}
-          class="font-body text-sm text-ink-muted hover:text-ink-primary transition-all duration-300 hover:translate-y-[-2px]"
-        >
-          Email
-        </a>
-      </div>
-
-      <!-- Built with -->
-      <p class="font-body text-xs text-ink-muted">
-        {t('footer.built')}
-      </p>
+<div class="max-w-[1100px] mx-auto px-2 mb-4">
+  <!-- Status bar -->
+  <div class="status-bar">
+    <div class="status-bar-field">
+      {lang === 'en' ? 'Done' : 'Terminé'}
+    </div>
+    <div class="status-bar-field text-center">
+      © 2026 Jean-Baptiste Chauvin
+    </div>
+    <div class="status-bar-field text-right">
+      {t('footer.built')} ✦
     </div>
   </div>
-</footer>
+
+  <!-- Retro footer content -->
+  <div class="win-panel mt-1">
+    <table class="w-full" cellpadding="8" cellspacing="0">
+      <tr>
+        <td class="text-center align-middle" style="width: 33%;">
+          <div class="font-pixel text-[11px] text-ink-muted">
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="text-[#0000FF]">
+              LinkedIn
+            </a>
+            &nbsp;|&nbsp;
+            <a href={site.github} target="_blank" rel="noopener noreferrer" class="text-[#0000FF]">
+              GitHub
+            </a>
+            &nbsp;|&nbsp;
+            <a href={`mailto:${site.email}`} class="text-[#0000FF]">
+              Email
+            </a>
+          </div>
+        </td>
+        <td class="text-center align-middle" style="width: 34%;">
+          <div class="font-display text-[12px] text-[#000080]">
+            ★ {lang === 'en' ? 'Thanks for visiting!' : 'Merci de votre visite !'} ★
+          </div>
+          <div class="rainbow-hr mt-2" style="height: 2px;"></div>
+          <div class="font-pixel text-[9px] text-ink-muted mt-1">
+            {lang === 'en'
+              ? 'This page is Y2K38 compliant'
+              : 'Cette page est compatible Y2K38'}
+          </div>
+        </td>
+        <td class="text-center align-middle" style="width: 33%;">
+          <div class="font-pixel text-[10px] text-ink-muted">
+            {lang === 'en' ? 'Last updated: March 2026' : 'Mis à jour : Mars 2026'}<br />
+            <span class="text-[#008080]">{lang === 'en' ? 'Made with' : 'Fait avec'} ♥ {lang === 'en' ? 'and Astro' : 'et Astro'}</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Webring (fake nostalgic) -->
+  <div class="webring mt-1">
+    &#9664; {lang === 'en' ? 'prev' : 'préc'}
+    &nbsp;|&nbsp;
+    <span class="font-bold text-[#000080]">
+      &#127760; {lang === 'en' ? 'The French Dev Webring' : 'Le Webring des Devs Français'}
+    </span>
+    &nbsp;|&nbsp;
+    {lang === 'en' ? 'next' : 'suiv'} &#9654;
+  </div>
+</div>

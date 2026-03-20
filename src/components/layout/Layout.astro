@@ -2,6 +2,7 @@
 import '../../styles/global.css';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import Sidebar from './Sidebar.astro';
 import Lightbox from '../ui/Lightbox';
 import site from '../../../data/site.json';
 import { getLangFromUrl, getAlternatePath } from '../../i18n/index';
@@ -38,7 +39,7 @@ const currentUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#050508" />
+    <meta name="theme-color" content="#C0C0C0" />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -79,10 +80,9 @@ const currentUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
 
-    <!-- Scroll reveal + cursor glow -->
+    <!-- Scroll reveal -->
     <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
-        // Scroll reveal
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -94,30 +94,31 @@ const currentUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
           { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
         );
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-        // Cursor glow follower
-        const glow = document.getElementById('cursor-glow');
-        if (glow && window.innerWidth > 768) {
-          document.addEventListener('mousemove', (e) => {
-            glow.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
-          });
-        }
       });
     </script>
   </head>
-  <body class="bg-bg text-ink-primary grain">
-    <!-- Cursor glow -->
-    <div
-      id="cursor-glow"
-      class="fixed w-[400px] h-[400px] rounded-full pointer-events-none z-0 opacity-[0.07] transition-transform duration-300 ease-out hidden md:block"
-      style="background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, transparent 70%); top: 0; left: 0;"
-      aria-hidden="true"
-    ></div>
-
+  <body class="bg-bg text-ink-primary">
+    <!-- Top marquee banner -->
     <Header lang={lang} currentPath={Astro.url.pathname} />
-    <main class="relative z-10">
-      <slot />
-    </main>
+
+    <!-- Main table layout — the 90s way -->
+    <div class="max-w-[1100px] mx-auto my-2 px-2">
+      <table cellpadding="0" cellspacing="0" class="w-full border-2 border-collapse" style="border-color: #FFFFFF #808080 #808080 #FFFFFF; border-style: solid;">
+        <tr>
+          <!-- Sidebar -->
+          <td class="hidden md:table-cell align-top" style="width: 180px; border-right: 2px solid #808080;">
+            <Sidebar lang={lang} currentPath={Astro.url.pathname} />
+          </td>
+          <!-- Main content -->
+          <td class="align-top bg-white" style="border-color: #808080 #FFFFFF #FFFFFF #808080;">
+            <div class="content-well min-h-screen">
+              <slot />
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
     <Footer lang={lang} />
     <Lightbox client:load />
   </body>

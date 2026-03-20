@@ -17,21 +17,19 @@ const {
   rel,
 } = Astro.props;
 
-const base = 'inline-flex items-center gap-2 font-body font-medium transition-all duration-300 rounded-xl';
-
-const variants = {
-  primary: 'bg-gradient-aurora text-white hover:opacity-90 hover:shadow-glow',
-  secondary: 'border border-border text-ink-primary hover:border-accent hover:text-accent glass',
-  ghost: 'text-accent hover:text-accent-cyan underline underline-offset-4 decoration-accent/30 hover:decoration-accent-cyan/50',
+const variantClasses = {
+  primary: 'retro-btn retro-btn-primary',
+  secondary: 'retro-btn',
+  ghost: 'font-pixel text-[12px] text-[#0000FF] hover:text-[#FF0000] underline',
 };
 
-const sizes = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg',
+const sizeClasses = {
+  sm: 'text-[11px] px-2 py-1',
+  md: '',
+  lg: 'text-[14px] px-4 py-2',
 };
 
-const classes = [base, variants[variant], sizes[size], className].join(' ');
+const classes = [variantClasses[variant], sizeClasses[size], 'no-underline', className].filter(Boolean).join(' ');
 ---
 
 {href ? (

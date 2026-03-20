@@ -1,6 +1,5 @@
 ---
 import { useTranslations, type Lang } from '../../i18n/index';
-import SectionTitle from '../ui/SectionTitle.astro';
 import skillsData from '../../../data/skills.json';
 
 interface Props {
@@ -13,38 +12,89 @@ const t = useTranslations(lang);
 const { categories } = skillsData;
 ---
 
-<section class="relative">
-  <div class="section-divider"></div>
-  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-32">
-    <SectionTitle subtitle={t('section.skills.subtitle')}>
-      {t('section.skills.title')}
-    </SectionTitle>
+<div class="p-4">
+  <hr class="rainbow-hr" />
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {categories.map((cat, i) => {
+  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
+    <tr>
+      <td class="bg-[#000080] p-2">
+        <h2 class="!text-white text-[18px] m-0 font-display">
+          &#128296; {t('section.skills.title')}
+        </h2>
+        <span class="font-pixel text-[11px] text-[#00FFFF]">{t('section.skills.subtitle')}</span>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Skills displayed as nested tables, very 90s -->
+  <table cellpadding="4" cellspacing="4" class="w-full">
+    <tr>
+      {categories.slice(0, 3).map((cat) => {
         const label = cat.label[lang as 'en' | 'fr'];
-        const delayClass = `reveal-delay-${Math.min(i + 1, 4)}`;
         return (
-          <div class={`reveal ${delayClass} glass rounded-2xl p-6 card-hover card-glow group`}>
-            <!-- Category header -->
-            <div class="flex items-center gap-3 mb-5">
-              <span class="text-xl" aria-hidden="true">{cat.icon}</span>
-              <h3 class="font-display text-sm font-semibold text-ink-primary uppercase tracking-widest">
-                {label}
-              </h3>
+          <td class="align-top" style="width: 33%;">
+            <div class="retro-card reveal">
+              <div class="bg-[#000080] text-white font-display text-[12px] px-2 py-1 mb-2">
+                {cat.icon} {label}
+              </div>
+              <div class="flex flex-wrap gap-1">
+                {cat.skills.map((skill: string) => (
+                  <span class="retro-tag">{skill}</span>
+                ))}
+              </div>
             </div>
-
-            <!-- Skills pills -->
-            <div class="flex flex-wrap gap-2">
-              {cat.skills.map((skill: string) => (
-                <span class="font-body text-sm text-ink-secondary bg-surface border border-border px-3 py-1.5 rounded-lg hover:border-accent hover:text-accent transition-all duration-300 cursor-default">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
+          </td>
         );
       })}
-    </div>
-  </div>
-</section>
+    </tr>
+    {categories.length > 3 && (
+      <tr>
+        {categories.slice(3, 6).map((cat) => {
+          const label = cat.label[lang as 'en' | 'fr'];
+          return (
+            <td class="align-top" style="width: 33%;">
+              <div class="retro-card reveal">
+                <div class="bg-[#000080] text-white font-display text-[12px] px-2 py-1 mb-2">
+                  {cat.icon} {label}
+                </div>
+                <div class="flex flex-wrap gap-1">
+                  {cat.skills.map((skill: string) => (
+                    <span class="retro-tag">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            </td>
+          );
+        })}
+        {/* Fill remaining cells if less than 3 items */}
+        {categories.slice(3, 6).length < 3 && Array.from({ length: 3 - categories.slice(3, 6).length }).map(() => (
+          <td></td>
+        ))}
+      </tr>
+    )}
+    {categories.length > 6 && (
+      <tr>
+        {categories.slice(6).map((cat) => {
+          const label = cat.label[lang as 'en' | 'fr'];
+          return (
+            <td class="align-top" style="width: 33%;">
+              <div class="retro-card reveal">
+                <div class="bg-[#000080] text-white font-display text-[12px] px-2 py-1 mb-2">
+                  {cat.icon} {label}
+                </div>
+                <div class="flex flex-wrap gap-1">
+                  {cat.skills.map((skill: string) => (
+                    <span class="retro-tag">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            </td>
+          );
+        })}
+        {categories.slice(6).length < 3 && Array.from({ length: 3 - categories.slice(6).length }).map(() => (
+          <td></td>
+        ))}
+      </tr>
+    )}
+  </table>
+</div>

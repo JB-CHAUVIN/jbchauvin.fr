@@ -1,5 +1,4 @@
 ---
-import Tag from '../ui/Tag.astro';
 import { type Lang } from '../../i18n/index';
 
 interface Props {
@@ -18,58 +17,51 @@ const initials = testimonial.author
   .join('');
 ---
 
-<article class="reveal glass rounded-2xl p-8 flex flex-col gap-6 card-hover card-glow">
-  <!-- Header: company + period + role -->
-  <div class="flex items-start justify-between gap-4 flex-wrap">
-    <div>
-      <h2 class="font-display text-xl font-semibold text-ink-primary mb-1">
-        {reference.company}
-      </h2>
-      <p class="font-body text-sm text-ink-muted">{role} · {reference.period}</p>
-    </div>
-    <div class="flex flex-wrap gap-1.5">
-      {reference.stack.map((tech: string) => (
-        <Tag variant="muted">{tech}</Tag>
-      ))}
-    </div>
-  </div>
+<div class="retro-card reveal mb-3">
+  <table cellpadding="4" cellspacing="0" class="w-full">
+    <tr>
+      <td class="align-top" style="width: 50px;">
+        <div class="w-[40px] h-[40px] bg-[#000080] border-inset flex items-center justify-center text-white font-display text-[14px] overflow-hidden">
+          {reference.avatar ? (
+            <img
+              src={reference.avatar}
+              alt={testimonial.author}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              onerror={`this.style.display='none'; this.parentElement.innerHTML='<span style="font-family:Comic Sans MS,cursive;font-size:14px;">${initials}</span>'`}
+            />
+          ) : (
+            <span>{initials}</span>
+          )}
+        </div>
+      </td>
+      <td class="align-top">
+        <!-- Header -->
+        <div class="flex flex-wrap items-baseline gap-2 mb-1">
+          <span class="font-display text-[14px] text-[#000080] font-bold">
+            {reference.company}
+          </span>
+          <span class="font-pixel text-[10px] text-ink-muted">{role} · {reference.period}</span>
+        </div>
 
-  <!-- Testimonial -->
-  <div class="relative">
-    <div class="text-5xl font-display text-gradient leading-none mb-3 select-none" aria-hidden="true">"</div>
-    <blockquote class="font-body text-base text-ink-secondary leading-relaxed italic whitespace-pre-line">
-      {testimonial.text}
-    </blockquote>
-  </div>
+        <!-- Stack -->
+        <div class="mb-2">
+          {reference.stack.map((tech: string) => (
+            <span class="retro-tag mr-1">{tech}</span>
+          ))}
+        </div>
 
-  <!-- Author with avatar -->
-  <div class="flex items-center gap-4 pt-4 border-t border-border">
-    <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-accent/20 flex items-center justify-center ring-2 ring-accent/20">
-      {reference.avatar ? (
-        <img
-          src={reference.avatar}
-          alt={testimonial.author}
-          width="48"
-          height="48"
-          class="w-full h-full object-cover"
-          loading="lazy"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        />
-        <span
-          class="hidden w-full h-full items-center justify-center font-display text-sm font-bold text-accent"
-          aria-hidden="true"
-        >
-          {initials}
-        </span>
-      ) : (
-        <span class="font-display text-sm font-bold text-accent" aria-hidden="true">
-          {initials}
-        </span>
-      )}
-    </div>
-    <div>
-      <p class="font-body text-sm font-semibold text-ink-primary">{testimonial.author}</p>
-      <p class="font-body text-xs text-ink-muted">{testimonial.position}</p>
-    </div>
-  </div>
-</article>
+        <!-- Testimonial -->
+        <blockquote class="font-body text-[13px] text-ink-secondary leading-relaxed italic border-l-2 border-[#000080] pl-3 mb-2 whitespace-pre-line">
+          "{testimonial.text}"
+        </blockquote>
+
+        <!-- Author -->
+        <div class="font-pixel text-[12px]">
+          — <strong class="text-[#000080]">{testimonial.author}</strong>,
+          <span class="text-ink-muted">{testimonial.position}</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

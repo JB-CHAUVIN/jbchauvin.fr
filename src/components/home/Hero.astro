@@ -1,6 +1,4 @@
 ---
-import Button from '../ui/Button.astro';
-import AIChatSummary from './AIChatSummary.astro';
 import { useTranslations, type Lang } from '../../i18n/index';
 import site from '../../../data/site.json';
 
@@ -14,99 +12,94 @@ const t = useTranslations(lang);
 const projectsHref = lang === 'en' ? '/projects/' : '/fr/projets/';
 ---
 
-<section class="relative min-h-screen flex items-center overflow-hidden">
-  <!-- Aurora background -->
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <div class="aurora-orb w-[600px] h-[600px] bg-accent/20 top-[-10%] right-[-10%] animate-aurora"></div>
-    <div class="aurora-orb w-[500px] h-[500px] bg-accent-cyan/15 bottom-[-5%] left-[-15%] animate-aurora" style="animation-delay: -3s;"></div>
-    <div class="aurora-orb w-[300px] h-[300px] bg-accent-emerald/10 top-[40%] left-[30%] animate-aurora" style="animation-delay: -5s;"></div>
-  </div>
+<!-- Welcome section -->
+<div class="reveal p-4">
+  <!-- Title with retro flair -->
+  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
+    <tr>
+      <td class="bg-[#000080] p-3 text-center">
+        <h1 class="!text-white text-[28px] md:text-[36px] m-0 font-display">
+          ★ {t('hero.title')} ★
+        </h1>
+        <div class="text-[#FFFF00] font-display text-[16px] mt-1">
+          {t('hero.subtitle')}
+        </div>
+      </td>
+    </tr>
+  </table>
 
-  <!-- Grid pattern overlay -->
-  <div class="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true"
-    style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;">
-  </div>
-
-  <div class="max-w-6xl mx-auto relative w-full px-6 lg:px-8 py-32 md:py-40">
-    <div class="grid lg:grid-cols-[1fr,auto] gap-16 items-center">
-
-      <!-- Left: text content -->
-      <div class="max-w-2xl">
+  <!-- Two column layout: info + photo -->
+  <table cellpadding="8" cellspacing="0" class="retro-table w-full mb-4">
+    <tr>
+      <td class="align-top" style="width: 65%;">
         <!-- Status badge -->
-        <div class="reveal reveal-delay-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass mb-8">
-          <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-          <span class="font-body text-xs text-ink-secondary">{lang === 'en' ? 'Currently at Infobam (GBH group)' : 'Actuellement en poste chez Infobam (groupe GBH)'}</span>
+        <div class="mb-3">
+          <span class="retro-tag-accent retro-tag">
+            ● {lang === 'en' ? 'Available for opportunities' : 'Disponible'}
+          </span>
         </div>
 
-        <!-- Name — massive -->
-        <h1 class="reveal reveal-delay-1 font-display font-bold text-ink-primary leading-none mb-6" style="font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -0.04em;">
-          {t('hero.title')}
-        </h1>
-
-        <!-- Subtitle — gradient -->
-        <p class="reveal reveal-delay-2 font-display text-display-md text-gradient-animated mb-6">
-          {t('hero.subtitle')}
-        </p>
-
         <!-- Tagline -->
-        <p class="reveal reveal-delay-2 font-body text-xl text-ink-secondary mb-4 leading-relaxed max-w-lg">
+        <p class="font-body text-[15px] text-ink-secondary mb-2">
           {t('hero.tagline')}
         </p>
 
         <!-- Description -->
-        <p class="reveal reveal-delay-3 font-body text-lg text-ink-secondary mb-8 leading-relaxed max-w-lg [&_strong]:text-ink-primary [&_strong]:font-semibold" set:html={t('hero.description')} />
-
-        <!-- AI Chat Summary -->
-        <AIChatSummary lang={lang} />
+        <p class="font-body text-[14px] text-ink-primary leading-relaxed mb-4 [&_strong]:text-[#000080] [&_strong]:font-bold" set:html={t('hero.description')} />
 
         <!-- CTAs -->
-        <div class="reveal reveal-delay-4 mt-10 flex flex-wrap gap-4">
-          <Button href={projectsHref} variant="primary" size="lg">
-            {t('hero.cta.projects')}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </Button>
-          <Button href={`mailto:${site.email}`} variant="secondary" size="lg">
-            {t('hero.cta.contact')}
-          </Button>
+        <div class="flex flex-wrap gap-2 mt-4">
+          <a href={projectsHref} class="retro-btn retro-btn-primary no-underline">
+            &#128194; {t('hero.cta.projects')}
+          </a>
+          <a href={`mailto:${site.email}`} class="retro-btn no-underline">
+            &#9993; {t('hero.cta.contact')}
+          </a>
         </div>
-
-        <!-- Stats -->
-        <div class="reveal reveal-delay-4 mt-16 grid grid-cols-3 gap-8">
-          <div class="relative">
-            <p class="font-display text-4xl md:text-5xl font-bold text-gradient">10+</p>
-            <p class="font-body text-sm text-ink-muted mt-2">{lang === 'en' ? 'Years experience' : "Ans d'expérience"}</p>
-          </div>
-          <div class="relative">
-            <p class="font-display text-4xl md:text-5xl font-bold text-gradient">13</p>
-            <p class="font-body text-sm text-ink-muted mt-2">{lang === 'en' ? 'Products shipped' : 'Produits livrés'}</p>
-          </div>
-          <div class="relative">
-            <p class="font-display text-4xl md:text-5xl font-bold text-gradient">170k+</p>
-            <p class="font-body text-sm text-ink-muted mt-2">{lang === 'en' ? 'Users reached' : 'Utilisateurs atteints'}</p>
+      </td>
+      <td class="align-top text-center hidden md:table-cell">
+        <!-- Photo -->
+        <div class="win-panel inline-block">
+          <div class="border-inset p-1">
+            <img
+              src="/images/profile.jpg"
+              alt="Jean-Baptiste Chauvin"
+              class="max-h-[200px] w-auto"
+              style="image-rendering: auto;"
+              onerror="this.parentElement.parentElement.innerHTML='<div style=&quot;width:150px;height:150px;background:#000080;display:flex;align-items:center;justify-content:center;color:#FFFF00;font-size:48px;font-family:Comic Sans MS,cursive;&quot;>JB</div>'"
+            />
           </div>
         </div>
-      </div>
+        <div class="font-pixel text-[10px] text-ink-muted mt-1">profile.jpg (48KB)</div>
+      </td>
+    </tr>
+  </table>
 
-      <!-- Right: photo with glow -->
-      <div class="hidden lg:block relative">
-        <div class="absolute inset-0 bg-gradient-aurora rounded-2xl blur-3xl opacity-20 scale-110 animate-glow-pulse"></div>
-        <div class="relative gradient-border gradient-border-animated rounded-2xl overflow-hidden">
-          <img
-            src="/images/profile.jpg"
-            alt="Jean-Baptiste Chauvin"
-            class="max-h-[500px] w-auto object-contain rounded-2xl"
-            onerror="this.parentElement.parentElement.style.display='none'"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- AI Chat Summary -->
+  <slot name="ai-summary" />
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
-    <span class="font-body text-xs text-ink-muted tracking-widest uppercase">{lang === 'en' ? 'Scroll' : 'Défiler'}</span>
-    <div class="w-px h-8 bg-gradient-to-b from-ink-muted to-transparent"></div>
-  </div>
-</section>
+  <hr class="rainbow-hr" />
+
+  <!-- Stats table -->
+  <table cellpadding="6" cellspacing="0" class="retro-table w-full md:w-auto mx-auto">
+    <tr>
+      <th colspan="3" class="text-center">
+        &#128202; {lang === 'en' ? 'Stats' : 'Statistiques'}
+      </th>
+    </tr>
+    <tr>
+      <td class="text-center">
+        <div class="font-display text-[24px] text-[#000080] font-bold">10+</div>
+        <div class="font-pixel text-[11px] text-ink-muted">{lang === 'en' ? 'Years exp.' : "Ans d'exp."}</div>
+      </td>
+      <td class="text-center">
+        <div class="font-display text-[24px] text-[#000080] font-bold">13</div>
+        <div class="font-pixel text-[11px] text-ink-muted">{lang === 'en' ? 'Products' : 'Produits'}</div>
+      </td>
+      <td class="text-center">
+        <div class="font-display text-[24px] text-[#000080] font-bold">170k+</div>
+        <div class="font-pixel text-[11px] text-ink-muted">{lang === 'en' ? 'Users' : 'Utilisateurs'}</div>
+      </td>
+    </tr>
+  </table>
+</div>

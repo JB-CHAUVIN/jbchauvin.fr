@@ -1,0 +1,24 @@
+{
+  "id": "agentsroom",
+  "priority": 3,
+  "date": "2026-03",
+  "type": "desktop",
+  "role": "founder",
+  "users": null,
+  "stack": ["electron", "typescript", "react"],
+  "links": { "ios": null, "android": null, "web": "https://agentsroom.dev/" },
+  "images": [],
+  "tags": ["desktop", "developer-tools", "ai", "claude"],
+  "content": {
+    "en": {
+      "title": "AgentsRoom",
+      "shortDescription": "Visual IDE to orchestrate multiple Claude AI agents across your projects",
+      "longDescription": "AgentsRoom is a desktop app for macOS and Linux that replaces the chaos of managing Claude agents across dozens of terminal panes. Run multiple agents in parallel, organized by project zone (Work, Personal, etc.), each with its own built-in terminal, CLAUDE.md editor, and model selection (Opus, Sonnet, Haiku). 9 built-in roles (Backend, Frontend, QA, DevOps, Architect, Marketing, PM, Security, Fullstack), macOS notifications, and a clean visual interface that shows live agent activity at a glance. 100% local — no proxy, no cloud layer, just real Claude CLI processes spawned in your project folders."
+    },
+    "fr": {
+      "title": "AgentsRoom",
+      "shortDescription": "IDE visuel pour orchestrer plusieurs agents Claude IA sur vos projets en parallèle",
+      "longDescription": "AgentsRoom est une application desktop macOS et Linux qui remplace le chaos des dizaines de panes terminal pour gérer vos agents Claude. Lancez plusieurs agents en parallèle, organisés par zone (Work, Personal…), chacun avec son terminal intégré, son éditeur CLAUDE.md et son modèle dédié (Opus, Sonnet, Haiku). 9 rôles intégrés (Backend, Frontend, QA, DevOps, Architect, Marketing, PM, Security, Fullstack), notifications macOS, et une interface visuelle claire avec indicateurs d'activité en temps réel. 100% local — pas de proxy, pas de couche cloud, uniquement de vrais processus Claude CLI lancés dans vos dossiers de projet."
+    }
+  }
+}

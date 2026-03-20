@@ -1,7 +1,5 @@
 ---
 import { useTranslations, type Lang } from '../../i18n/index';
-import Button from '../ui/Button.astro';
-import SectionTitle from '../ui/SectionTitle.astro';
 
 interface Props {
   lang: Lang;
@@ -15,78 +13,75 @@ const allReferencesHref = lang === 'en' ? '/references/' : '/fr/references/';
 const featured = references.slice(0, 2);
 ---
 
-<section class="relative">
-  <div class="section-divider"></div>
-  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-32">
-    <div class="flex items-end justify-between mb-16">
-      <SectionTitle subtitle={t('section.references.subtitle')} class="mb-0">
-        {t('section.references.title')}
-      </SectionTitle>
-      <Button href={allReferencesHref} variant="ghost" class="hidden md:inline-flex shrink-0 mb-3">
-        {t('section.references.cta')} ({references.length})
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </Button>
-    </div>
+<div class="p-4">
+  <hr class="rainbow-hr" />
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {featured.map((ref, i) => {
-        const testimonial = ref.testimonial[lang];
-        const role = ref.role[lang];
-        const delayClass = `reveal-delay-${i + 1}`;
-        const initials = testimonial.author.split(' ').map((n: string) => n[0]).slice(0, 2).join('');
-        const previewText = testimonial.text.length > 280
-          ? testimonial.text.slice(0, 280).trimEnd() + '…'
-          : testimonial.text;
-        return (
-          <article class={`reveal ${delayClass} glass rounded-2xl p-8 card-hover card-glow`}>
-            <div class="text-5xl font-display text-gradient leading-none mb-4 select-none" aria-hidden="true">"</div>
-            <blockquote class="font-body text-base text-ink-secondary leading-relaxed italic mb-6">
-              {previewText}
-            </blockquote>
-            <div class="flex items-center gap-4">
-              <!-- Avatar -->
-              <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-accent/20 flex items-center justify-center ring-2 ring-accent/20">
+  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
+    <tr>
+      <td class="bg-[#000080] p-2">
+        <h2 class="!text-white text-[18px] m-0 font-display">
+          &#128172; {t('section.references.title')}
+        </h2>
+        <span class="font-pixel text-[11px] text-[#00FFFF]">{t('section.references.subtitle')}</span>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Guestbook-style references -->
+  {featured.map((ref) => {
+    const testimonial = ref.testimonial[lang];
+    const role = ref.role[lang];
+    const previewText = testimonial.text.length > 280
+      ? testimonial.text.slice(0, 280).trimEnd() + '…'
+      : testimonial.text;
+    const initials = testimonial.author.split(' ').map((n: string) => n[0]).slice(0, 2).join('');
+
+    return (
+      <div class="retro-card reveal mb-3">
+        <table cellpadding="4" cellspacing="0" class="w-full">
+          <tr>
+            <td class="align-top" style="width: 50px;">
+              <!-- Avatar area -->
+              <div class="w-[40px] h-[40px] bg-[#000080] border-inset flex items-center justify-center text-white font-display text-[14px] overflow-hidden">
                 {ref.avatar ? (
-                  <>
-                    <img
-                      src={ref.avatar}
-                      alt={testimonial.author}
-                      width="48"
-                      height="48"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                    />
-                    <span class="hidden w-full h-full items-center justify-center font-display text-sm font-bold text-accent" aria-hidden="true">
-                      {initials}
-                    </span>
-                  </>
+                  <img
+                    src={ref.avatar}
+                    alt={testimonial.author}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    onerror={`this.style.display='none'; this.parentElement.innerHTML='<span style="font-family:Comic Sans MS,cursive;font-size:14px;">${initials}</span>'`}
+                  />
                 ) : (
-                  <span class="font-display text-sm font-bold text-accent" aria-hidden="true">
-                    {initials}
-                  </span>
+                  <span>{initials}</span>
                 )}
               </div>
-              <div class="flex-1">
-                <p class="font-body text-sm font-semibold text-ink-primary">{testimonial.author}</p>
-                <p class="font-body text-xs text-ink-muted">{testimonial.position}</p>
+            </td>
+            <td class="align-top">
+              <div class="font-display text-[13px] text-[#000080] font-bold">
+                {testimonial.author}
+                <span class="font-pixel text-[10px] text-ink-muted font-normal ml-2">
+                  {testimonial.position} — {ref.company}
+                </span>
               </div>
-              <div class="text-right shrink-0">
-                <p class="font-body text-xs font-medium text-ink-secondary">{ref.company}</p>
-                <p class="font-body text-xs text-ink-muted">{ref.period}</p>
+              <div class="font-pixel text-[10px] text-ink-muted mb-2">{ref.period}</div>
+              <blockquote class="font-body text-[13px] text-ink-secondary leading-relaxed italic border-l-2 border-[#808080] pl-2">
+                "{previewText}"
+              </blockquote>
+              <div class="mt-1">
+                {ref.stack.map((tech: string) => (
+                  <span class="retro-tag mr-1">{tech}</span>
+                ))}
               </div>
-            </div>
-          </article>
-        );
-      })}
-    </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    );
+  })}
 
-    <div class="mt-10 text-center md:hidden">
-      <Button href={allReferencesHref} variant="secondary">
-        {t('section.references.cta')} ({references.length})
-      </Button>
-    </div>
+  <div class="mt-3 text-center">
+    <a href={allReferencesHref} class="retro-btn no-underline">
+      {t('section.references.cta')} ({references.length}) &#9654;
+    </a>
   </div>
-</section>
+</div>

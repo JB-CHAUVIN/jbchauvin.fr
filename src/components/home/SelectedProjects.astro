@@ -1,8 +1,5 @@
 ---
 import { useTranslations, type Lang } from '../../i18n/index';
-import Button from '../ui/Button.astro';
-import Tag from '../ui/Tag.astro';
-import SectionTitle from '../ui/SectionTitle.astro';
 
 interface Props {
   lang: Lang;
@@ -16,120 +13,109 @@ const allProjectsHref = lang === 'en' ? '/projects/' : '/fr/projets/';
 const featured = projects.slice(0, 3);
 ---
 
-<section class="relative max-w-6xl mx-auto px-6 lg:px-8 py-32">
-  <div class="flex items-end justify-between mb-16">
-    <SectionTitle subtitle={t('section.projects.subtitle')}>
-      {t('section.projects.title')}
-    </SectionTitle>
-    <Button href={allProjectsHref} variant="ghost" class="hidden md:inline-flex shrink-0 mb-3">
-      {t('section.projects.cta')}
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </Button>
-  </div>
+<div class="p-4">
+  <hr class="rainbow-hr" />
 
-  <!-- Bento-style grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {featured.map((project, i) => {
+  <!-- Section title in retro banner -->
+  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
+    <tr>
+      <td class="bg-[#000080] p-2">
+        <h2 class="!text-white text-[18px] m-0 font-display">
+          &#128190; {t('section.projects.title')}
+        </h2>
+        <span class="font-pixel text-[11px] text-[#00FFFF]">{t('section.projects.subtitle')}</span>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Projects table -->
+  <table cellpadding="0" cellspacing="0" class="retro-table w-full">
+    <tr>
+      <th>{lang === 'en' ? 'Preview' : 'Aperçu'}</th>
+      <th>{lang === 'en' ? 'Project' : 'Projet'}</th>
+      <th class="hidden md:table-cell">Stack</th>
+      <th class="hidden md:table-cell">{lang === 'en' ? 'Year' : 'Année'}</th>
+      <th class="hidden md:table-cell">{lang === 'en' ? 'Links' : 'Liens'}</th>
+    </tr>
+    {featured.map((project) => {
       const content = project.content[lang];
-      const delayClass = `reveal-delay-${i + 1}`;
       const images = (project.images ?? []).map((img: string) => `/images/projects/${img}`);
       const heroImage = images[0] ?? null;
       return (
-        <article class={`reveal ${delayClass} glass rounded-2xl overflow-hidden card-hover card-glow flex flex-col group`}>
-          <!-- Hero image -->
-          <div
-            class="relative overflow-hidden cursor-pointer bg-surface-solid"
-            style="height: 220px;"
-            onclick={`window.dispatchEvent(new CustomEvent('open-lightbox',{detail:{images:${JSON.stringify(images)},index:0,projectTitle:${JSON.stringify(content.title)}}}))`}
-          >
+        <tr>
+          <td class="text-center" style="width: 80px;">
             {heroImage ? (
-              <>
+              <div
+                class="border-inset inline-block cursor-pointer"
+                onclick={`window.dispatchEvent(new CustomEvent('open-lightbox',{detail:{images:${JSON.stringify(images)},index:0,projectTitle:${JSON.stringify(content.title)}}}))`}
+              >
                 <img
                   src={heroImage}
                   alt={content.title}
-                  class="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500"
+                  class="w-[60px] h-[60px] object-contain"
                   loading="lazy"
                 />
-                {images.length > 1 && (
-                  <div class="absolute bottom-2 right-2 glass text-white font-body text-xs px-2 py-0.5 rounded-lg z-10">
-                    +{images.length - 1}
-                  </div>
-                )}
-                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <div class="glass text-white rounded-full p-3">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </>
+              </div>
             ) : (
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="font-display text-5xl font-bold text-gradient">{content.title.charAt(0)}</span>
+              <div class="w-[60px] h-[60px] bg-[#000080] flex items-center justify-center text-white font-display text-[24px] border-inset mx-auto">
+                {content.title.charAt(0)}
               </div>
             )}
-          </div>
-
-          <div class="p-6 flex flex-col flex-1">
-            <div class="flex items-center justify-between mb-3">
-              <Tag variant="accent">{project.type}</Tag>
-              <div class="flex items-center gap-2">
-                {project.users === null && (
-                  <span class="font-body text-xs font-medium uppercase tracking-widest px-1.5 py-0.5 rounded-md border border-ink-muted/30 text-ink-muted/70">MVP</span>
-                )}
-                <span class="font-body text-xs text-ink-muted">{project.date.slice(0, 4)}</span>
-              </div>
-            </div>
-
-            <h3 class="font-display text-xl font-semibold text-ink-primary mb-2 group-hover:text-gradient transition-all duration-300">
+          </td>
+          <td>
+            <div class="font-display text-[14px] text-[#000080] font-bold">
               {content.title}
-            </h3>
-            <p class="font-body text-sm text-ink-secondary leading-relaxed mb-4 flex-1">
+            </div>
+            <div class="font-body text-[12px] text-ink-secondary mt-1">
               {content.shortDescription}
-            </p>
-
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              {project.stack.slice(0, 4).map((tech: string) => (
-                <Tag variant="muted">{tech}</Tag>
-              ))}
-              {project.stack.length > 4 && (
-                <Tag variant="muted">+{project.stack.length - 4}</Tag>
+            </div>
+            <div class="mt-1">
+              <span class="retro-tag-accent retro-tag">{project.type}</span>
+              <span class="retro-tag ml-1">{project.role}</span>
+              {project.users && (
+                <span class="retro-tag ml-1">
+                  {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {t('projects.users')}
+                </span>
+              )}
+              {project.users === null && (
+                <span class="retro-tag ml-1" style="background: #FFFF00; color: #000;">MVP</span>
               )}
             </div>
-
-            <div class="flex items-center justify-between pt-4 border-t border-border flex-wrap gap-2">
-              <div class="flex items-center gap-2">
-                <span class="font-body text-xs text-ink-muted capitalize">{project.role}</span>
-                {project.users && (
-                  <span class="font-body text-xs text-ink-muted">
-                    {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {t('projects.users')}
-                  </span>
-                )}
-              </div>
-              <div class="flex items-center gap-1.5">
-                {project.links?.ios && (
-                  <a href={project.links.ios} target="_blank" rel="noopener noreferrer"
-                     class="font-body text-xs text-accent hover:text-accent-cyan transition-colors"
-                     onclick="event.stopPropagation()">iOS</a>
-                )}
-                {project.links?.android && (
-                  <a href={project.links.android} target="_blank" rel="noopener noreferrer"
-                     class="font-body text-xs text-accent hover:text-accent-cyan transition-colors"
-                     onclick="event.stopPropagation()">Android</a>
-                )}
-              </div>
+            <!-- Stack on mobile -->
+            <div class="md:hidden mt-1 font-pixel text-[10px] text-ink-muted">
+              {project.stack.slice(0, 4).join(' · ')}
             </div>
-          </div>
-        </article>
+          </td>
+          <td class="hidden md:table-cell font-pixel text-[11px]">
+            {project.stack.map((tech: string) => (
+              <span class="retro-tag mr-1 mb-1">{tech}</span>
+            ))}
+          </td>
+          <td class="hidden md:table-cell font-mono text-[12px] text-center">
+            {project.date.slice(0, 4)}
+          </td>
+          <td class="hidden md:table-cell text-center font-pixel text-[11px]">
+            {project.links?.ios && (
+              <a href={project.links.ios} target="_blank" rel="noopener noreferrer" class="block" onclick="event.stopPropagation()">iOS</a>
+            )}
+            {project.links?.android && (
+              <a href={project.links.android} target="_blank" rel="noopener noreferrer" class="block" onclick="event.stopPropagation()">Android</a>
+            )}
+            {project.links?.web && (
+              <a href={project.links.web} target="_blank" rel="noopener noreferrer" class="block" onclick="event.stopPropagation()">Web</a>
+            )}
+            {!project.links?.ios && !project.links?.android && !project.links?.web && (
+              <span class="text-ink-muted">—</span>
+            )}
+          </td>
+        </tr>
       );
     })}
-  </div>
+  </table>
 
-  <div class="mt-10 text-center md:hidden">
-    <Button href={allProjectsHref} variant="secondary">
-      {t('section.projects.cta')}
-    </Button>
+  <div class="mt-3 text-center">
+    <a href={allProjectsHref} class="retro-btn no-underline">
+      {t('section.projects.cta')} &#9654;
+    </a>
   </div>
-</section>
+</div>

@@ -6,17 +6,21 @@ interface Props {
 }
 
 const { subtitle, align = 'left', class: className = '' } = Astro.props;
-
-const alignClass = align === 'center' ? 'text-center' : 'text-left';
 ---
 
-<div class={`mb-12 ${alignClass} ${className}`}>
-  <h2 class="font-display text-display-lg text-ink-primary mb-3">
-    <slot />
-  </h2>
-  {subtitle && (
-    <p class="font-body text-lg text-ink-secondary max-w-xl" class:list={[align === 'center' && 'mx-auto']}>
-      {subtitle}
-    </p>
-  )}
+<div class={`mb-4 ${className}`}>
+  <table cellpadding="0" cellspacing="0" class="w-full">
+    <tr>
+      <td class="bg-[#000080] p-2">
+        <h2 class="!text-white text-[18px] m-0 font-display" style={align === 'center' ? 'text-align: center;' : ''}>
+          <slot />
+        </h2>
+        {subtitle && (
+          <div class="font-pixel text-[11px] text-[#00FFFF]" style={align === 'center' ? 'text-align: center;' : ''}>
+            {subtitle}
+          </div>
+        )}
+      </td>
+    </tr>
+  </table>
 </div>

@@ -19,42 +19,43 @@ const content = {
 }[lang];
 ---
 
-<div class="ai-chat-block reveal reveal-delay-4 mt-10 max-w-2xl rounded-xl glass card-glow overflow-hidden" data-ai-text={content.text}>
-  <!-- Header bar -->
-  <div class="flex items-center gap-2.5 px-4 py-3 border-b border-border">
-    <span class="flex items-center justify-center w-5 h-5 rounded-full bg-accent/20">
-      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" class="text-accent">
-        <path d="M8 1l1.5 4.5H14l-3.75 2.75 1.5 4.5L8 10l-3.75 2.75 1.5-4.5L2 5.5h4.5L8 1z" fill="currentColor"/>
-      </svg>
+<div class="ai-chat-block reveal reveal-delay-4 mt-6 mb-4 win-panel" data-ai-text={content.text}>
+  <!-- Title bar like a terminal window -->
+  <div class="win-titlebar" style="background: linear-gradient(90deg, #000000, #333333);">
+    <span>
+      C:\AI\summary.exe
     </span>
-    <span class="font-body text-xs font-semibold text-ink-primary uppercase tracking-widest">{content.label}</span>
-    <span class="font-body text-xs text-ink-muted">· {content.sub}</span>
-    <span class="ai-dot ml-auto w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+    <div class="flex gap-1">
+      <span class="inline-block w-[14px] h-[14px] bg-[#C0C0C0] border border-solid text-center leading-[12px] text-[10px] text-black" style="border-color: #FFFFFF #808080 #808080 #FFFFFF;">_</span>
+      <span class="inline-block w-[14px] h-[14px] bg-[#C0C0C0] border border-solid text-center leading-[12px] text-[10px] text-black" style="border-color: #FFFFFF #808080 #808080 #FFFFFF;">×</span>
+    </div>
   </div>
 
-  <!-- Chat bubble -->
-  <div class="px-5 py-4">
-    <div class="relative">
-      <!-- Invisible text to reserve final height -->
-      <p class="font-body text-sm text-ink-secondary leading-relaxed whitespace-pre-line invisible" aria-hidden="true">{content.text}</p>
-      <!-- Typed text overlaid on top -->
-      <p
-        id="ai-chat-text"
-        class="font-body text-sm text-ink-secondary leading-relaxed whitespace-pre-line absolute inset-0"
-        aria-label={content.text}
-      ></p>
+  <!-- Terminal content -->
+  <div class="bg-black p-3 border-inset">
+    <div class="font-mono text-[11px] text-[#00FF00] mb-1">
+      &gt; {content.label} — <span class="text-[#808080]">{content.sub}</span>
     </div>
-    <span id="ai-cursor" class="inline-block w-0.5 h-4 bg-accent align-middle ml-0.5 animate-pulse" aria-hidden="true"></span>
+    <p
+      id="ai-chat-text"
+      class="font-mono text-[12px] text-[#00FF00] leading-relaxed whitespace-pre-line ai-typed-text"
+      aria-label={content.text}
+    ></p>
+    <span id="ai-cursor" class="inline-block w-[8px] h-[14px] bg-[#00FF00] align-middle blink" aria-hidden="true"></span>
   </div>
 </div>
 
+<style>
+  .ai-typed-text {
+    min-height: 1.5em;
+  }
+</style>
 
 <script>
   (function () {
     const block = document.querySelector('.ai-chat-block') as HTMLElement | null;
     const output = document.getElementById('ai-chat-text') as HTMLElement | null;
     const cursor = document.getElementById('ai-cursor') as HTMLElement | null;
-    const dot = document.querySelector('.ai-dot') as HTMLElement | null;
 
     if (!block || !output || !cursor) return;
 
@@ -66,19 +67,18 @@ const content = {
       started = true;
 
       let i = 0;
-      const CHUNK = 3;
-      const DELAY = 18;
+      const CHUNK = 2;
+      const DELAY = 25;
 
       setTimeout(() => {
-        if (dot) dot.classList.remove('animate-pulse');
         const interval = setInterval(() => {
           i = Math.min(i + CHUNK, fullText.length);
           output!.textContent = fullText.slice(0, i);
           if (i >= fullText.length) {
             clearInterval(interval);
             setTimeout(() => {
-              if (cursor) cursor.style.opacity = '0';
-            }, 1500);
+              if (cursor) cursor.style.display = 'none';
+            }, 2000);
           }
         }, DELAY);
       }, 600);

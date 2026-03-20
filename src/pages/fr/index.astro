@@ -1,6 +1,7 @@
 ---
 import Layout from '../../components/layout/Layout.astro';
 import Hero from '../../components/home/Hero.astro';
+import AIChatSummary from '../../components/home/AIChatSummary.astro';
 import SelectedProjects from '../../components/home/SelectedProjects.astro';
 import CareerSection from '../../components/home/CareerSection.astro';
 import EducationSection from '../../components/home/EducationSection.astro';
@@ -36,6 +37,7 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <Hero lang={lang} />
+  <AIChatSummary lang={lang} />
   <SelectedProjects lang={lang} projects={projects} />
   <CareerSection lang={lang} />
   <EducationSection lang={lang} />

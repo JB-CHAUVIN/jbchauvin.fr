@@ -1,7 +1,5 @@
 ---
 import { useTranslations, type Lang } from '../../i18n/index';
-import SectionTitle from '../ui/SectionTitle.astro';
-import Tag from '../ui/Tag.astro';
 import experiencesData from '../../../data/experiences.json';
 
 interface Props {
@@ -14,79 +12,66 @@ const t = useTranslations(lang);
 const { experiences } = experiencesData;
 ---
 
-<section class="relative">
-  <div class="section-divider"></div>
-  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-32">
-    <SectionTitle subtitle={t('section.career.subtitle')}>
-      {t('section.career.title')}
-    </SectionTitle>
+<div class="p-4">
+  <hr class="rainbow-hr" />
 
-    <div class="relative">
-      <!-- Vertical line with gradient -->
-      <div class="absolute left-[7px] md:left-[calc(11rem+7px)] top-2 bottom-2 w-px" aria-hidden="true"
-        style="background: linear-gradient(to bottom, rgba(124, 58, 237, 0.4), rgba(6, 182, 212, 0.2), transparent);">
-      </div>
+  <!-- Section title -->
+  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
+    <tr>
+      <td class="bg-[#000080] p-2">
+        <h2 class="!text-white text-[18px] m-0 font-display">
+          &#128188; {t('section.career.title')}
+        </h2>
+        <span class="font-pixel text-[11px] text-[#00FFFF]">{t('section.career.subtitle')}</span>
+      </td>
+    </tr>
+  </table>
 
-      <ol class="space-y-0">
-        {experiences.map((exp, i) => {
-          const role = exp.role[lang];
-          const description = exp.description[lang];
-          const period = exp.period.end
-            ? `${exp.period.start} – ${exp.period.end}`
-            : `${exp.period.start} – ${t('common.present')}`;
+  <!-- Career table -->
+  <table cellpadding="0" cellspacing="0" class="retro-table w-full">
+    <tr>
+      <th>{lang === 'en' ? 'Period' : 'Période'}</th>
+      <th>{lang === 'en' ? 'Company' : 'Entreprise'}</th>
+      <th>{lang === 'en' ? 'Role' : 'Poste'}</th>
+      <th class="hidden md:table-cell">{lang === 'en' ? 'Details' : 'Détails'}</th>
+      <th class="hidden lg:table-cell">Stack</th>
+    </tr>
+    {experiences.map((exp) => {
+      const role = exp.role[lang];
+      const description = exp.description[lang];
+      const period = exp.period.end
+        ? `${exp.period.start} – ${exp.period.end}`
+        : `${exp.period.start} – ${t('common.present')}`;
 
-          return (
-            <li class={`reveal reveal-delay-${Math.min(i + 1, 4)} relative flex gap-6 md:gap-8 pb-12 last:pb-0`}>
-              <!-- Timeline date (desktop) -->
-              <div class="hidden md:flex flex-col items-end w-44 shrink-0 pt-1">
-                <span class="font-body text-xs text-ink-muted text-right leading-snug">{period}</span>
-              </div>
-
-              <!-- Dot -->
-              <div class="relative flex flex-col items-center shrink-0 pt-1.5">
-                {exp.current ? (
-                  <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 ring-4 ring-emerald-400/20 shrink-0 z-10 animate-pulse"></span>
-                ) : (
-                  <span class="w-3.5 h-3.5 rounded-full bg-accent/50 ring-2 ring-bg shrink-0 z-10"></span>
-                )}
-              </div>
-
-              <!-- Content -->
-              <div class="flex-1 pb-2 glass rounded-xl p-5 -mt-1 card-hover">
-                <!-- Period (mobile only) -->
-                <p class="md:hidden font-body text-xs text-ink-muted mb-2">{period}</p>
-
-                <!-- Company + role -->
-                <div class="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 mb-1">
-                  <h3 class="font-display text-lg font-semibold text-ink-primary leading-snug">
-                    {exp.company}
-                  </h3>
-                  {exp.current && (
-                    <span class="font-body text-xs font-medium text-emerald-400 uppercase tracking-widest">● {t('common.now')}</span>
-                  )}
-                </div>
-
-                <p class="font-body text-sm font-medium text-accent mb-2">{role}</p>
-
-                {exp.client && (
-                  <p class="font-body text-xs text-ink-muted mb-2">{exp.client}</p>
-                )}
-
-                <p class="font-body text-sm text-ink-secondary leading-relaxed mb-4">
-                  {description}
-                </p>
-
-                <!-- Stack -->
-                <div class="flex flex-wrap gap-1.5">
-                  {exp.stack.map((tech: string) => (
-                    <Tag variant="muted">{tech}</Tag>
-                  ))}
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ol>
-    </div>
-  </div>
-</section>
+      return (
+        <tr class="reveal">
+          <td class="font-mono text-[11px] whitespace-nowrap">
+            {period}
+            {exp.current && (
+              <div class="text-[#008000] font-bold text-[10px] blink">● NOW</div>
+            )}
+          </td>
+          <td>
+            <div class="font-display text-[13px] text-[#000080] font-bold">
+              {exp.company}
+            </div>
+            {exp.client && (
+              <div class="font-pixel text-[10px] text-ink-muted">({exp.client})</div>
+            )}
+          </td>
+          <td class="font-pixel text-[12px] text-[#800000]">
+            {role}
+          </td>
+          <td class="hidden md:table-cell font-body text-[12px] text-ink-secondary max-w-[300px]">
+            {description}
+          </td>
+          <td class="hidden lg:table-cell">
+            {exp.stack.map((tech: string) => (
+              <span class="retro-tag mr-1 mb-1">{tech}</span>
+            ))}
+          </td>
+        </tr>
+      );
+    })}
+  </table>
+</div>

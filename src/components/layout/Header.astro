@@ -1,10 +1,5 @@
 ---
 import { useTranslations, getAlternatePath, type Lang } from '../../i18n/index';
-import refsData from '../../../data/references.json';
-
-const projectFiles = import.meta.glob('../../../data/projects/*.json', { eager: true });
-const projectCount = Object.keys(projectFiles).length;
-const refCount = refsData.references.length;
 
 interface Props {
   lang: Lang;
@@ -13,115 +8,101 @@ interface Props {
 
 const { lang, currentPath } = Astro.props;
 const t = useTranslations(lang);
-
 const alternateLang = lang === 'en' ? 'fr' : 'en';
 const alternatePath = getAlternatePath(currentPath, alternateLang);
 
 const navLinks = lang === 'en'
   ? [
-      { href: '/', label: t('nav.home') },
-      { href: '/projects/', label: `${t('nav.projects')} (${projectCount})` },
-      { href: '/references/', label: `${t('nav.references')} (${refCount})` },
+      { href: '/', label: 'Home' },
+      { href: '/projects/', label: 'Projects' },
+      { href: '/references/', label: 'References' },
     ]
   : [
-      { href: '/fr/', label: t('nav.home') },
-      { href: '/fr/projets/', label: `${t('nav.projects')} (${projectCount})` },
-      { href: '/fr/references/', label: `${t('nav.references')} (${refCount})` },
+      { href: '/fr/', label: 'Accueil' },
+      { href: '/fr/projets/', label: 'Projets' },
+      { href: '/fr/references/', label: 'Références' },
     ];
 
 function isActive(href: string) {
-  if (href === '/' || href === '/fr/') {
-    return currentPath === href;
-  }
+  if (href === '/' || href === '/fr/') return currentPath === href;
   return currentPath.startsWith(href);
 }
 ---
 
-<header class="sticky top-0 z-50 glass-strong" id="site-header">
-  <nav class="max-w-6xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
-    <!-- Logo -->
+<!-- Top banner bar -->
+<div class="win-panel max-w-[1100px] mx-auto mt-2 px-2">
+  <!-- Title bar -->
+  <div class="win-titlebar">
+    <span>
+      &#128187; JB Chauvin — {lang === 'en' ? 'Personal Homepage' : 'Page Personnelle'}
+    </span>
+    <div class="flex gap-1">
+      <span class="inline-block w-[14px] h-[14px] bg-[#C0C0C0] border border-solid text-center leading-[12px] text-[10px] text-black" style="border-color: #FFFFFF #808080 #808080 #FFFFFF;">_</span>
+      <span class="inline-block w-[14px] h-[14px] bg-[#C0C0C0] border border-solid text-center leading-[12px] text-[10px] text-black" style="border-color: #FFFFFF #808080 #808080 #FFFFFF;">□</span>
+      <span class="inline-block w-[14px] h-[14px] bg-[#C0C0C0] border border-solid text-center leading-[12px] text-[10px] text-black" style="border-color: #FFFFFF #808080 #808080 #FFFFFF;">×</span>
+    </div>
+  </div>
+
+  <!-- Menu bar -->
+  <div class="bg-[#C0C0C0] px-2 py-1 flex items-center gap-4 border-b border-b-[#808080] text-[12px] font-pixel">
+    {navLinks.map(({ href, label }) => (
+      <a
+        href={href}
+        class:list={[
+          'no-underline px-2 py-0.5',
+          isActive(href)
+            ? 'bg-[#000080] text-white'
+            : 'text-black hover:bg-[#000080] hover:text-white',
+        ]}
+        style="transition: background 0.15s ease, color 0.15s ease;"
+      >
+        {label}
+      </a>
+    ))}
+    <span class="flex-1"></span>
     <a
-      href={lang === 'en' ? '/' : '/fr/'}
-      class="font-display font-bold text-lg text-ink-primary hover:text-accent transition-colors duration-300 group"
+      href={alternatePath}
+      class="no-underline px-2 py-0.5 text-black hover:bg-[#000080] hover:text-white border border-solid"
+      style="border-color: #808080 #FFFFFF #FFFFFF #808080; transition: background 0.15s ease;"
     >
-      JB<span class="text-gradient group-hover:opacity-80 transition-opacity">.</span>
+      {lang === 'en' ? '🇫🇷 FR' : '🇬🇧 EN'}
     </a>
-
-    <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-8">
-      {navLinks.map(({ href, label }) => (
-        <a
-          href={href}
-          class:list={[
-            'font-body text-sm font-medium transition-all duration-300 relative',
-            isActive(href)
-              ? 'text-ink-primary'
-              : 'text-ink-muted hover:text-ink-primary',
-          ]}
-        >
-          {label}
-          {isActive(href) && (
-            <span class="absolute -bottom-1 left-0 right-0 h-px bg-gradient-aurora"></span>
-          )}
-        </a>
-      ))}
-    </div>
-
-    <!-- Right side: lang switcher + contact -->
-    <div class="flex items-center gap-3">
-      <!-- Language switcher -->
-      <a
-        href={alternatePath}
-        class="font-body text-xs uppercase tracking-widest font-medium text-ink-muted hover:text-ink-primary transition-all duration-300 border border-border hover:border-border-hover px-2.5 py-1.5 rounded-lg"
-        title={t('nav.lang.switch')}
-      >
-        {lang === 'en' ? 'FR' : 'EN'}
-      </a>
-
-      <!-- Contact CTA (desktop) -->
-      <a
-        href={`mailto:chauvin.jbaptiste@gmail.com`}
-        class="hidden md:inline-flex items-center gap-1.5 font-body text-sm font-medium px-4 py-2 rounded-lg bg-gradient-aurora text-white hover:opacity-90 transition-opacity duration-300"
-      >
-        {t('nav.contact')}
-      </a>
-    </div>
-
-    <!-- Mobile menu button -->
-    <button
-      id="mobile-menu-btn"
-      class="md:hidden p-2 text-ink-muted hover:text-ink-primary transition-colors"
-      aria-label="Toggle menu"
+    <a
+      href="mailto:chauvin.jbaptiste@gmail.com"
+      class="retro-btn-primary retro-btn no-underline text-[11px]"
     >
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 5H17M3 10H17M3 15H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </nav>
+      {t('nav.contact')}
+    </a>
+  </div>
+</div>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden hidden border-t border-border bg-bg/95 backdrop-blur-xl">
-    <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col gap-4">
+<!-- Marquee -->
+<div class="max-w-[1100px] mx-auto px-2">
+  <div class="retro-marquee">
+    <span class="marquee-inner">
+      ★ {lang === 'en' ? 'Welcome to my personal homepage!' : 'Bienvenue sur ma page personnelle !'} ★ React Native · TypeScript · Node.js · PHP · AWS ★ 10+ {lang === 'en' ? 'years of experience' : "ans d'expérience"} ★ 170k+ {lang === 'en' ? 'users reached' : 'utilisateurs'} ★ 13 {lang === 'en' ? 'products shipped' : 'produits livrés'} ★
+    </span>
+  </div>
+</div>
+
+<!-- Mobile nav (hamburger) -->
+<div class="md:hidden max-w-[1100px] mx-auto px-2">
+  <div class="win-panel">
+    <button id="mobile-menu-btn" class="retro-btn w-full text-left text-[12px] font-pixel">
+      &#9776; Menu
+    </button>
+    <div id="mobile-menu" class="hidden sidebar-nav">
       {navLinks.map(({ href, label }) => (
-        <a
-          href={href}
-          class:list={[
-            'font-body text-base font-medium py-1.5 transition-colors duration-300',
-            isActive(href) ? 'text-gradient' : 'text-ink-secondary hover:text-ink-primary',
-          ]}
-        >
+        <a href={href} class:list={[isActive(href) && 'active']}>
           {label}
         </a>
       ))}
-      <a
-        href="mailto:chauvin.jbaptiste@gmail.com"
-        class="inline-flex items-center justify-center bg-gradient-aurora text-white font-body text-sm font-medium px-4 py-3 rounded-lg hover:opacity-90 transition-opacity mt-2"
-      >
+      <a href="mailto:chauvin.jbaptiste@gmail.com">
         {t('nav.contact')}
       </a>
     </div>
   </div>
-</header>
+</div>
 
 <script is:inline>
   const btn = document.getElementById('mobile-menu-btn');
@@ -130,17 +111,5 @@ function isActive(href: string) {
     btn.addEventListener('click', () => {
       menu.classList.toggle('hidden');
     });
-  }
-
-  // Header blur on scroll
-  const header = document.getElementById('site-header');
-  if (header) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 10) {
-        header.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
-      } else {
-        header.style.borderBottom = 'none';
-      }
-    }, { passive: true });
   }
 </script>
