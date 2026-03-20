@@ -11,20 +11,20 @@ const degrees = [
   {
     degree: { en: 'Master MIAGE — Bac +5', fr: 'Master MIAGE — Bac +5' },
     school: { en: 'Université Paris Nanterre', fr: 'Université Paris Nanterre' },
-    period: '2015 – 2017',
+    period: '2015–2017',
     detail: {
       en: 'Computer Methods Applied to Business Management · Graduated 15/20',
-      fr: 'Méthodes Informatiques Appliquées à la Gestion des Entreprises · Diplômé 15/20',
+      fr: 'Méthodes Informatiques Appliquées à la Gestion des Entreprises · Mention 15/20',
     },
     highlight: {
-      en: 'Founded WITIP — the Junior Enterprise of MIAGE Nanterre. Led the project from scratch, handled university accreditation and client acquisition. First project: trouver-une-formation-ce.com.',
-      fr: 'Fondateur de WITIP — la Junior Entreprise de la MIAGE de Nanterre. Projet mené de zéro : accréditation universitaire, structuration et acquisition clients. Premier projet livré : trouver-une-formation-ce.com.',
+      en: 'Founded WITIP — the Junior Enterprise of MIAGE Nanterre.',
+      fr: 'Fondateur de WITIP — la Junior Entreprise de la MIAGE de Nanterre.',
     },
   },
   {
     degree: { en: 'BTS IRIS — Bac +2', fr: 'BTS IRIS — Bac +2' },
-    school: { en: 'IUT / Lycée technique', fr: 'IUT / Lycée technique' },
-    period: '2013 – 2015',
+    school: { en: 'Lycée technique', fr: 'Lycée technique' },
+    period: '2013–2015',
     detail: {
       en: 'Computer Science & Networks',
       fr: 'Informatique & Réseaux des Systèmes',
@@ -34,41 +34,25 @@ const degrees = [
 ];
 ---
 
-<div class="p-4">
-  <hr class="rainbow-hr" />
+<section class="mb-10">
+  <div class="section-label">{lang === 'en' ? 'Education' : 'Formation'}</div>
 
-  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
-    <tr>
-      <td class="bg-[#000080] p-2">
-        <h2 class="!text-white text-[18px] m-0 font-display">
-          &#127891; {lang === 'en' ? 'Education' : 'Formation'}
-        </h2>
-        <span class="font-pixel text-[11px] text-[#00FFFF]">{lang === 'en' ? 'Degrees and academic highlights.' : 'Diplômes et faits marquants.'}</span>
-      </td>
-    </tr>
-  </table>
-
-  <table cellpadding="0" cellspacing="0" class="retro-table w-full">
-    <tr>
-      <th>{lang === 'en' ? 'Period' : 'Période'}</th>
-      <th>{lang === 'en' ? 'Degree' : 'Diplôme'}</th>
-      <th>{lang === 'en' ? 'School' : 'École'}</th>
-      <th class="hidden md:table-cell">{lang === 'en' ? 'Details' : 'Détails'}</th>
-    </tr>
+  <div>
     {degrees.map((d) => (
-      <tr class="reveal">
-        <td class="font-mono text-[11px] whitespace-nowrap">{d.period}</td>
-        <td class="font-display text-[13px] text-[#000080] font-bold">{d.degree[lang]}</td>
-        <td class="font-pixel text-[12px] text-[#800000]">{d.school[lang]}</td>
-        <td class="hidden md:table-cell font-body text-[12px] text-ink-secondary">
-          <div>{d.detail[lang]}</div>
+      <div class="cv-entry">
+        <div class="cv-date">{d.period}</div>
+        <div>
+          <div class="flex items-baseline gap-2 flex-wrap mb-0.5">
+            <span class="font-semibold text-gray-900 text-[13px]">{d.degree[lang]}</span>
+            <span class="text-gray-400 text-xs">·</span>
+            <span class="text-gray-700 text-[13px]">{d.school[lang]}</span>
+          </div>
+          <p class="text-gray-500 text-[12px] leading-relaxed">{d.detail[lang]}</p>
           {d.highlight && (
-            <div class="mt-1 pl-2 border-l-2 border-[#000080] text-[11px] text-ink-muted">
-              {d.highlight[lang]}
-            </div>
+            <p class="text-gray-400 text-[11px] mt-0.5 italic">{d.highlight[lang]}</p>
           )}
-        </td>
-      </tr>
+        </div>
+      </div>
     ))}
-  </table>
-</div>
+  </div>
+</section>

@@ -1,5 +1,5 @@
 ---
-import { useTranslations, getAlternatePath, type Lang } from '../../i18n/index';
+import { type Lang, getAlternatePath } from '../../i18n/index';
 
 interface Props {
   lang: Lang;
@@ -7,21 +7,13 @@ interface Props {
 }
 
 const { lang, currentPath } = Astro.props;
-const t = useTranslations(lang);
-const alternateLang = lang === 'en' ? 'fr' : 'en';
-const alternatePath = getAlternatePath(currentPath, alternateLang);
 
-const navLinks = lang === 'en'
-  ? [
-      { href: '/', label: 'Home' },
-      { href: '/projects/', label: 'Projects' },
-      { href: '/references/', label: 'References' },
-    ]
-  : [
-      { href: '/fr/', label: 'Accueil' },
-      { href: '/fr/projets/', label: 'Projets' },
-      { href: '/fr/references/', label: 'Références' },
-    ];
+const isEn = lang === 'en';
+const homeHref = isEn ? '/' : '/fr/';
+const projectsHref = isEn ? '/projects/' : '/fr/projets/';
+const referencesHref = isEn ? '/references/' : '/fr/references/';
+const alternateLang: Lang = isEn ? 'fr' : 'en';
+const alternatePath = getAlternatePath(currentPath, alternateLang);
 
 function isActive(href: string) {
   if (href === '/' || href === '/fr/') return currentPath === href;
@@ -29,87 +21,30 @@ function isActive(href: string) {
 }
 ---
 
-<!-- Top banner bar -->
-<div class="win-panel max-w-[1100px] mx-auto mt-2 px-2">
-  <!-- Title bar -->
-  <div class="win-titlebar">
-    <span>
-      &#128187; JB Chauvin — {lang === 'en' ? 'Personal Homepage' : 'Page Personnelle'}
-    </span>
-    <div class="flex gap-1">
-      <span class="inline-block w-[14px] h-[14px] bg-[#C0C0C0] border border-solid text-center leading-[12px] text-[10px] text-black" style="border-color: #FFFFFF #808080 #808080 #FFFFFF;">_</span>
-      <span class="inline-block w-[14px] h-[14px] bg-[#C0C0C0] border border-solid text-center leading-[12px] text-[10px] text-black" style="border-color: #FFFFFF #808080 #808080 #FFFFFF;">□</span>
-      <span class="inline-block w-[14px] h-[14px] bg-[#C0C0C0] border border-solid text-center leading-[12px] text-[10px] text-black" style="border-color: #FFFFFF #808080 #808080 #FFFFFF;">×</span>
-    </div>
-  </div>
-
-  <!-- Menu bar -->
-  <div class="bg-[#C0C0C0] px-2 py-1 flex items-center gap-4 border-b border-b-[#808080] text-[12px] font-pixel">
-    {navLinks.map(({ href, label }) => (
+<header class="sticky top-0 bg-white border-b border-gray-200 z-50">
+  <div class="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href={homeHref} class="text-sm font-semibold text-gray-900 hover:text-blue-700 transition-colors">
+      Jean-Baptiste Chauvin
+    </a>
+    <nav class="flex items-center gap-5 text-sm">
       <a
-        href={href}
-        class:list={[
-          'no-underline px-2 py-0.5',
-          isActive(href)
-            ? 'bg-[#000080] text-white'
-            : 'text-black hover:bg-[#000080] hover:text-white',
-        ]}
-        style="transition: background 0.15s ease, color 0.15s ease;"
+        href={projectsHref}
+        class={`transition-colors ${isActive(projectsHref) ? 'text-gray-900 font-medium' : 'text-gray-500 hover:text-gray-900'}`}
       >
-        {label}
+        {isEn ? 'Projects' : 'Projets'}
       </a>
-    ))}
-    <span class="flex-1"></span>
-    <a
-      href={alternatePath}
-      class="no-underline px-2 py-0.5 text-black hover:bg-[#000080] hover:text-white border border-solid"
-      style="border-color: #808080 #FFFFFF #FFFFFF #808080; transition: background 0.15s ease;"
-    >
-      {lang === 'en' ? '🇫🇷 FR' : '🇬🇧 EN'}
-    </a>
-    <a
-      href="mailto:chauvin.jbaptiste@gmail.com"
-      class="retro-btn-primary retro-btn no-underline text-[11px]"
-    >
-      {t('nav.contact')}
-    </a>
-  </div>
-</div>
-
-<!-- Marquee -->
-<div class="max-w-[1100px] mx-auto px-2">
-  <div class="retro-marquee">
-    <span class="marquee-inner">
-      ★ {lang === 'en' ? 'Welcome to my personal homepage!' : 'Bienvenue sur ma page personnelle !'} ★ React Native · TypeScript · Node.js · PHP · AWS ★ 10+ {lang === 'en' ? 'years of experience' : "ans d'expérience"} ★ 170k+ {lang === 'en' ? 'users reached' : 'utilisateurs'} ★ 13 {lang === 'en' ? 'products shipped' : 'produits livrés'} ★
-    </span>
-  </div>
-</div>
-
-<!-- Mobile nav (hamburger) -->
-<div class="md:hidden max-w-[1100px] mx-auto px-2">
-  <div class="win-panel">
-    <button id="mobile-menu-btn" class="retro-btn w-full text-left text-[12px] font-pixel">
-      &#9776; Menu
-    </button>
-    <div id="mobile-menu" class="hidden sidebar-nav">
-      {navLinks.map(({ href, label }) => (
-        <a href={href} class:list={[isActive(href) && 'active']}>
-          {label}
-        </a>
-      ))}
-      <a href="mailto:chauvin.jbaptiste@gmail.com">
-        {t('nav.contact')}
+      <a
+        href={referencesHref}
+        class={`transition-colors ${isActive(referencesHref) ? 'text-gray-900 font-medium' : 'text-gray-500 hover:text-gray-900'}`}
+      >
+        {isEn ? 'References' : 'Références'}
       </a>
-    </div>
+      <a
+        href={alternatePath}
+        class="text-xs border border-gray-300 rounded-sm px-2 py-0.5 text-gray-500 hover:border-gray-500 hover:text-gray-900 transition-colors"
+      >
+        {isEn ? 'FR' : 'EN'}
+      </a>
+    </nav>
   </div>
-</div>
-
-<script is:inline>
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  if (btn && menu) {
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
-  }
-</script>
+</header>

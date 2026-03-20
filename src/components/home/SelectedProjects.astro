@@ -8,114 +8,58 @@ interface Props {
 
 const { lang, projects } = Astro.props;
 const t = useTranslations(lang);
-
 const allProjectsHref = lang === 'en' ? '/projects/' : '/fr/projets/';
-const featured = projects.slice(0, 3);
+const featured = projects.slice(0, 5);
 ---
 
-<div class="p-4">
-  <hr class="rainbow-hr" />
+<section class="mb-10">
+  <div class="section-label">{t('section.projects.title')}</div>
 
-  <!-- Section title in retro banner -->
-  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
-    <tr>
-      <td class="bg-[#000080] p-2">
-        <h2 class="!text-white text-[18px] m-0 font-display">
-          &#128190; {t('section.projects.title')}
-        </h2>
-        <span class="font-pixel text-[11px] text-[#00FFFF]">{t('section.projects.subtitle')}</span>
-      </td>
-    </tr>
-  </table>
-
-  <!-- Projects table -->
-  <table cellpadding="0" cellspacing="0" class="retro-table w-full">
-    <tr>
-      <th>{lang === 'en' ? 'Preview' : 'Aperçu'}</th>
-      <th>{lang === 'en' ? 'Project' : 'Projet'}</th>
-      <th class="hidden md:table-cell">Stack</th>
-      <th class="hidden md:table-cell">{lang === 'en' ? 'Year' : 'Année'}</th>
-      <th class="hidden md:table-cell">{lang === 'en' ? 'Links' : 'Liens'}</th>
-    </tr>
+  <div>
     {featured.map((project) => {
       const content = project.content[lang];
       const images = (project.images ?? []).map((img: string) => `/images/projects/${img}`);
-      const heroImage = images[0] ?? null;
+
       return (
-        <tr>
-          <td class="text-center" style="width: 80px;">
-            {heroImage ? (
-              <div
-                class="border-inset inline-block cursor-pointer"
-                onclick={`window.dispatchEvent(new CustomEvent('open-lightbox',{detail:{images:${JSON.stringify(images)},index:0,projectTitle:${JSON.stringify(content.title)}}}))`}
-              >
-                <img
-                  src={heroImage}
-                  alt={content.title}
-                  class="w-[60px] h-[60px] object-contain"
-                  loading="lazy"
-                />
-              </div>
-            ) : (
-              <div class="w-[60px] h-[60px] bg-[#000080] flex items-center justify-center text-white font-display text-[24px] border-inset mx-auto">
-                {content.title.charAt(0)}
-              </div>
-            )}
-          </td>
-          <td>
-            <div class="font-display text-[14px] text-[#000080] font-bold">
-              {content.title}
-            </div>
-            <div class="font-body text-[12px] text-ink-secondary mt-1">
-              {content.shortDescription}
-            </div>
-            <div class="mt-1">
-              <span class="retro-tag-accent retro-tag">{project.type}</span>
-              <span class="retro-tag ml-1">{project.role}</span>
-              {project.users && (
-                <span class="retro-tag ml-1">
-                  {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {t('projects.users')}
+        <div class="cv-entry">
+          <div class="cv-date">
+            {project.date.slice(0, 4)}
+            <div class="text-[10px] text-gray-400 mt-0.5">{project.type}</div>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-2 flex-wrap mb-0.5">
+              <span class="font-semibold text-gray-900 text-[13px]">{content.title}</span>
+              <span class="text-gray-400 text-[11px]">{project.role}</span>
+              {project.users !== null && (
+                <span class="text-gray-400 text-[11px]">
+                  · {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {t('projects.users')}
                 </span>
               )}
               {project.users === null && (
-                <span class="retro-tag ml-1" style="background: #FFFF00; color: #000;">MVP</span>
+                <span class="text-gray-400 text-[11px]">· MVP</span>
               )}
             </div>
-            <!-- Stack on mobile -->
-            <div class="md:hidden mt-1 font-pixel text-[10px] text-ink-muted">
-              {project.stack.slice(0, 4).join(' · ')}
+            <p class="text-gray-500 text-[12px] mb-1.5">{content.shortDescription}</p>
+            <div class="flex flex-wrap items-center gap-3">
+              {project.links?.ios && (
+                <a href={project.links.ios} target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline">App Store ↗</a>
+              )}
+              {project.links?.android && (
+                <a href={project.links.android} target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline">Play Store ↗</a>
+              )}
+              {project.links?.web && (
+                <a href={project.links.web} target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline">{lang === 'en' ? 'Website' : 'Site web'} ↗</a>
+              )}
             </div>
-          </td>
-          <td class="hidden md:table-cell font-pixel text-[11px]">
-            {project.stack.map((tech: string) => (
-              <span class="retro-tag mr-1 mb-1">{tech}</span>
-            ))}
-          </td>
-          <td class="hidden md:table-cell font-mono text-[12px] text-center">
-            {project.date.slice(0, 4)}
-          </td>
-          <td class="hidden md:table-cell text-center font-pixel text-[11px]">
-            {project.links?.ios && (
-              <a href={project.links.ios} target="_blank" rel="noopener noreferrer" class="block" onclick="event.stopPropagation()">iOS</a>
-            )}
-            {project.links?.android && (
-              <a href={project.links.android} target="_blank" rel="noopener noreferrer" class="block" onclick="event.stopPropagation()">Android</a>
-            )}
-            {project.links?.web && (
-              <a href={project.links.web} target="_blank" rel="noopener noreferrer" class="block" onclick="event.stopPropagation()">Web</a>
-            )}
-            {!project.links?.ios && !project.links?.android && !project.links?.web && (
-              <span class="text-ink-muted">—</span>
-            )}
-          </td>
-        </tr>
+          </div>
+        </div>
       );
     })}
-  </table>
+  </div>
 
-  <div class="mt-3 text-center">
-    <a href={allProjectsHref} class="retro-btn no-underline">
-      {t('section.projects.cta')} &#9654;
+  <div class="mt-4 pt-2">
+    <a href={allProjectsHref} class="text-sm text-blue-700 hover:underline">
+      {t('section.projects.cta')} →
     </a>
   </div>
-</div>
+</section>

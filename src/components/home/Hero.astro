@@ -8,98 +8,76 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-
-const projectsHref = lang === 'en' ? '/projects/' : '/fr/projets/';
+const isEn = lang === 'en';
+const projectsHref = isEn ? '/projects/' : '/fr/projets/';
 ---
 
-<!-- Welcome section -->
-<div class="reveal p-4">
-  <!-- Title with retro flair -->
-  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
-    <tr>
-      <td class="bg-[#000080] p-3 text-center">
-        <h1 class="!text-white text-[28px] md:text-[36px] m-0 font-display">
-          ★ {t('hero.title')} ★
-        </h1>
-        <div class="text-[#FFFF00] font-display text-[16px] mt-1">
-          {t('hero.subtitle')}
-        </div>
-      </td>
-    </tr>
-  </table>
+<section class="pb-10 border-b border-gray-200 mb-10">
+  <div class="flex items-start justify-between gap-6">
+    <div class="flex-1 min-w-0">
 
-  <!-- Two column layout: info + photo -->
-  <table cellpadding="8" cellspacing="0" class="retro-table w-full mb-4">
-    <tr>
-      <td class="align-top" style="width: 65%;">
-        <!-- Status badge -->
-        <div class="mb-3">
-          <span class="retro-tag-accent retro-tag">
-            ● {lang === 'en' ? 'Available for opportunities' : 'Disponible'}
-          </span>
-        </div>
+      <!-- Name & Title -->
+      <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-1">
+        Jean-Baptiste Chauvin
+      </h1>
+      <p class="text-base text-gray-500 mb-4">
+        Engineering Manager · hands-on &nbsp;·&nbsp; Paris, France
+      </p>
 
-        <!-- Tagline -->
-        <p class="font-body text-[15px] text-ink-secondary mb-2">
-          {t('hero.tagline')}
-        </p>
+      <!-- Contact info -->
+      <p class="text-sm text-gray-500 mb-5 flex flex-wrap gap-x-3 gap-y-1">
+        <a href={`mailto:${site.email}`} class="text-blue-700 hover:underline">{site.email}</a>
+        <span class="text-gray-300">·</span>
+        <a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:underline">LinkedIn</a>
+        <span class="text-gray-300">·</span>
+        <a href={site.github} target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:underline">GitHub</a>
+      </p>
 
-        <!-- Description -->
-        <p class="font-body text-[14px] text-ink-primary leading-relaxed mb-4 [&_strong]:text-[#000080] [&_strong]:font-bold" set:html={t('hero.description')} />
+      <!-- Description -->
+      <p
+        class="text-sm text-gray-700 leading-relaxed max-w-xl mb-5 [&_strong]:font-semibold [&_strong]:text-gray-900"
+        set:html={t('hero.description')}
+      />
 
-        <!-- CTAs -->
-        <div class="flex flex-wrap gap-2 mt-4">
-          <a href={projectsHref} class="retro-btn retro-btn-primary no-underline">
-            &#128194; {t('hero.cta.projects')}
-          </a>
-          <a href={`mailto:${site.email}`} class="retro-btn no-underline">
-            &#9993; {t('hero.cta.contact')}
-          </a>
-        </div>
-      </td>
-      <td class="align-top text-center hidden md:table-cell">
-        <!-- Photo -->
-        <div class="win-panel inline-block">
-          <div class="border-inset p-1">
-            <img
-              src="/images/profile.jpg"
-              alt="Jean-Baptiste Chauvin"
-              class="max-h-[200px] w-auto"
-              style="image-rendering: auto;"
-              onerror="this.parentElement.parentElement.innerHTML='<div style=&quot;width:150px;height:150px;background:#000080;display:flex;align-items:center;justify-content:center;color:#FFFF00;font-size:48px;font-family:Comic Sans MS,cursive;&quot;>JB</div>'"
-            />
-          </div>
-        </div>
-        <div class="font-pixel text-[10px] text-ink-muted mt-1">profile.jpg (48KB)</div>
-      </td>
-    </tr>
-  </table>
+      <!-- Status -->
+      <p class="text-sm text-gray-500 flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+        {t('hero.available')}
+      </p>
+    </div>
 
-  <!-- AI Chat Summary -->
-  <slot name="ai-summary" />
+    <!-- Photo -->
+    <div class="hidden sm:block flex-shrink-0 mt-1">
+      <img
+        src="/images/profile.jpg"
+        alt="Jean-Baptiste Chauvin"
+        class="w-[72px] h-[72px] rounded-full object-cover grayscale opacity-90"
+      />
+    </div>
+  </div>
 
-  <hr class="rainbow-hr" />
-
-  <!-- Stats table -->
-  <table cellpadding="6" cellspacing="0" class="retro-table w-full md:w-auto mx-auto">
-    <tr>
-      <th colspan="3" class="text-center">
-        &#128202; {lang === 'en' ? 'Stats' : 'Statistiques'}
-      </th>
-    </tr>
-    <tr>
-      <td class="text-center">
-        <div class="font-display text-[24px] text-[#000080] font-bold">10+</div>
-        <div class="font-pixel text-[11px] text-ink-muted">{lang === 'en' ? 'Years exp.' : "Ans d'exp."}</div>
-      </td>
-      <td class="text-center">
-        <div class="font-display text-[24px] text-[#000080] font-bold">13</div>
-        <div class="font-pixel text-[11px] text-ink-muted">{lang === 'en' ? 'Products' : 'Produits'}</div>
-      </td>
-      <td class="text-center">
-        <div class="font-display text-[24px] text-[#000080] font-bold">170k+</div>
-        <div class="font-pixel text-[11px] text-ink-muted">{lang === 'en' ? 'Users' : 'Utilisateurs'}</div>
-      </td>
-    </tr>
-  </table>
-</div>
+  <!-- Stats -->
+  <div class="flex items-center gap-8 mt-8 pt-6 border-t border-gray-100">
+    <div>
+      <div class="text-xl font-bold text-gray-900 tabular-nums">10+</div>
+      <div class="text-xs text-gray-400 mt-0.5">{isEn ? 'years exp.' : "ans d'exp."}</div>
+    </div>
+    <div class="w-px h-8 bg-gray-200"></div>
+    <div>
+      <div class="text-xl font-bold text-gray-900 tabular-nums">13</div>
+      <div class="text-xs text-gray-400 mt-0.5">{isEn ? 'products' : 'projets'}</div>
+    </div>
+    <div class="w-px h-8 bg-gray-200"></div>
+    <div>
+      <div class="text-xl font-bold text-gray-900 tabular-nums">170k+</div>
+      <div class="text-xs text-gray-400 mt-0.5">{isEn ? 'users' : 'utilisateurs'}</div>
+    </div>
+    <div class="flex-1"></div>
+    <a
+      href={projectsHref}
+      class="text-sm text-gray-700 border border-gray-300 rounded px-4 py-2 hover:border-gray-500 hover:text-gray-900 transition-colors hidden sm:inline-flex items-center gap-1"
+    >
+      {t('hero.cta.projects')} →
+    </a>
+  </div>
+</section>

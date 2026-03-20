@@ -1,0 +1,104 @@
+---
+import { useTranslations, getAlternatePath, type Lang } from '../../i18n/index';
+import refsData from '../../../data/references.json';
+import site from '../../../data/site.json';
+
+const projectFiles = import.meta.glob('../../../data/projects/*.json', { eager: true });
+const projectCount = Object.keys(projectFiles).length;
+const refCount = refsData.references.length;
+
+interface Props {
+  lang: Lang;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const t = useTranslations(lang);
+
+const navLinks = lang === 'en'
+  ? [
+      { href: '/', label: '🏠 Home', count: null },
+      { href: '/projects/', label: '💾 Projects', count: projectCount },
+      { href: '/references/', label: '📝 References', count: refCount },
+    ]
+  : [
+      { href: '/fr/', label: '🏠 Accueil', count: null },
+      { href: '/fr/projets/', label: '💾 Projets', count: projectCount },
+      { href: '/fr/references/', label: '📝 Références', count: refCount },
+    ];
+
+function isActive(href: string) {
+  if (href === '/' || href === '/fr/') return currentPath === href;
+  return currentPath.startsWith(href);
+}
+---
+
+<div class="sidebar-nav h-full flex flex-col" style="min-height: 600px;">
+  <!-- Navigation -->
+  <div class="mb-4">
+    <div class="text-[10px] uppercase tracking-wider text-[#808080] px-2 py-1 font-pixel">
+      Navigation
+    </div>
+    {navLinks.map(({ href, label, count }) => (
+      <a href={href} class:list={[isActive(href) && 'active']}>
+        {label}{count !== null ? ` (${count})` : ''}
+      </a>
+    ))}
+    <a href={`mailto:${site.email}`}>
+      ✉️ {t('nav.contact')}
+    </a>
+  </div>
+
+  <!-- Separator -->
+  <div class="px-2 my-2">
+    <hr class="border-[#0000AA] border-t" />
+  </div>
+
+  <!-- Quick info -->
+  <div class="px-2 text-[11px] font-pixel mb-4">
+    <div class="text-[10px] uppercase tracking-wider text-[#808080] mb-1">
+      {lang === 'en' ? 'Quick Info' : 'Info rapide'}
+    </div>
+    <div class="text-[#00FFFF] mb-1">📍 Paris, France</div>
+    <div class="text-[#00FF00] mb-1">● {lang === 'en' ? 'Available' : 'Disponible'}</div>
+    <div class="text-[#FFFFFF] mb-1">🎂 33 {lang === 'en' ? 'years old' : 'ans'}</div>
+  </div>
+
+  <!-- Separator -->
+  <div class="px-2 my-2">
+    <hr class="border-[#0000AA] border-t" />
+  </div>
+
+  <!-- Social links -->
+  <div class="px-2 text-[11px] font-pixel mb-4">
+    <div class="text-[10px] uppercase tracking-wider text-[#808080] mb-1">
+      {lang === 'en' ? 'Links' : 'Liens'}
+    </div>
+    <a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="!text-[#00FFFF] !text-[11px] !font-pixel !py-1">
+      LinkedIn
+    </a>
+    <a href={site.github} target="_blank" rel="noopener noreferrer" class="!text-[#00FFFF] !text-[11px] !font-pixel !py-1">
+      GitHub
+    </a>
+  </div>
+
+  <!-- Spacer -->
+  <div class="flex-1"></div>
+
+  <!-- Hit counter -->
+  <div class="px-2 py-3 text-center">
+    <div class="text-[9px] text-[#808080] font-pixel mb-1 uppercase">
+      {lang === 'en' ? 'Visitors' : 'Visiteurs'}
+    </div>
+    <div class="hit-counter mx-auto text-[14px]" id="hit-counter">
+      003847
+    </div>
+  </div>
+
+  <!-- Best viewed badge -->
+  <div class="px-2 py-2 text-center text-[9px] text-[#808080] font-pixel leading-tight">
+    {lang === 'en' ? 'Best viewed with' : 'Optimisé pour'}<br />
+    <span class="text-[#FFFF00]">Netscape Navigator 4.0</span><br />
+    800×600
+  </div>
+</div>

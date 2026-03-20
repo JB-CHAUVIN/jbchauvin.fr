@@ -13,13 +13,11 @@ const t = useTranslations(lang);
   title="References — Jean-Baptiste Chauvin"
   description="Professional references and testimonials from companies Jean-Baptiste Chauvin has worked with."
 >
-  <div class="p-4">
-    <SectionTitle subtitle={t('references.subtitle')}>
-      &#128172; {t('references.title')}
-    </SectionTitle>
+  <SectionTitle subtitle={t('references.subtitle')}>
+    {t('references.title')}
+  </SectionTitle>
 
-    {referencesData.references.map((ref) => (
-      <ReferenceCard reference={ref} lang={lang} />
-    ))}
-  </div>
+  {referencesData.references.map((ref) => (
+    <ReferenceCard reference={ref} lang={lang} />
+  ))}
 </Layout>

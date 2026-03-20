@@ -10,41 +10,27 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<div class="p-4">
-  <hr class="rainbow-hr" />
+<section class="mb-4">
+  <div class="section-label">{t('section.contact.title')}</div>
 
-  <!-- Contact section as a guestbook signing prompt -->
-  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
-    <tr>
-      <td class="bg-[#000080] p-2">
-        <h2 class="!text-white text-[18px] m-0 font-display">
-          &#9993; {t('section.contact.title')}
-        </h2>
-      </td>
-    </tr>
-  </table>
+  <p class="text-sm text-gray-600 mb-4 max-w-lg">
+    {t('section.contact.description')}
+  </p>
 
-  <div class="retro-card text-center py-6 reveal">
-    <div class="font-display text-[16px] text-[#000080] mb-2 sparkle">
-      {t('section.contact.title')}
-    </div>
-    <p class="font-body text-[14px] text-ink-secondary mb-4 max-w-md mx-auto">
-      {t('section.contact.description')}
-    </p>
-
-    <div class="flex flex-wrap items-center justify-center gap-3">
-      <a href={`mailto:${site.email}`} class="retro-btn retro-btn-primary no-underline">
-        &#128231; {t('section.contact.email')}
-      </a>
-      <a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="retro-btn no-underline">
-        &#128279; {t('section.contact.linkedin')}
-      </a>
-    </div>
-
-    <div class="font-pixel text-[10px] text-ink-muted mt-4">
-      {lang === 'en'
-        ? 'You are visitor #3,847. Please sign my guestbook!'
-        : 'Vous êtes le visiteur n°3 847. Signez mon livre d\'or !'}
-    </div>
+  <div class="flex flex-wrap gap-3">
+    <a
+      href={`mailto:${site.email}`}
+      class="text-sm font-medium text-gray-900 border border-gray-300 rounded px-4 py-2 hover:border-gray-500 hover:bg-gray-50 transition-colors"
+    >
+      {t('section.contact.email')}
+    </a>
+    <a
+      href={site.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm font-medium text-gray-900 border border-gray-300 rounded px-4 py-2 hover:border-gray-500 hover:bg-gray-50 transition-colors"
+    >
+      {t('section.contact.linkedin')}
+    </a>
   </div>
-</div>
+</section>

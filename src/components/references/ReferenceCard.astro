@@ -9,59 +9,34 @@ interface Props {
 const { reference, lang } = Astro.props;
 const testimonial = reference.testimonial[lang];
 const role = reference.role[lang];
-
-const initials = testimonial.author
-  .split(' ')
-  .map((n: string) => n[0])
-  .slice(0, 2)
-  .join('');
 ---
 
-<div class="retro-card reveal mb-3">
-  <table cellpadding="4" cellspacing="0" class="w-full">
-    <tr>
-      <td class="align-top" style="width: 50px;">
-        <div class="w-[40px] h-[40px] bg-[#000080] border-inset flex items-center justify-center text-white font-display text-[14px] overflow-hidden">
-          {reference.avatar ? (
-            <img
-              src={reference.avatar}
-              alt={testimonial.author}
-              class="w-full h-full object-cover"
-              loading="lazy"
-              onerror={`this.style.display='none'; this.parentElement.innerHTML='<span style="font-family:Comic Sans MS,cursive;font-size:14px;">${initials}</span>'`}
-            />
-          ) : (
-            <span>{initials}</span>
-          )}
-        </div>
-      </td>
-      <td class="align-top">
-        <!-- Header -->
-        <div class="flex flex-wrap items-baseline gap-2 mb-1">
-          <span class="font-display text-[14px] text-[#000080] font-bold">
-            {reference.company}
-          </span>
-          <span class="font-pixel text-[10px] text-ink-muted">{role} · {reference.period}</span>
-        </div>
+<article class="border-l-2 border-gray-200 pl-5 py-1 mb-8">
+  <blockquote class="text-sm text-gray-600 leading-relaxed italic mb-3 whitespace-pre-line">
+    "{testimonial.text}"
+  </blockquote>
 
-        <!-- Stack -->
-        <div class="mb-2">
+  <div class="flex items-center gap-3">
+    {reference.avatar && (
+      <img
+        src={reference.avatar}
+        alt={testimonial.author}
+        class="w-8 h-8 rounded-full object-cover grayscale flex-shrink-0"
+        loading="lazy"
+      />
+    )}
+    <div>
+      <div class="text-sm font-semibold text-gray-800">{testimonial.author}</div>
+      <div class="text-xs text-gray-500">
+        {testimonial.position} · {reference.company} · {reference.period}
+      </div>
+      {reference.stack.length > 0 && (
+        <div class="flex flex-wrap gap-1 mt-1">
           {reference.stack.map((tech: string) => (
-            <span class="retro-tag mr-1">{tech}</span>
+            <span class="text-[10px] bg-gray-100 text-gray-400 px-1.5 py-0.5 rounded">{tech}</span>
           ))}
         </div>
-
-        <!-- Testimonial -->
-        <blockquote class="font-body text-[13px] text-ink-secondary leading-relaxed italic border-l-2 border-[#000080] pl-3 mb-2 whitespace-pre-line">
-          "{testimonial.text}"
-        </blockquote>
-
-        <!-- Author -->
-        <div class="font-pixel text-[12px]">
-          — <strong class="text-[#000080]">{testimonial.author}</strong>,
-          <span class="text-ink-muted">{testimonial.position}</span>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
+      )}
+    </div>
+  </div>
+</article>

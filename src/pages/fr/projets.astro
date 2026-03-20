@@ -27,16 +27,14 @@ const translations = {
   title="Projets — Jean-Baptiste Chauvin"
   description="Applications mobiles, APIs et produits construits par Jean-Baptiste Chauvin — React Native, Expo, TypeScript, Node.js."
 >
-  <div class="p-4">
-    <SectionTitle subtitle={t('projects.subtitle')}>
-      &#128190; {t('projects.title')}
-    </SectionTitle>
+  <SectionTitle subtitle={t('projects.subtitle')}>
+    {t('projects.title')}
+  </SectionTitle>
 
-    <ProjectsFilter
-      client:load
-      projects={projects}
-      lang={lang}
-      translations={translations}
-    />
-  </div>
+  <ProjectsFilter
+    client:load
+    projects={projects}
+    lang={lang}
+    translations={translations}
+  />
 </Layout>

@@ -8,70 +8,46 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-
 const { experiences } = experiencesData;
 ---
 
-<div class="p-4">
-  <hr class="rainbow-hr" />
+<section class="mb-10">
+  <div class="section-label">{t('section.career.title')}</div>
 
-  <!-- Section title -->
-  <table cellpadding="0" cellspacing="0" class="w-full mb-4">
-    <tr>
-      <td class="bg-[#000080] p-2">
-        <h2 class="!text-white text-[18px] m-0 font-display">
-          &#128188; {t('section.career.title')}
-        </h2>
-        <span class="font-pixel text-[11px] text-[#00FFFF]">{t('section.career.subtitle')}</span>
-      </td>
-    </tr>
-  </table>
-
-  <!-- Career table -->
-  <table cellpadding="0" cellspacing="0" class="retro-table w-full">
-    <tr>
-      <th>{lang === 'en' ? 'Period' : 'Période'}</th>
-      <th>{lang === 'en' ? 'Company' : 'Entreprise'}</th>
-      <th>{lang === 'en' ? 'Role' : 'Poste'}</th>
-      <th class="hidden md:table-cell">{lang === 'en' ? 'Details' : 'Détails'}</th>
-      <th class="hidden lg:table-cell">Stack</th>
-    </tr>
+  <div>
     {experiences.map((exp) => {
       const role = exp.role[lang];
       const description = exp.description[lang];
-      const period = exp.period.end
-        ? `${exp.period.start} – ${exp.period.end}`
-        : `${exp.period.start} – ${t('common.present')}`;
+      const endLabel = exp.period.end ?? t('common.present');
 
       return (
-        <tr class="reveal">
-          <td class="font-mono text-[11px] whitespace-nowrap">
-            {period}
-            {exp.current && (
-              <div class="text-[#008000] font-bold text-[10px] blink">● NOW</div>
-            )}
-          </td>
-          <td>
-            <div class="font-display text-[13px] text-[#000080] font-bold">
-              {exp.company}
+        <div class="cv-entry">
+          <div class="cv-date">
+            {exp.period.start}–{endLabel}
+          </div>
+          <div>
+            <div class="flex items-baseline gap-2 flex-wrap mb-0.5">
+              <span class="font-semibold text-gray-900 text-[13px]">{role}</span>
+              <span class="text-gray-400 text-xs">·</span>
+              <span class="text-gray-700 text-[13px]">{exp.company}</span>
+              {exp.client && (
+                <span class="text-gray-400 text-xs">({exp.client})</span>
+              )}
+              {exp.current && (
+                <span class="text-[10px] text-green-600 font-medium">{lang === 'en' ? 'current' : 'en cours'}</span>
+              )}
             </div>
-            {exp.client && (
-              <div class="font-pixel text-[10px] text-ink-muted">({exp.client})</div>
-            )}
-          </td>
-          <td class="font-pixel text-[12px] text-[#800000]">
-            {role}
-          </td>
-          <td class="hidden md:table-cell font-body text-[12px] text-ink-secondary max-w-[300px]">
-            {description}
-          </td>
-          <td class="hidden lg:table-cell">
-            {exp.stack.map((tech: string) => (
-              <span class="retro-tag mr-1 mb-1">{tech}</span>
-            ))}
-          </td>
-        </tr>
+            <p class="text-gray-500 text-[12px] leading-relaxed mb-1.5">
+              {description}
+            </p>
+            <div class="flex flex-wrap gap-1">
+              {exp.stack.map((tech: string) => (
+                <span class="text-[10px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded">{tech}</span>
+              ))}
+            </div>
+          </div>
+        </div>
       );
     })}
-  </table>
-</div>
+  </div>
+</section>

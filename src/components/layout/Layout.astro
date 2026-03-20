@@ -2,7 +2,6 @@
 import '../../styles/global.css';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
-import Sidebar from './Sidebar.astro';
 import Lightbox from '../ui/Lightbox';
 import site from '../../../data/site.json';
 import { getLangFromUrl, getAlternatePath } from '../../i18n/index';
@@ -39,21 +38,18 @@ const currentUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#C0C0C0" />
+    <meta name="theme-color" content="#ffffff" />
 
-    <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <!-- Canonical & Alternate -->
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang={lang} href={currentUrl} />
     <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
     <link rel="alternate" hreflang="x-default" href={new URL('/', site.baseUrl).toString()} />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
@@ -62,63 +58,24 @@ const currentUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
     <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
     <meta property="og:site_name" content="Jean-Baptiste Chauvin" />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageUrl} />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- JSON-LD -->
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
-
-    <!-- Scroll reveal -->
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-              }
-            });
-          },
-          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-        );
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-      });
-    </script>
   </head>
-  <body class="bg-bg text-ink-primary">
-    <!-- Top marquee banner -->
+  <body class="bg-white text-gray-900">
     <Header lang={lang} currentPath={Astro.url.pathname} />
-
-    <!-- Main table layout — the 90s way -->
-    <div class="max-w-[1100px] mx-auto my-2 px-2">
-      <table cellpadding="0" cellspacing="0" class="w-full border-2 border-collapse" style="border-color: #FFFFFF #808080 #808080 #FFFFFF; border-style: solid;">
-        <tr>
-          <!-- Sidebar -->
-          <td class="hidden md:table-cell align-top" style="width: 180px; border-right: 2px solid #808080;">
-            <Sidebar lang={lang} currentPath={Astro.url.pathname} />
-          </td>
-          <!-- Main content -->
-          <td class="align-top bg-white" style="border-color: #808080 #FFFFFF #FFFFFF #808080;">
-            <div class="content-well min-h-screen">
-              <slot />
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-
+    <main class="max-w-3xl mx-auto px-6 py-10">
+      <slot />
+    </main>
     <Footer lang={lang} />
     <Lightbox client:load />
   </body>
