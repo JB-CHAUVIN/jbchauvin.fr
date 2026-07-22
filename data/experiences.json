@@ -7,8 +7,8 @@
       "period": { "start": "2023", "end": null },
       "current": true,
       "role": {
-        "en": "Engineering Manager",
-        "fr": "Engineering Manager"
+        "en": "Lead Tech",
+        "fr": "Lead Tech"
       },
       "description": {
         "en": "Leading loyalty programs and eCommerce platforms (Carrefour, Promocash) for the French overseas territories. Managing a team of 2 developers and 1 DevOps engineer across mobile, full-stack and infrastructure (CI/CD, cloud, deployments).",
