@@ -9,7 +9,17 @@ interface Props {
 const { lang, projects } = Astro.props;
 const t = useTranslations(lang);
 const allProjectsHref = lang === 'en' ? '/projects/' : '/fr/projets/';
-const featured = projects.slice(0, 5);
+
+// Curated order for the homepage highlight — independent of the global priority sort.
+const FEATURED_ORDER = [
+  'agentsroom',
+  'paris-water-map',
+  'paris-toilet-finder',
+  'paris-fraicheur',
+  'rome-water-map',
+];
+const byId = new Map(projects.map((p: any) => [p.id, p]));
+const featured = FEATURED_ORDER.map((id) => byId.get(id)).filter(Boolean);
 ---
 
 <section class="mb-10">
@@ -21,35 +31,47 @@ const featured = projects.slice(0, 5);
       const images = (project.images ?? []).map((img: string) => `/images/projects/${img}`);
 
       return (
-        <div class="cv-entry">
+        <div class="cv-entry group">
           <div class="cv-date">
             {project.date.slice(0, 4)}
             <div class="text-[10px] text-gray-400 mt-0.5">{project.type}</div>
           </div>
-          <div>
-            <div class="flex items-baseline gap-2 flex-wrap mb-0.5">
-              <span class="font-semibold text-gray-900 text-[13px]">{content.title}</span>
-              <span class="text-gray-400 text-[11px]">{project.role}</span>
-              {project.users !== null && (
-                <span class="text-gray-400 text-[11px]">
-                  · {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {t('projects.users')}
-                </span>
-              )}
-              {project.users === null && (
-                <span class="text-gray-400 text-[11px]">· MVP</span>
-              )}
-            </div>
-            <p class="text-gray-500 text-[12px] mb-1.5">{content.shortDescription}</p>
-            <div class="flex flex-wrap items-center gap-3">
-              {project.links?.ios && (
-                <a href={project.links.ios} target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline">App Store ↗</a>
-              )}
-              {project.links?.android && (
-                <a href={project.links.android} target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline">Play Store ↗</a>
-              )}
-              {project.links?.web && (
-                <a href={project.links.web} target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline">{lang === 'en' ? 'Website' : 'Site web'} ↗</a>
-              )}
+          <div class="flex gap-3">
+            {project.logo && (
+              <img
+                src={`/images/projects/${project.logo}`}
+                alt={`${content.title} logo`}
+                class="w-10 h-10 rounded-xl object-cover flex-shrink-0 border border-gray-200/70 bg-white transition-transform duration-200 group-hover:scale-[1.06]"
+                loading="lazy"
+                width="40"
+                height="40"
+              />
+            )}
+            <div class="min-w-0">
+              <div class="flex items-baseline gap-2 flex-wrap mb-0.5">
+                <span class="font-semibold text-gray-900 text-[13px]">{content.title}</span>
+                <span class="text-gray-400 text-[11px]">{project.role}</span>
+                {project.users !== null && (
+                  <span class="text-gray-400 text-[11px]">
+                    · {project.users >= 1000 ? `${Math.round(project.users / 1000)}k` : project.users}+ {t('projects.users')}
+                  </span>
+                )}
+                {project.users === null && (
+                  <span class="text-gray-400 text-[11px]">· MVP</span>
+                )}
+              </div>
+              <p class="text-gray-500 text-[12px] mb-1.5">{content.shortDescription}</p>
+              <div class="flex flex-wrap items-center gap-3">
+                {project.links?.ios && (
+                  <a href={project.links.ios} target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline">App Store ↗</a>
+                )}
+                {project.links?.android && (
+                  <a href={project.links.android} target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline">Play Store ↗</a>
+                )}
+                {project.links?.web && (
+                  <a href={project.links.web} target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-700 hover:underline">{lang === 'en' ? 'Website' : 'Site web'} ↗</a>
+                )}
+              </div>
             </div>
           </div>
         </div>

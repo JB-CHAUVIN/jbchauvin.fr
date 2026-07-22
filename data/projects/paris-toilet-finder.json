@@ -13,8 +13,9 @@
   "links": {
     "ios": "https://apps.apple.com/us/app/paris-toilet-finder-wc-locator/id6751340329",
     "android": null,
-    "web": null
+    "web": "https://paris-toilet-map.jbchauvin.fr"
   },
+  "logo": "paris-toilet-finder-icon.png",
   "images": [
     "paris-toilet-finder-1.jpg",
     "paris-toilet-finder-2.jpg",

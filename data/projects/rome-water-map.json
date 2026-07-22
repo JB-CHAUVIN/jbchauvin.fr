@@ -1,0 +1,38 @@
+{
+  "id": "rome-water-map",
+  "priority": 16,
+  "date": "2025-08",
+  "type": "mobile",
+  "role": "founder",
+  "users": null,
+  "stack": [
+    "react-native",
+    "expo",
+    "typescript"
+  ],
+  "links": {
+    "ios": null,
+    "android": "https://play.google.com/store/apps/details?id=com.roma.nasoni",
+    "web": "https://rome-water-map.jbchauvin.fr"
+  },
+  "logo": "rome-water-map-icon.png",
+  "images": [],
+  "tags": [
+    "mobile",
+    "travel",
+    "maps",
+    "eco"
+  ],
+  "content": {
+    "en": {
+      "title": "Rome Water Map",
+      "shortDescription": "Find Rome's nasoni and free drinking fountains",
+      "longDescription": "Rome Water Map helps tourists, runners, and locals find the city's iconic nasoni and public drinking fountains, and refill their bottle anywhere in the Eternal City. Locate the nearest water spot in real time, plan hydration stops on your route, and cut down on single-use plastic. Free and built with React Native and Expo — a Roman sibling to Paris Water Map."
+    },
+    "fr": {
+      "title": "Rome Water Map",
+      "shortDescription": "Trouvez les nasoni et fontaines à eau gratuites de Rome",
+      "longDescription": "Rome Water Map aide les touristes, les coureurs et les habitants à repérer les célèbres nasoni et les fontaines publiques de la ville, et à remplir leur gourde partout dans la Ville Éternelle. Localisez le point d'eau le plus proche en temps réel, planifiez vos arrêts hydratation et réduisez le plastique à usage unique. Gratuit, développé avec React Native et Expo — le pendant romain de Paris Water Map."
+    }
+  }
+}

@@ -7,6 +7,7 @@
   "users": null,
   "stack": ["electron", "typescript", "react"],
   "links": { "ios": null, "android": null, "web": "https://agentsroom.dev/" },
+  "logo": "agentsroom-icon.png",
   "images": [],
   "tags": ["desktop", "developer-tools", "ai", "claude"],
   "content": {

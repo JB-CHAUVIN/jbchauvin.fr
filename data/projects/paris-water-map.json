@@ -13,8 +13,9 @@
   "links": {
     "ios": "https://apps.apple.com/us/app/paris-water-map-water-spots/id6751197075",
     "android": null,
-    "web": null
+    "web": "https://paris-water-map.jbchauvin.fr"
   },
+  "logo": "paris-water-map-icon.png",
   "images": [
     "paris-water-map-1.jpg",
     "paris-water-map-2.jpg",

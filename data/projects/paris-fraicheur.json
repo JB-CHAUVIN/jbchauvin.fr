@@ -1,0 +1,38 @@
+{
+  "id": "paris-fraicheur",
+  "priority": 15,
+  "date": "2025-07",
+  "type": "mobile",
+  "role": "founder",
+  "users": null,
+  "stack": [
+    "react-native",
+    "expo",
+    "typescript"
+  ],
+  "links": {
+    "ios": null,
+    "android": "https://play.google.com/store/apps/details?id=com.paris.fraicheur",
+    "web": "https://paris-freshness.jbchauvin.fr"
+  },
+  "logo": "paris-fraicheur-icon.png",
+  "images": [],
+  "tags": [
+    "mobile",
+    "travel",
+    "maps",
+    "eco"
+  ],
+  "content": {
+    "en": {
+      "title": "Paris Fraîcheur",
+      "shortDescription": "Find the coolest parks and gardens in Paris, made for heatwaves",
+      "longDescription": "Paris Fraîcheur helps tourists, families, and locals stay cool during Paris heatwaves by mapping the city's coolest parks, gardens, and shaded green spaces — the official îlots de fraîcheur. Find the nearest place to cool down in real time and plan your route around the heat. Free and built with React Native and Expo."
+    },
+    "fr": {
+      "title": "Paris Fraîcheur",
+      "shortDescription": "Trouvez les parcs et jardins les plus frais de Paris, pensés pour les canicules",
+      "longDescription": "Paris Fraîcheur aide les touristes, les familles et les habitants à garder la tête froide pendant les canicules parisiennes en cartographiant les parcs, jardins et espaces verts ombragés les plus frais de la ville — les îlots de fraîcheur officiels. Trouvez en temps réel l'endroit le plus proche où vous rafraîchir et planifiez votre trajet en évitant la chaleur. Gratuit, développé avec React Native et Expo."
+    }
+  }
+}
