@@ -3,6 +3,7 @@ import Layout from '../../components/layout/Layout.astro';
 import SectionTitle from '../../components/ui/SectionTitle.astro';
 import ProjectsFilter from '../../components/projects/ProjectsFilter.tsx';
 import { useTranslations } from '../../i18n/index';
+import { FEATURED_ORDER } from '../../featured';
 
 const lang = 'fr';
 const t = useTranslations(lang);
@@ -36,5 +37,6 @@ const translations = {
     projects={projects}
     lang={lang}
     translations={translations}
+    featuredOrder={FEATURED_ORDER}
   />
 </Layout>

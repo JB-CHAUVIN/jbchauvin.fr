@@ -4,7 +4,7 @@
   "date": "2025-01",
   "type": "web",
   "role": "founder",
-  "users": "500+",
+  "users": 500,
   "stack": ["nextjs", "react", "typescript", "tailwindcss", "nodejs"],
   "links": { "ios": null, "android": null, "web": "https://toctoctoc.boutique" },
   "images": ["toctoctoc-1.jpg", "toctoctoc-2.jpg", "toctoctoc-3.jpg"],

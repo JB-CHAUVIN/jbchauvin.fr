@@ -40,6 +40,8 @@ interface Props {
   projects: Project[];
   lang: 'en' | 'fr';
   translations: Translations;
+  /** Ids of "active" projects (those on the landing page), in display order. Single source of truth. */
+  featuredOrder: string[];
 }
 
 function openLightbox(images: string[], index: number, title: string) {
@@ -212,10 +214,31 @@ function ProjectRow({
   );
 }
 
-export default function ProjectsFilter({ projects, lang, translations }: Props) {
+// Users count as a sortable number ("success"). No data ⇒ ranked last.
+const successOf = (users: number | null) => {
+  if (users == null) return -1;
+  const n = typeof users === 'number' ? users : parseInt(String(users).replace(/\D/g, ''), 10);
+  return Number.isFinite(n) ? n : -1;
+};
+
+export default function ProjectsFilter({ projects, lang, translations, featuredOrder }: Props) {
   const [activeType, setActiveType] = useState<string | null>(null);
   const [activeRole, setActiveRole] = useState<string | null>(null);
   const [activeStack, setActiveStack] = useState<string | null>(null);
+
+  const activeIds = useMemo(() => new Set(featuredOrder), [featuredOrder]);
+
+  // Base order: active projects first (in landing-page order), then the rest by success (users desc).
+  const ordered = useMemo(() => {
+    const byId = new Map(projects.map((p) => [p.id, p]));
+    const active = featuredOrder
+      .map((id) => byId.get(id))
+      .filter((p): p is Project => Boolean(p));
+    const others = projects
+      .filter((p) => !activeIds.has(p.id))
+      .sort((a, b) => successOf(b.users) - successOf(a.users) || a.priority - b.priority);
+    return [...active, ...others];
+  }, [projects, featuredOrder, activeIds]);
 
   const types = useMemo(() => [...new Set(projects.map((p) => p.type))], [projects]);
   const roles = useMemo(() => [...new Set(projects.map((p) => p.role))], [projects]);
@@ -223,14 +246,17 @@ export default function ProjectsFilter({ projects, lang, translations }: Props) 
 
   const filtered = useMemo(
     () =>
-      projects.filter((p) => {
+      ordered.filter((p) => {
         if (activeType && p.type !== activeType) return false;
         if (activeRole && p.role !== activeRole) return false;
         if (activeStack && !p.stack.includes(activeStack)) return false;
         return true;
       }),
-    [projects, activeType, activeRole, activeStack]
+    [ordered, activeType, activeRole, activeStack]
   );
+
+  const activeProjects = useMemo(() => filtered.filter((p) => activeIds.has(p.id)), [filtered, activeIds]);
+  const otherProjects = useMemo(() => filtered.filter((p) => !activeIds.has(p.id)), [filtered, activeIds]);
 
   const hasFilters = activeType || activeRole || activeStack;
 
@@ -330,14 +356,49 @@ export default function ProjectsFilter({ projects, lang, translations }: Props) 
         {filtered.length} / {projects.length} {lang === 'en' ? 'projects' : 'projets'}
       </div>
 
-      {/* Project list */}
+      {/* Project list — active (landing page) first, then a separator, then earlier projects by success */}
       {filtered.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '40px', fontSize: '14px', color: '#9ca3af' }}>
           {translations.noResults}
         </div>
       ) : (
         <div>
-          {filtered.map((project) => (
+          {activeProjects.map((project) => (
+            <ProjectRow
+              key={project.id}
+              project={project}
+              lang={lang}
+              usersLabel={translations.usersLabel}
+            />
+          ))}
+
+          {activeProjects.length > 0 && otherProjects.length > 0 && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                margin: '22px 0 6px',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '0.68rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.16em',
+                  textTransform: 'uppercase',
+                  color: '#9ca3af',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {lang === 'en' ? 'Earlier projects' : 'Projets précédents'}
+              </span>
+              <span style={{ flex: 1, height: '1px', background: '#e5e7eb' }} />
+            </div>
+          )}
+
+          {otherProjects.map((project) => (
             <ProjectRow
               key={project.id}
               project={project}

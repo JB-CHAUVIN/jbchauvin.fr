@@ -4,7 +4,7 @@
   "date": "2026-03",
   "type": "desktop",
   "role": "founder",
-  "users": null,
+  "users": 1000,
   "stack": ["electron", "typescript", "react"],
   "links": { "ios": null, "android": null, "web": "https://agentsroom.dev/" },
   "logo": "agentsroom-icon.png",

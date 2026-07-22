@@ -1,5 +1,6 @@
 ---
 import { useTranslations, type Lang } from '../../i18n/index';
+import { FEATURED_ORDER } from '../../featured';
 
 interface Props {
   lang: Lang;
@@ -10,14 +11,7 @@ const { lang, projects } = Astro.props;
 const t = useTranslations(lang);
 const allProjectsHref = lang === 'en' ? '/projects/' : '/fr/projets/';
 
-// Curated order for the homepage highlight — independent of the global priority sort.
-const FEATURED_ORDER = [
-  'agentsroom',
-  'paris-water-map',
-  'paris-toilet-finder',
-  'paris-fraicheur',
-  'rome-water-map',
-];
+// Curated order for the homepage highlight — shared source of truth (see src/featured.ts).
 const byId = new Map(projects.map((p: any) => [p.id, p]));
 const featured = FEATURED_ORDER.map((id) => byId.get(id)).filter(Boolean);
 ---
