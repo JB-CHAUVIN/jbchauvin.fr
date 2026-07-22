@@ -21,6 +21,7 @@ interface Project {
   users: number | null;
   stack: string[];
   images: string[];
+  logo?: string | null;
   links: ProjectLinks;
   tags: string[];
   content: { en: ProjectContent; fr: ProjectContent };
@@ -92,7 +93,10 @@ function ProjectRow({
 }) {
   const content = project.content[lang];
   const images = (project.images ?? []).map((img) => `/images/projects/${img}`);
-  const heroImage = images[0] ?? null;
+  const logo = project.logo ? `/images/projects/${project.logo}` : null;
+  // Prefer a real screenshot; fall back to the app logo so every row has a thumbnail.
+  const heroImage = images[0] ?? logo;
+  const hasGallery = images.length > 0;
 
   return (
     <div
@@ -112,8 +116,8 @@ function ProjectRow({
         <div style={{ fontSize: '10px', color: '#9ca3af', marginTop: '2px' }}>{project.type}</div>
         {heroImage && (
           <div
-            style={{ marginTop: '8px', cursor: 'pointer' }}
-            onClick={() => openLightbox(images, 0, content.title)}
+            style={{ marginTop: '8px', cursor: hasGallery ? 'pointer' : 'default' }}
+            onClick={hasGallery ? () => openLightbox(images, 0, content.title) : undefined}
           >
             <img
               src={heroImage}
@@ -122,9 +126,10 @@ function ProjectRow({
                 width: '44px',
                 height: '44px',
                 objectFit: 'contain',
-                borderRadius: '4px',
+                borderRadius: '8px',
                 border: '1px solid #e5e7eb',
                 display: 'block',
+                background: '#fff',
               }}
               loading="lazy"
             />
