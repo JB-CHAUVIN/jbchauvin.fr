@@ -11,9 +11,14 @@
     "nodejs"
   ],
   "links": {
-    "ios": "https://apps.apple.com/us/app/trouver-rdv-prefecture/id1567792725",
+    "ios": null,
     "android": null,
     "web": null
+  },
+  "discontinued": {
+    "stores": [
+      "ios"
+    ]
   },
   "images": [
     "rdv-prefecture-1.jpg"

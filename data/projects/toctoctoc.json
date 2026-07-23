@@ -5,10 +5,33 @@
   "type": "web",
   "role": "founder",
   "users": 500,
-  "stack": ["nextjs", "react", "typescript", "tailwindcss", "nodejs"],
-  "links": { "ios": null, "android": null, "web": "https://toctoctoc.boutique" },
-  "images": ["toctoctoc-1.jpg", "toctoctoc-2.jpg", "toctoctoc-3.jpg"],
-  "tags": ["web", "saas", "marketing"],
+  "stack": [
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "nodejs"
+  ],
+  "links": {
+    "ios": null,
+    "android": null,
+    "web": null
+  },
+  "discontinued": {
+    "stores": [
+      "web"
+    ]
+  },
+  "images": [
+    "toctoctoc-1.jpg",
+    "toctoctoc-2.jpg",
+    "toctoctoc-3.jpg"
+  ],
+  "tags": [
+    "web",
+    "saas",
+    "marketing"
+  ],
   "content": {
     "en": {
       "title": "TocTocToc.boutique",

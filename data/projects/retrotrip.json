@@ -5,10 +5,30 @@
   "type": "mobile",
   "role": "founder",
   "users": null,
-  "stack": ["react-native", "typescript", "strapi", "nodejs", "php-slim"],
-  "links": { "ios": null, "android": null, "web": null },
-  "images": ["retrotrip-1.jpg", "retrotrip-2.jpg"],
-  "tags": ["mobile", "e-commerce", "travel"],
+  "stack": [
+    "react-native",
+    "typescript",
+    "strapi",
+    "nodejs",
+    "php-slim"
+  ],
+  "links": {
+    "ios": null,
+    "android": null,
+    "web": null
+  },
+  "discontinued": {
+    "stores": []
+  },
+  "images": [
+    "retrotrip-1.jpg",
+    "retrotrip-2.jpg"
+  ],
+  "tags": [
+    "mobile",
+    "e-commerce",
+    "travel"
+  ],
   "content": {
     "en": {
       "title": "RetroTrip",

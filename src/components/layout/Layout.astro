@@ -3,8 +3,9 @@ import '../../styles/global.css';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import Lightbox from '../ui/Lightbox';
+import DiscontinuedDialog from '../ui/DiscontinuedDialog';
 import site from '../../../data/site.json';
-import { getLangFromUrl, getAlternatePath } from '../../i18n/index';
+import { getLangFromUrl, getAlternatePath, useTranslations } from '../../i18n/index';
 
 interface Props {
   title: string;
@@ -17,14 +18,38 @@ interface Props {
 const {
   title,
   description,
-  ogImage = '/og-image.jpg',
+  ogImage,
   noindex = false,
   jsonLd,
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const canonicalUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
-const ogImageUrl = new URL(ogImage, site.baseUrl).toString();
+
+// Localized social card (1200x630, generated from scripts/og-image/). Both files
+// live in public/ — an og:image that 404s makes LinkedIn/X scrape a random page image.
+const ogImageUrl = new URL(
+  ogImage ?? (lang === 'fr' ? '/og-image-fr.jpg' : '/og-image.jpg'),
+  site.baseUrl
+).toString();
+const ogImageAlt =
+  lang === 'fr'
+    ? 'Jean-Baptiste Chauvin — Lead Tech, React Native & Full-Stack, Paris'
+    : 'Jean-Baptiste Chauvin — Lead Tech, React Native & Full-Stack, Paris, France';
+
+const t = useTranslations(lang);
+const discontinuedStrings = {
+  title: t('projects.discontinued.title'),
+  stores: t('projects.discontinued.stores'),
+  offline: t('projects.discontinued.offline'),
+  unpublished: t('projects.discontinued.unpublished'),
+  close: t('projects.discontinued.close'),
+  storeLabels: {
+    ios: t('projects.links.ios'),
+    android: t('projects.links.android'),
+    web: t('projects.links.web'),
+  },
+};
 
 const alternateLang = lang === 'en' ? 'fr' : 'en';
 const alternatePath = getAlternatePath(Astro.url.pathname, alternateLang);
@@ -55,6 +80,10 @@ const currentUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
     <meta property="og:site_name" content="Jean-Baptiste Chauvin" />
 
@@ -63,6 +92,7 @@ const currentUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageUrl} />
+    <meta property="twitter:image:alt" content={ogImageAlt} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -78,5 +108,6 @@ const currentUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
     </main>
     <Footer lang={lang} />
     <Lightbox client:load />
+    <DiscontinuedDialog client:load strings={discontinuedStrings} />
   </body>
 </html>

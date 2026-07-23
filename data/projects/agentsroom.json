@@ -6,7 +6,11 @@
   "role": "founder",
   "users": 1000,
   "stack": ["electron", "typescript", "react"],
-  "links": { "ios": null, "android": null, "web": "https://agentsroom.dev/" },
+  "links": {
+    "ios": "https://apps.apple.com/us/app/agentsroom-ai-remote-dev-agent/id6761265182",
+    "android": "https://play.google.com/store/apps/details?id=com.agentsroom.dev.ia",
+    "web": "https://agentsroom.dev/"
+  },
   "logo": "agentsroom-icon.png",
   "images": [],
   "tags": ["desktop", "developer-tools", "ai", "claude"],

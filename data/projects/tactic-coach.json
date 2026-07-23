@@ -12,9 +12,15 @@
     "react"
   ],
   "links": {
-    "ios": "https://apps.apple.com/app/tactic-coach/id6476916347",
-    "android": "https://play.google.com/store/apps/details?id=com.tactic.coach.app",
+    "ios": null,
+    "android": null,
     "web": null
+  },
+  "discontinued": {
+    "stores": [
+      "ios",
+      "android"
+    ]
   },
   "images": [
     "tactic-coach-1.jpg",

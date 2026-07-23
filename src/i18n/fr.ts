@@ -61,6 +61,14 @@ export const fr = {
   'projects.links.android': 'Play Store',
   'projects.links.web': 'Site web',
 
+  // Projets terminés (cf. `discontinued` dans data/projects/*.json)
+  'projects.discontinued.badge': 'Terminé',
+  'projects.discontinued.title': 'Ce projet est terminé',
+  'projects.discontinued.stores': 'L\'application n\'est plus distribuée sur les stores, les liens de téléchargement ont donc été retirés.',
+  'projects.discontinued.offline': 'Le service a été arrêté et son site n\'est plus en ligne.',
+  'projects.discontinued.unpublished': 'Ce projet n\'est plus maintenu et n\'a pas été publié.',
+  'projects.discontinued.close': 'Fermer',
+
   // References page
   'references.title': 'Références',
   'references.subtitle': 'Entreprises et équipes avec lesquelles j\'ai travaillé.',

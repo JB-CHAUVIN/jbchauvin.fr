@@ -12,6 +12,11 @@ interface ProjectLinks {
   web: string | null;
 }
 
+/** Present ⇒ the project is over. `stores` = where it used to ship (empty ⇒ never released). */
+interface Discontinued {
+  stores: string[];
+}
+
 interface Project {
   id: string;
   priority: number;
@@ -23,6 +28,7 @@ interface Project {
   images: string[];
   logo?: string | null;
   links: ProjectLinks;
+  discontinued?: Discontinued | null;
   tags: string[];
   content: { en: ProjectContent; fr: ProjectContent };
 }
@@ -35,6 +41,7 @@ interface Translations {
   filterRole: string;
   usersLabel: string;
   noResults: string;
+  discontinuedBadge: string;
 }
 
 interface Props {
@@ -50,6 +57,14 @@ function openLightbox(images: string[], index: number, title: string) {
     detail: { images, index, projectTitle: title },
   }));
 }
+
+/** Store names are proper nouns; only "web" is a common noun that needs translating. */
+const storeLabel = (store: string, lang: 'en' | 'fr'): string => {
+  if (store === 'ios') return 'App Store';
+  if (store === 'android') return 'Play Store';
+  if (store === 'web') return lang === 'en' ? 'Website' : 'Site web';
+  return store;
+};
 
 function FilterPill({
   children,
@@ -86,10 +101,12 @@ function ProjectRow({
   project,
   lang,
   usersLabel,
+  discontinuedBadge,
 }: {
   project: Project;
   lang: 'en' | 'fr';
   usersLabel: string;
+  discontinuedBadge: string;
 }) {
   const content = project.content[lang];
   const images = (project.images ?? []).map((img) => `/images/projects/${img}`);
@@ -97,6 +114,21 @@ function ProjectRow({
   // Prefer a real screenshot; fall back to the app logo so every row has a thumbnail.
   const heroImage = images[0] ?? logo;
   const hasGallery = images.length > 0;
+
+  // Delisted apps keep their store names visible (portfolio signal) but as plain
+  // buttons — never dead <a href> that would 404 for users and crawlers alike.
+  const formerStores = project.discontinued?.stores ?? [];
+  const isDiscontinued = Boolean(project.discontinued);
+  const explainDiscontinued = () =>
+    window.dispatchEvent(new CustomEvent('open-discontinued', {
+      detail: {
+        title: content.title,
+        stores: formerStores,
+        year: project.date.slice(0, 4),
+        users: project.users,
+        usersLabel,
+      },
+    }));
 
   return (
     <div
@@ -149,6 +181,25 @@ function ProjectRow({
           )}
           {project.users === null && (
             <span style={{ fontSize: '11px', color: '#9ca3af' }}>· MVP</span>
+          )}
+          {isDiscontinued && (
+            <button
+              onClick={explainDiscontinued}
+              style={{
+                fontFamily: 'inherit',
+                fontSize: '10px',
+                padding: '1px 6px',
+                borderRadius: '2px',
+                border: '1px solid #e5e7eb',
+                background: '#f9fafb',
+                color: '#9ca3af',
+                cursor: 'pointer',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+              }}
+            >
+              {discontinuedBadge}
+            </button>
           )}
         </div>
 
@@ -213,6 +264,26 @@ function ProjectRow({
               {lang === 'en' ? 'Website' : 'Site web'} ↗
             </a>
           )}
+
+          {formerStores.map((store) => (
+            <button
+              key={store}
+              onClick={explainDiscontinued}
+              style={{
+                fontFamily: 'inherit',
+                fontSize: '11px',
+                padding: 0,
+                border: 'none',
+                background: 'none',
+                color: '#9ca3af',
+                cursor: 'pointer',
+                textDecoration: 'line-through',
+                textDecorationColor: '#d1d5db',
+              }}
+            >
+              {storeLabel(store, lang)}
+            </button>
+          ))}
         </div>
       </div>
     </div>
@@ -374,6 +445,7 @@ export default function ProjectsFilter({ projects, lang, translations, featuredO
               project={project}
               lang={lang}
               usersLabel={translations.usersLabel}
+              discontinuedBadge={translations.discontinuedBadge}
             />
           ))}
 
@@ -409,6 +481,7 @@ export default function ProjectsFilter({ projects, lang, translations, featuredO
               project={project}
               lang={lang}
               usersLabel={translations.usersLabel}
+              discontinuedBadge={translations.discontinuedBadge}
             />
           ))}
         </div>
