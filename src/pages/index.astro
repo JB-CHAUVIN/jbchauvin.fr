@@ -10,10 +10,11 @@ import ReferencesPreview from '../components/home/ReferencesPreview.astro';
 import ContactSection from '../components/home/ContactSection.astro';
 import referencesData from '../../data/references.json';
 import site from '../../data/site.json';
+import { filterVisible } from '../featured';
 
 const projectFiles = import.meta.glob('../../data/projects/*.json', { eager: true });
-const projects = Object.values(projectFiles)
-  .map((mod: any) => mod.default)
+// filterVisible : retire les projets masqués (cf. HIDDEN_PROJECTS dans src/featured.ts)
+const projects = filterVisible(Object.values(projectFiles).map((mod: any) => mod.default))
   .sort((a: any, b: any) => a.priority - b.priority);
 
 const lang = 'en';

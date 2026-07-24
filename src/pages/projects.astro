@@ -3,14 +3,14 @@ import Layout from '../components/layout/Layout.astro';
 import SectionTitle from '../components/ui/SectionTitle.astro';
 import ProjectsFilter from '../components/projects/ProjectsFilter.tsx';
 import { useTranslations } from '../i18n/index';
-import { FEATURED_ORDER } from '../featured';
+import { FEATURED_ORDER, filterVisible } from '../featured';
 
 const lang = 'en';
 const t = useTranslations(lang);
 
 const projectFiles = import.meta.glob('../../data/projects/*.json', { eager: true });
-const projects = Object.values(projectFiles)
-  .map((mod: any) => mod.default)
+// filterVisible : retire les projets masqués (cf. HIDDEN_PROJECTS dans src/featured.ts)
+const projects = filterVisible(Object.values(projectFiles).map((mod: any) => mod.default))
   .sort((a: any, b: any) => a.priority - b.priority);
 
 const translations = {
